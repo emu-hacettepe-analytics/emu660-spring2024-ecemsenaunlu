@@ -1,0 +1,130 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to My Analytics Lab",
+    "section": "",
+    "text": "Hello!! My name is xxx xxxx.\nThis is my personal webpage.\nPlease stay tuned to follow my works on data analytics, blog posts, and more.\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "Project X",
+    "section": "",
+    "text": "Welcome to my project page.\nKeep an eye on this space to stay updated with my project activities.\n(The titles below are provided as examples; please feel free to adjust them as necessary.)"
+  },
+  {
+    "objectID": "project.html#data-source",
+    "href": "project.html#data-source",
+    "title": "Project X",
+    "section": "2.1 Data Source",
+    "text": "2.1 Data Source\nxxxxxx"
+  },
+  {
+    "objectID": "project.html#general-information-about-data",
+    "href": "project.html#general-information-about-data",
+    "title": "Project X",
+    "section": "2.2 General Information About Data",
+    "text": "2.2 General Information About Data\nxxxxxx"
+  },
+  {
+    "objectID": "project.html#reason-of-choice",
+    "href": "project.html#reason-of-choice",
+    "title": "Project X",
+    "section": "2.3 Reason of Choice",
+    "text": "2.3 Reason of Choice\nxxxxxx"
+  },
+  {
+    "objectID": "project.html#preprocessing",
+    "href": "project.html#preprocessing",
+    "title": "Project X",
+    "section": "2.4 Preprocessing",
+    "text": "2.4 Preprocessing\nxxxxxx"
+  },
+  {
+    "objectID": "project.html#exploratory-data-analysis",
+    "href": "project.html#exploratory-data-analysis",
+    "title": "Project X",
+    "section": "3.1 Exploratory Data Analysis",
+    "text": "3.1 Exploratory Data Analysis\nxxxxxx"
+  },
+  {
+    "objectID": "project.html#trend-analysis",
+    "href": "project.html#trend-analysis",
+    "title": "Project X",
+    "section": "3.2 Trend Analysis",
+    "text": "3.2 Trend Analysis\nxxxxxx"
+  },
+  {
+    "objectID": "project.html#model-fitting",
+    "href": "project.html#model-fitting",
+    "title": "Project X",
+    "section": "3.3 Model Fitting",
+    "text": "3.3 Model Fitting\nxxxxxx"
+  },
+  {
+    "objectID": "project.html#results",
+    "href": "project.html#results",
+    "title": "Project X",
+    "section": "3.4 Results",
+    "text": "3.4 Results\nxxxxxx"
+  },
+  {
+    "objectID": "assignments.html",
+    "href": "assignments.html",
+    "title": "My Assignments",
+    "section": "",
+    "text": "On this page, I showcase the assignment I conducted for the [term and year, e.g. Spring 2024] EMU660 Decision Making with Analytics course.\nPlease use left menu to navigate through my assignments.\n\n\n\n Back to top",
+    "crumbs": [
+      "My Assignments"
+    ]
+  },
+  {
+    "objectID": "about.html#employements",
+    "href": "about.html#employements",
+    "title": "About Me",
+    "section": "Employements",
+    "text": "Employements\n\nFirm xxx, position xx, year xxx\nFirm yyy, position yyy, year yyy"
+  },
+  {
+    "objectID": "about.html#internships",
+    "href": "about.html#internships",
+    "title": "About Me",
+    "section": "Internships",
+    "text": "Internships\n\nFirm aaa, position xx, year xxx\nFirm bbb, position yyy, year yyy"
+  },
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "My Blog",
+    "section": "",
+    "text": "This page is under construction.\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "docs/assignments/assignment-1.html",
+    "href": "docs/assignments/assignment-1.html",
+    "title": "Assignment 1",
+    "section": "",
+    "text": "1 + 1\n\n[1] 2\n\n\nMy first assignment has two parts."
+  },
+  {
+    "objectID": "assignments/assignment-1.html",
+    "href": "assignments/assignment-1.html",
+    "title": "Assignment 1",
+    "section": "",
+    "text": "1 + 1\n\n[1] 2\n\n\nMy first assignment has two parts.",
+    "crumbs": [
+      "Assignment 1"
+    ]
+  },
+  {
+    "objectID": "assignments/assignment-2.html",
+    "href": "assignments/assignment-2.html",
+    "title": "Assignment 2",
+    "section": "",
+    "text": "Assignment 2\n\n1 + 1\n\n[1] 2\n\n\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Assignment 2"
+    ]
+  }
+]

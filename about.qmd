@@ -1,0 +1,40 @@
+---
+title: "About Me"
+sidebar: false 
+---
+
+![](assets/images/vesikalik.jpeg){fig-align="center"}
+
+# Education
+
+-   B.S., ................................., ....................................University, Turkey, 20xx - 20xx.
+-   M.S., Industrial Engineering, Hacettepe University, Turkey, 20xx - ongoing.
+-   Ph.D.., Industrial Engineering, Hacettepe University, Turkey, 20xx - ongoing.
+
+# Work Experience
+
+## Employements
+
+1.  Firm xxx, position xx, year xxx
+
+2.  Firm yyy, position yyy, year yyy
+
+## Internships
+
+1.  Firm aaa, position xx, year xxx
+
+2.  Firm bbb, position yyy, year yyy
+
+# Projects
+
+1.  TUBİTAK 1001..........................
+
+# Publications
+
+1.  Dasdemir, E., Batta, R., Koksalan, M., Tezcaner Ozturk, D. (2022) “UAV Routing for Reconnaissance Mission: A Multi-Objective Orienteering Problem with Time-Dependent Prizes and Multiple Connections”, Computers & Operations Research, 145: 105882.
+
+# Competencies
+
+R, Quarto, Git, Python
+
+# Hobbies
