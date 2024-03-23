@@ -3,7 +3,7 @@ title: "About Me"
 sidebar: false 
 ---
 
-![](images/ecemsenaünlü-300.jpg){fig-align="center"}
+![](images/ecemsenaünlü-300.jpg){fig-align="center" width="350"}
 
 # I am highly motivated to progress professionally, improve my professional knowledge, and acquire new ones.
 
@@ -45,4 +45,12 @@ Gurobi / Cplex
 
 # Hobbies
 
-Chess
+![](images/resim.png){width="31" height="29"} Painting
+
+![](images/chess.png){width="35" height="25"} Chess
+
+![](images/yüzme.png){width="31"} Swimming
+
+![](images/tiyatro.png){width="33"} Theatre
+
+![](images/gitar.png){width="16" height="35"} Guitar
