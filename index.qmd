@@ -2,7 +2,7 @@
 title: "Welcome to My Analytics Lab"
 ---
 
-Hello!! My name is Ecem Sena Ünlü
+Hello!! My name is Ecem Sena Unlu
 
 This is my personal webpage.
 

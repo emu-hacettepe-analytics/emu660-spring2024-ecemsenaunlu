@@ -3,7 +3,7 @@ title: "About Me"
 sidebar: false 
 ---
 
-![](images/ecemsenaünlü-300.jpg){fig-align="center" width="350"}
+![](images/ecemsenaC<nlC<-300.jpg){fig-align="center" width="350"}
 
 # I am highly motivated to progress professionally, improve my professional knowledge, and acquire new ones.
 
@@ -17,7 +17,7 @@ sidebar: false
 
 ## Employements
 
-1.  Firm TUSAŞ, position Production Planning Engineer, year 2023 - ongoing.
+1.  Firm TUSAE, position Production Planning Engineer, year 2023 - ongoing.
 
 2.  Firm Arlight Lighting, position Production Planning Engineer, 2022 to 2023.
 
@@ -25,7 +25,7 @@ sidebar: false
 
 1.  Firm Metro Gross Market, position Graduation Project, year 2021
 
-2.  Firm Mitaş, position Candidate Engineer, year 2021
+2.  Firm MitaE, position Candidate Engineer, year 2021
 
 # Projects
 
@@ -49,7 +49,7 @@ Gurobi / Cplex
 
 ![](images/chess.png){width="35" height="25"} Chess
 
-![](images/yüzme.png){width="31"} Swimming
+![](images/yC<zme.png){width="31"} Swimming
 
 ![](images/tiyatro.png){width="33"} Theatre
 
