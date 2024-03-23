@@ -2,6 +2,8 @@
 title: "Welcome to My Analytics Lab"
 ---
 
+![](images/68aebf3739f455687a90e871bdc04a98.gif){fig-align="center"}
+
 Hello!! My name is Ecem Sena Unlu
 
 This is my personal webpage.
