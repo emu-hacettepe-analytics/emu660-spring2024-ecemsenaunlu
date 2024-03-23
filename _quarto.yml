@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "[Student xxxx]'s Analytics Lab"
+  title: "Ecem's Analytics Lab"
   navbar:
     search: true
     left:
@@ -26,7 +26,7 @@ website:
       - icon: twitter
         href: https://twitter.com
       - icon: linkedin
-        href: https://linkedin.com
+        href: www.linkedin.com/in/ecem-sena-unlu
 
   sidebar:
     - title: "Assignments"
