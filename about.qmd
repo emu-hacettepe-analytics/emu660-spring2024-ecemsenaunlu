@@ -3,6 +3,8 @@ title: "About Me"
 sidebar: false 
 ---
 
+[Tap and reach MY CV](https://drive.google.com/file/d/1qz3Mhnx5XGF9APHee0WDkkCfbcUBhz0k/view?usp=drive_link)
+
 ![](images/ecemsenaunluu.jpg){fig-align="center" width="350"}
 
 I am highly motivated to progress professionally, improve my professional knowledge, and acquire new ones.
