@@ -49,7 +49,7 @@ Gurobi / Cplex
 
 ![](images/chess.png){width="35" height="25"} Chess
 
-![](images/yuzme1.png){width="31"} Swimming
+![](images/yuzme1.png){width="33"} Swimming
 
 ![](images/tiyatro.png){width="33"} Theatre
 
