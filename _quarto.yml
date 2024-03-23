@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Ecemm's Analytics Lab"
+  title: "Ecem's Analytics Lab"
   navbar:
     search: true
     left:
