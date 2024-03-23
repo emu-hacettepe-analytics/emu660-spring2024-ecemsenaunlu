@@ -44,7 +44,7 @@ format:
     toc: true
     toc-location: left
     theme: 
-      light: simplex 
+      light: lux 
       dark: cyborg
     css: styles.css
 
