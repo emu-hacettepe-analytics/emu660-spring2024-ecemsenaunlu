@@ -13,3 +13,36 @@ My first assignment has two parts.
 ## (a)
 
 ## (b)
+
+library(dslabs)
+data("mtcars")
+
+custom_summary <- function (carCustom)
+{
+    meanValue <- mean(carCustom)
+    std <- sd(carCustom)
+    maxValue <- max(carCustom)
+    minValue <- min(carCustom)
+    medianValue <- median(carCustom)
+    customStatistics <- list(minValue,maxValue,meanValue,medianValue,std)
+    return (customStatistics)
+}
+customNames <- names(mtcars)
+for (customIndex in 1:11){
+    carCustom <- mtcars[,customIndex]
+    customStatistics <- custom_summary(carCustom)
+    print(customNames[customIndex])
+    print(customStatistics)
+}
+
+qq <- apply(mtcars,2,custom_summary)
+print(qq)
+
+## (c)
+install.packages("shiny")
+library(shiny)
+
+data("na_example")
+
+plot(na_example, type = "l", main = "My Vector Plot", xlab = "Index", ylab = "Value")
+str(na_example)

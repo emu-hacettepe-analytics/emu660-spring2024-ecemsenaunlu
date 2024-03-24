@@ -109,10 +109,7 @@
     "href": "assignments/assignment-1.html",
     "title": "Assignment 1",
     "section": "",
-    "text": "1 + 1\n\n[1] 2\n\n\nMy first assignment has two parts.",
-    "crumbs": [
-      "Assignment 1"
-    ]
+    "text": "1 + 1\n\n[1] 2\n\n\nMy first assignment has two parts.\n\n\n\n\n\nlibrary(dslabs) data(“mtcars”)\ncustom_summary &lt;- function (carCustom) { meanValue &lt;- mean(carCustom) std &lt;- sd(carCustom) maxValue &lt;- max(carCustom) minValue &lt;- min(carCustom) medianValue &lt;- median(carCustom) customStatistics &lt;- list(minValue,maxValue,meanValue,medianValue,std) return (customStatistics) } customNames &lt;- names(mtcars) for (customIndex in 1:11){ carCustom &lt;- mtcars[,customIndex] customStatistics &lt;- custom_summary(carCustom) print(customNames[customIndex]) print(customStatistics) }\nqq &lt;- apply(mtcars,2,custom_summary) print(qq)\n\n\n\ninstall.packages(“shiny”) library(shiny)\ndata(“na_example”)\nplot(na_example, type = “l”, main = “My Vector Plot”, xlab = “Index”, ylab = “Value”) str(na_example)"
   },
   {
     "objectID": "assignments/assignment-2.html",
@@ -130,5 +127,19 @@
     "title": "About Me",
     "section": "",
     "text": "Tap and reach MY CV\nI am highly motivated to progress professionally, improve my professional knowledge, and acquire new ones."
+  },
+  {
+    "objectID": "assignments/assignment-1.html#b",
+    "href": "assignments/assignment-1.html#b",
+    "title": "Assignment 1",
+    "section": "",
+    "text": "library(dslabs) data(“mtcars”)\ncustom_summary &lt;- function (carCustom) { meanValue &lt;- mean(carCustom) std &lt;- sd(carCustom) maxValue &lt;- max(carCustom) minValue &lt;- min(carCustom) medianValue &lt;- median(carCustom) customStatistics &lt;- list(minValue,maxValue,meanValue,medianValue,std) return (customStatistics) } customNames &lt;- names(mtcars) for (customIndex in 1:11){ carCustom &lt;- mtcars[,customIndex] customStatistics &lt;- custom_summary(carCustom) print(customNames[customIndex]) print(customStatistics) }\nqq &lt;- apply(mtcars,2,custom_summary) print(qq)"
+  },
+  {
+    "objectID": "assignments/assignment-1.html#c",
+    "href": "assignments/assignment-1.html#c",
+    "title": "Assignment 1",
+    "section": "",
+    "text": "install.packages(“shiny”) library(shiny)\ndata(“na_example”)\nplot(na_example, type = “l”, main = “My Vector Plot”, xlab = “Index”, ylab = “Value”) str(na_example)"
   }
 ]
