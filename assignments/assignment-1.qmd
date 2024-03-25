@@ -13,6 +13,9 @@ My first assignment has two parts.
 library(dslabs)
 data("mtcars")
 
+Created a custom_summary function and which is works to calculating mean, standard variance, max value in data set, min value in data set and median value.
+
+```{r}
 custom_summary <- function (carCustom)
 {
     meanValue <- mean(carCustom)
@@ -23,6 +26,11 @@ custom_summary <- function (carCustom)
     customStatistics <- list(minValue,maxValue,meanValue,medianValue,std)
     return (customStatistics)
 }
+```
+
+This stage custom_summary fuction calculated all values (mean, standard variance, max value in data set, min value in data set and median value) for each property of mtcars.
+
+```{r}
 customNames <- names(mtcars)
 for (customIndex in 1:11){
     carCustom <- mtcars[,customIndex]
@@ -30,9 +38,13 @@ for (customIndex in 1:11){
     print(customNames[customIndex])
     print(customStatistics)
 }
-
+```
+The apply function and the custom_summary function were applied to all columns of the matrix.
+```{r}
 qq <- apply(mtcars,2,custom_summary)
 print(qq)
+```
+
 
 ## (c)
 

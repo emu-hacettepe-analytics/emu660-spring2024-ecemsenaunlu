@@ -246,23 +246,413 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="b" class="level2">
 <h2 class="anchored" data-anchor-id="b">(b)</h2>
 <p>library(dslabs) data(“mtcars”)</p>
-<p>custom_summary &lt;- function (carCustom) { meanValue &lt;- mean(carCustom) std &lt;- sd(carCustom) maxValue &lt;- max(carCustom) minValue &lt;- min(carCustom) medianValue &lt;- median(carCustom) customStatistics &lt;- list(minValue,maxValue,meanValue,medianValue,std) return (customStatistics) } customNames &lt;- names(mtcars) for (customIndex in 1:11){ carCustom &lt;- mtcars[,customIndex] customStatistics &lt;- custom_summary(carCustom) print(customNames[customIndex]) print(customStatistics) }</p>
-<p>qq &lt;- apply(mtcars,2,custom_summary) print(qq)</p>
+<p>Created a custom_summary function and which is works to calculating mean, standard variance, max value in data set, min value in data set and median value.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>custom_summary <span class="ot">&lt;-</span> <span class="cf">function</span> (carCustom)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    meanValue <span class="ot">&lt;-</span> <span class="fu">mean</span>(carCustom)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    std <span class="ot">&lt;-</span> <span class="fu">sd</span>(carCustom)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    maxValue <span class="ot">&lt;-</span> <span class="fu">max</span>(carCustom)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    minValue <span class="ot">&lt;-</span> <span class="fu">min</span>(carCustom)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    medianValue <span class="ot">&lt;-</span> <span class="fu">median</span>(carCustom)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    customStatistics <span class="ot">&lt;-</span> <span class="fu">list</span>(minValue,maxValue,meanValue,medianValue,std)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span> (customStatistics)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This stage custom_summary fuction calculated all values (mean, standard variance, max value in data set, min value in data set and median value) for each property of mtcars.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>customNames <span class="ot">&lt;-</span> <span class="fu">names</span>(mtcars)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (customIndex <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>){</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    carCustom <span class="ot">&lt;-</span> mtcars[,customIndex]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    customStatistics <span class="ot">&lt;-</span> <span class="fu">custom_summary</span>(carCustom)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(customNames[customIndex])</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(customStatistics)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "mpg"
+[[1]]
+[1] 10.4
+
+[[2]]
+[1] 33.9
+
+[[3]]
+[1] 20.09062
+
+[[4]]
+[1] 19.2
+
+[[5]]
+[1] 6.026948
+
+[1] "cyl"
+[[1]]
+[1] 4
+
+[[2]]
+[1] 8
+
+[[3]]
+[1] 6.1875
+
+[[4]]
+[1] 6
+
+[[5]]
+[1] 1.785922
+
+[1] "disp"
+[[1]]
+[1] 71.1
+
+[[2]]
+[1] 472
+
+[[3]]
+[1] 230.7219
+
+[[4]]
+[1] 196.3
+
+[[5]]
+[1] 123.9387
+
+[1] "hp"
+[[1]]
+[1] 52
+
+[[2]]
+[1] 335
+
+[[3]]
+[1] 146.6875
+
+[[4]]
+[1] 123
+
+[[5]]
+[1] 68.56287
+
+[1] "drat"
+[[1]]
+[1] 2.76
+
+[[2]]
+[1] 4.93
+
+[[3]]
+[1] 3.596563
+
+[[4]]
+[1] 3.695
+
+[[5]]
+[1] 0.5346787
+
+[1] "wt"
+[[1]]
+[1] 1.513
+
+[[2]]
+[1] 5.424
+
+[[3]]
+[1] 3.21725
+
+[[4]]
+[1] 3.325
+
+[[5]]
+[1] 0.9784574
+
+[1] "qsec"
+[[1]]
+[1] 14.5
+
+[[2]]
+[1] 22.9
+
+[[3]]
+[1] 17.84875
+
+[[4]]
+[1] 17.71
+
+[[5]]
+[1] 1.786943
+
+[1] "vs"
+[[1]]
+[1] 0
+
+[[2]]
+[1] 1
+
+[[3]]
+[1] 0.4375
+
+[[4]]
+[1] 0
+
+[[5]]
+[1] 0.5040161
+
+[1] "am"
+[[1]]
+[1] 0
+
+[[2]]
+[1] 1
+
+[[3]]
+[1] 0.40625
+
+[[4]]
+[1] 0
+
+[[5]]
+[1] 0.4989909
+
+[1] "gear"
+[[1]]
+[1] 3
+
+[[2]]
+[1] 5
+
+[[3]]
+[1] 3.6875
+
+[[4]]
+[1] 4
+
+[[5]]
+[1] 0.7378041
+
+[1] "carb"
+[[1]]
+[1] 1
+
+[[2]]
+[1] 8
+
+[[3]]
+[1] 2.8125
+
+[[4]]
+[1] 2
+
+[[5]]
+[1] 1.6152</code></pre>
+</div>
+</div>
+<p>The apply function and the custom_summary function were applied to all columns of the matrix.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>qq <span class="ot">&lt;-</span> <span class="fu">apply</span>(mtcars,<span class="dv">2</span>,custom_summary)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(qq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$mpg
+$mpg[[1]]
+[1] 10.4
+
+$mpg[[2]]
+[1] 33.9
+
+$mpg[[3]]
+[1] 20.09062
+
+$mpg[[4]]
+[1] 19.2
+
+$mpg[[5]]
+[1] 6.026948
+
+
+$cyl
+$cyl[[1]]
+[1] 4
+
+$cyl[[2]]
+[1] 8
+
+$cyl[[3]]
+[1] 6.1875
+
+$cyl[[4]]
+[1] 6
+
+$cyl[[5]]
+[1] 1.785922
+
+
+$disp
+$disp[[1]]
+[1] 71.1
+
+$disp[[2]]
+[1] 472
+
+$disp[[3]]
+[1] 230.7219
+
+$disp[[4]]
+[1] 196.3
+
+$disp[[5]]
+[1] 123.9387
+
+
+$hp
+$hp[[1]]
+[1] 52
+
+$hp[[2]]
+[1] 335
+
+$hp[[3]]
+[1] 146.6875
+
+$hp[[4]]
+[1] 123
+
+$hp[[5]]
+[1] 68.56287
+
+
+$drat
+$drat[[1]]
+[1] 2.76
+
+$drat[[2]]
+[1] 4.93
+
+$drat[[3]]
+[1] 3.596563
+
+$drat[[4]]
+[1] 3.695
+
+$drat[[5]]
+[1] 0.5346787
+
+
+$wt
+$wt[[1]]
+[1] 1.513
+
+$wt[[2]]
+[1] 5.424
+
+$wt[[3]]
+[1] 3.21725
+
+$wt[[4]]
+[1] 3.325
+
+$wt[[5]]
+[1] 0.9784574
+
+
+$qsec
+$qsec[[1]]
+[1] 14.5
+
+$qsec[[2]]
+[1] 22.9
+
+$qsec[[3]]
+[1] 17.84875
+
+$qsec[[4]]
+[1] 17.71
+
+$qsec[[5]]
+[1] 1.786943
+
+
+$vs
+$vs[[1]]
+[1] 0
+
+$vs[[2]]
+[1] 1
+
+$vs[[3]]
+[1] 0.4375
+
+$vs[[4]]
+[1] 0
+
+$vs[[5]]
+[1] 0.5040161
+
+
+$am
+$am[[1]]
+[1] 0
+
+$am[[2]]
+[1] 1
+
+$am[[3]]
+[1] 0.40625
+
+$am[[4]]
+[1] 0
+
+$am[[5]]
+[1] 0.4989909
+
+
+$gear
+$gear[[1]]
+[1] 3
+
+$gear[[2]]
+[1] 5
+
+$gear[[3]]
+[1] 3.6875
+
+$gear[[4]]
+[1] 4
+
+$gear[[5]]
+[1] 0.7378041
+
+
+$carb
+$carb[[1]]
+[1] 1
+
+$carb[[2]]
+[1] 8
+
+$carb[[3]]
+[1] 2.8125
+
+$carb[[4]]
+[1] 2
+
+$carb[[5]]
+[1] 1.6152</code></pre>
+</div>
+</div>
 </section>
 <section id="c" class="level2">
 <h2 class="anchored" data-anchor-id="c">(c)</h2>
 <p>There is a Data Graph belongs to na_example data set.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"na_example"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(na_example, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">main =</span> <span class="st">"Data Graph"</span>, <span class="at">xlab =</span> <span class="st">"Example Number"</span>, <span class="at">ylab =</span> <span class="st">"Example Value"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"na_example"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(na_example, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">main =</span> <span class="st">"Data Graph"</span>, <span class="at">xlab =</span> <span class="st">"Example Number"</span>, <span class="at">ylab =</span> <span class="st">"Example Value"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="assignment-1_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<p><img src="assignment-1_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>You can see all the values of the na_example data set in the table below.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(na_example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(na_example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   [1]  2  1  3  2  1  3  1  4  3  2  2 NA  2  2  1  4 NA  1  1  2  1  2  2  1
   [25]  2  5 NA  2  2  3  1  2  4  1  1  1  4  5  2  3  4  1  2  4  1  1  2  1
@@ -310,18 +700,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Number of elements which equal to NA in Data Set</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(na_example))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(na_example))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 145</code></pre>
 </div>
 </div>
 <p>Convert NA’s to 660</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>convert_nas <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(na_example),<span class="dv">660</span>, na_example) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>convert_nas <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(na_example),<span class="dv">660</span>, na_example) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can see converted data below.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(convert_nas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(convert_nas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   [1]   2   1   3   2   1   3   1   4   3   2   2 660   2   2   1   4 660   1
   [19]   1   2   1   2   2   1   2   5 660   2   2   3   1   2   4   1   1   1
@@ -383,15 +773,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Total NA values at updated data set.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(convert_nas))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(convert_nas))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
 </div>
 <p>Number of NA elements which are assigned to 660.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sumpro<span class="ot">&lt;-</span><span class="fu">sum</span>(convert_nas<span class="sc">==</span><span class="dv">660</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sumpro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sumpro<span class="ot">&lt;-</span><span class="fu">sum</span>(convert_nas<span class="sc">==</span><span class="dv">660</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sumpro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 145</code></pre>
 </div>
