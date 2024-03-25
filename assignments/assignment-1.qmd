@@ -35,11 +35,14 @@ qq <- apply(mtcars,2,custom_summary)
 print(qq)
 
 ## (c)
+
+There is a Data Graph belongs to na_example data set.
 ```{r}
 library(dslabs)
 data("na_example")
-plot(na_example, type = "l", main = "My Vector Plot", xlab = "Index", ylab = "Value")
+plot(na_example, type = "l", main = "Data Graph", xlab = "Example Number", ylab = "Example Value")
 ```
+You can see all the values of the na_example data set in the table below.
 ```{r}
 
 print(na_example)
