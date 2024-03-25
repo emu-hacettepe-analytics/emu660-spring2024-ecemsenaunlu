@@ -44,9 +44,23 @@ library(dslabs)
 data("na_example")
 plot(na_example, type = "l", main = "My Vector Plot", xlab = "Index", ylab = "Value")
 ```
-
-
 ```{r}
 
 print(na_example)
+```
+
+Number of elements which equal to NA in Data Set
+```{r}
+
+sum(is.na(na_example))
+```
+
+Convert NA's to 660
+
+You can see 
+```{r}
+convert_nas <- ifelse(is.na(na_example),660, na_example) 
+```
+```{r}
+print(convert_nas)
 ```

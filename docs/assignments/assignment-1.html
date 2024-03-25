@@ -312,6 +312,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  [985]  2  4  3  3  3 NA  1  1  2  2  1  1  2  2 NA  2</code></pre>
 </div>
 </div>
+<p>Number of elements which equal to NA in Data Set</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(na_example))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 145</code></pre>
+</div>
+</div>
+<p>Convert NA’s to 660</p>
+<p>You can see</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>convert_nas <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(na_example),<span class="dv">660</span>, na_example) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(convert_nas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   [1]   2   1   3   2   1   3   1   4   3   2   2 660   2   2   1   4 660   1
+  [19]   1   2   1   2   2   1   2   5 660   2   2   3   1   2   4   1   1   1
+  [37]   4   5   2   3   4   1   2   4   1   1   2   1   5 660 660 660   1   1
+  [55]   5   1   3   1 660   4   4   7   3   2 660 660   1 660   4   1   2   2
+  [73]   3   2   1   2   2   4   3   4   2   3   1   3   2   1   1   1   3   1
+  [91] 660   3   1   2   2   1   2   2   1   1   4   1   1   2   3   3   2   2
+ [109]   3   3   3   4   1   1   1   2 660   4   3   4   3   1   2   1 660 660
+ [127] 660 660   1   5   1   2   1   3   5   3   2   2 660 660 660 660   3   5
+ [145]   3   1   1   4   2   4   3   3 660   2   3   2   6 660   1   1   2   2
+ [163]   1   3   1   1   5 660 660   2   4 660   2   5   1   4   3   3 660   4
+ [181]   3   1   4   1   1   3   1   1 660 660   3   5   2   2   2   3   1   2
+ [199]   2   3   2   1 660   2 660   1 660 660   2   1   1 660   3 660   1   2
+ [217]   2   1   3   2   2   1   1   2   3   1   1   1   4   3   4   2   2   1
+ [235]   4   1 660   5   1   4 660   3 660 660   1   1   5   2   3   3   2   4
+ [253] 660   3   2   5 660   2   3   4   6   2   2   2 660   2 660   2 660   3
+ [271]   3   2   2   4   3   1   4   2 660   2   4 660   6   2   3   1 660   2
+ [289]   2 660   1   1   3   2   3   3   1 660   1   4   2   1   1   3   2   1
+ [307]   2   3   1 660   2   3   3   2   1   2   3   5   5   1   2   3   3   1
+ [325] 660 660   1   2   4 660   2   1   1   1   3   2   1   1   3   4 660   1
+ [343]   2   1   1   3   3 660   1   1   3   5   3   2   3   4   1   4   3   1
+ [361] 660   2   1   2   2   1   2   2   6   1   2   4   5 660   3   4   2   1
+ [379]   1   4   2   1   1   1   1   2   1   4   4   1   3 660   3   3 660   2
+ [397] 660   1   2   1   1   4   2   1   4   4 660   1   2 660   3   2   2   2
+ [415]   1   4   3   6   1   2   3   1   3   2   2   2   1   1   3   2   1   1
+ [433]   1   3   2   2 660   4   4   4   1   1 660   4   3 660   1   3   1   3
+ [451]   2   4   2   2   2   3   2   1   4   3 660   1   4   3   1   3   2 660
+ [469]   3 660   1   3   1   4   1   1   1   2   4   3   1   2   2   2   3   2
+ [487]   3   1   1 660   3   2   1   1   2 660   2   2   2   3   3   1   1   2
+ [505] 660   1   2   1   1   3   3   1   3   1   1   1   1   1   2   5   1   1
+ [523]   2   2   1   1 660   1   4   1   2   4   1   3   2 660   1   1 660   2
+ [541]   1   1   4   2   3   3   1   5   3   1   1   2 660   1   1   3   1   3
+ [559]   2   4 660   2   3   2   1   2   1   1   1   2   2   3   1   5   2 660
+ [577]   2 660   3   2   2   2   1   5   3   2   3   1 660   3   1   2   2   2
+ [595]   1   2   2   4 660   6   1   2 660   1   1   2   2   3 660   3   2   3
+ [613]   3   4   2 660   2 660   4 660   1   1   2   2   3   1   1   1   3 660
+ [631]   2   5 660   7   1 660   4   3   3   1 660   1   1   1   1   3   2   4
+ [649]   2   2   3 660 660   1   4   3   2   2   2   3   2   4   2   2   4 660
+ [667] 660 660   6   3   3   1   4   4   2   1 660   1   6 660   3   3   2   1
+ [685]   1   6 660   1   5   1 660   2   6   2 660   4   1   3   1   2 660   1
+ [703]   1   3   1   2   4   2   1   3   2   4   3   2   2   1   1   5   6   4
+ [721]   2   2   2   2   4 660   1   2   2   2   2   4   5 660 660 660   4   3
+ [739]   3   3   2   4   2   4 660 660 660 660   2   1 660   2   4   3   2 660
+ [757]   2   3   1   3   4 660   1   2   1   2 660   3   1   2   1   2   1   2
+ [775]   1   2   2   2   2   1   1   3   3   1   3   4   3 660 660   4   2   3
+ [793]   2   1   3   2   4   2   2   3   1   2   4   3   3   4 660   1   4   2
+ [811]   1   1   1   3   1   5   2   2   4   2 660   1   3   1   2 660   1   2
+ [829]   1   2   1 660   1   3   2   3   2 660   2   1   4   2 660 660 660   2
+ [847]   4   2 660 660   3   1 660   5   5   2   2   2 660   2   1   3   1   3
+ [865]   2   4   2   4 660   4   1   2   3   2   3   3   2   3   2   2   2   1
+ [883]   3   2   4   2 660   3   3   2   2 660 660   3   2   1   2   4   1   1
+ [901]   1   1   4   3   2 660   3   2 660   1 660   3   2   1   1   1   2 660
+ [919]   2   2   3   3   2 660 660   4   5   2   2   2   1   2   3   1   3   3
+ [937]   4   3 660   1   1   1 660   4   3   5   1   1   2 660   2   2   2   2
+ [955]   5   2   2   3   1   2   3 660   1   2 660 660   2 660   3   1   1   2
+ [973]   5   3   5   1   1   4 660   2   1   3   1   1   2   4   3   3   3 660
+ [991]   1   1   2   2   1   1   2   2 660   2</code></pre>
+</div>
+</div>
 
 
 </section>
