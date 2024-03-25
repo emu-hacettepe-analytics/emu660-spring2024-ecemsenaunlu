@@ -4,3 +4,5 @@ sidebar: false
 ---
 
 This page is under construction.
+
+![](images/6c67ce1557d591b11d36100307ad5c30.gif){width="437"}
