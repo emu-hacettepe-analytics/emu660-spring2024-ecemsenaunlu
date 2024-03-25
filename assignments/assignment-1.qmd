@@ -57,10 +57,23 @@ sum(is.na(na_example))
 
 Convert NA's to 660
 
-You can see 
+
 ```{r}
 convert_nas <- ifelse(is.na(na_example),660, na_example) 
 ```
+You can see converted data below.
 ```{r}
 print(convert_nas)
+```
+
+Total NA values at updated data set.
+```{r}
+sum(is.na(convert_nas))
+
+```
+
+Number of NA elements which are assigned to 660. 
+```{r}
+sumpro<-sum(convert_nas==660)
+print(sumpro)
 ```
