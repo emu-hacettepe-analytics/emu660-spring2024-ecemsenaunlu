@@ -39,10 +39,14 @@ qq <- apply(mtcars,2,custom_summary)
 print(qq)
 
 ## (c)
-install.packages("shiny")
-library(shiny)
-
+```{r}
+library(dslabs)
 data("na_example")
-
 plot(na_example, type = "l", main = "My Vector Plot", xlab = "Index", ylab = "Value")
-str(na_example)
+```
+
+
+```{r}
+
+print(na_example)
+```
