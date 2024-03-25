@@ -1,8 +1,9 @@
 ---
-title: "Welcome to My Analytics Lab"
+title: "Welcome to My Analytics Lab"  
 ---
 
-![](images/68aebf3739f455687a90e871bdc04a98.gif){fig-align="center"}
+![](images/d9f21515b1e38d83e94fdbce88f623b6.gif){width="308"}
+---
 
 Hello!! My name is Ecem Sena Unlu
 
