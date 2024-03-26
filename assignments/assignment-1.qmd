@@ -49,7 +49,7 @@ print(qq)
 ```
 
 
-## (c)
+## (c) NA Example
 
 There is a Data Graph belongs to na_example data set.
 ```{r}
