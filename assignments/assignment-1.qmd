@@ -2,18 +2,21 @@
 title: "Assignment 1"
 ---
 
-# Assignment 1
-
 My first assignment has two parts.
 
-## (a)
+## (a) Conversations on Data Science and Industrial Engineering - Mustafa Baydogan, Erdi Dasdemir
 
-## (b)
+ During an interview on Data Science and Industrial Engineering, Mustafa Baydogan shared valuable insights on how to solve real-life problems with data science. To start, let me briefly introduce Mustafa Baydogan. He is an instructor at Bogazici University's Industrial Engineering department and also the founder of Algopoly, a software and consultancy company located in Istanbul. His research focuses on using data science tools and techniques for large-scale data mining, time series analysis, pattern discovery, and operations research. He received his undergraduate and graduate degrees from METU and his doctorate from Arizona State University. In his Master's degree, he worked on multi-criteria decision-making and later shifted his focus to data science in his doctoral studies, where he worked on topics such as time series analysis, forecasting and creating solutions with machine learning methods. After gaining experience in consultancy and private sector, he founded Algopoly in 2017, where the company primarily serves the energy and logistics sectors.
 
-library(dslabs)
-data("mtcars")
+During the interview, Mustafa Baydogan discussed several real-life problems that data science. For instance, he mentioned a several company demand forecast study is being carry out for shoe sales. He mentions that forecasting applications should be used to solve this problem. He also shared an example of a company in the USA that owns forests used for timber production. After the drying process, some timbers become warped. It is essential to estimate how much of these timbers will be bent as the value of timber in the market varies depending on its shape. By using image processing and machine learning methods, data can be collected by merging the images and processing the information to create a dataset. With this solution, the company can identify the timbers that are likely to become bent before the drying process, and corrective actions can be taken at a low cost. According to Mustafa Baydogan, this can increase profits by 5 percent. 
 
-Created a custom_summary function and which is works to calculating mean, standard variance, max value in data set, min value in data set and median value.
+Furthermore, he also talked about energy consumption and production balance. Forecasting is frequently used to ensure balance in electricity markets and establish the balance between production and consumption. If the forecast does not come true, an imbalance occurs, and companies incur costs. To prevent this, estimates can be made by calculating the production amount based on regional consumption data and taking into account special situations. 
+
+In addition, Mustafa Baydogan shared an example of Trendyol, another data processing company that uses models to make predictions based on the number of units a product will sell and whether anyone has looked at the product before. In Trendyols model, penalty coefficients are assigned to products that are frequently viewed but not purchased, thus preventing them from appearing in front of the user. By doing this, Trendyol can provide its users with a better shopping experience by eliminating irrelevant options.
+
+Overall, Mustafa Baydogan's insights were valuable and enlightening, providing a glimpse into how data science can be used to solve real-life problems from different perspectives.
+
+## (b) Created a custom_summary function and which is works to calculating mean, standard variance, max value in data set, min value in data set and median value.
 
 ```{r}
 custom_summary <- function (carCustom)
