@@ -1,5 +1,5 @@
 ---
-title: "Project X"
+title: "Project Turky"
 ---
 
 Welcome to my project page.
@@ -10,11 +10,17 @@ Keep an eye on this space to stay updated with my project activities.
 
 # 1. Project Overview and Scope
 
-xxxxxx
+
+
 
 # 2. Data
 
-xxxxxx
+ In this study, the "Completed education by province (15+ years old)" data set made available by T????K will be used. It contains data on gender distribution of education levels by province in Turkey between 2011 and 2021.
+ 
+ You can access the raw data from the link below:
+ 
+ https://data.tuik.gov.tr/Kategori/GetKategori?p=egitim-kultur-spor-ve-turizm-105&dil=1 
+
 
 ## 2.1 Data Source
 

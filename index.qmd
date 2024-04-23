@@ -2,8 +2,7 @@
 title: "Welcome to My Analytics Lab"  
 ---
 
-![](images/d9f21515b1e38d83e94fdbce88f623b6.gif){width="308"}
----
+## ![](images/d9f21515b1e38d83e94fdbce88f623b6.gif){width="308"}
 
 Hello!! My name is Ecem Sena Unlu
 
