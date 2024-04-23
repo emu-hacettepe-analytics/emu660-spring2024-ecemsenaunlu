@@ -9,28 +9,28 @@
   {
     "objectID": "project.html",
     "href": "project.html",
-    "title": "Project Turkey",
+    "title": "Project Distribution of education levels by provinces and gender in Turkey over the years",
     "section": "",
     "text": "Welcome to my project page.\nKeep an eye on this space to stay updated with my project activities.\n(The titles below are provided as examples; please feel free to adjust them as necessary.)"
   },
   {
     "objectID": "project.html#data-source",
     "href": "project.html#data-source",
-    "title": "Project Turkey",
+    "title": "Project Distribution of education levels by provinces and gender in Turkey over the years",
     "section": "2.1 Data Source",
     "text": "2.1 Data Source\n# You can access the raw data from the link below:\n# https://data.tuik.gov.tr/Kategori/GetKategori?p=egitim-kultur-spor-ve-turizm-105&dil=1"
   },
   {
     "objectID": "project.html#general-information-about-data",
     "href": "project.html#general-information-about-data",
-    "title": "Project Turkey",
+    "title": "Project Distribution of education levels by provinces and gender in Turkey over the years",
     "section": "2.2 General Information About Data",
     "text": "2.2 General Information About Data\n#Year : The Year where data is collected for statistical calculations. #ProvinceID : The ProvinceID where data is collected for statistical calculations. #ProvinceName : The ProvinceName where data is collected for statistical calculations. #illiterateTotal : The illiterateTotal where Total number of illiterate people in Turkey. #illiterateMale : The IlliterateMale where Total number of illiterate men in Turkey. #illiterateFemale : The IlliterateFemale where Total number of illiterate women in Turkey."
   },
   {
     "objectID": "project.html#reason-of-choice",
     "href": "project.html#reason-of-choice",
-    "title": "Project Turkey",
+    "title": "Project Distribution of education levels by provinces and gender in Turkey over the years",
     "section": "2.3 Reason of Choice",
     "text": "2.3 Reason of Choice\nThe change in education level over the years according to provinces in Turkey is an interesting data set. Comments can be made on how the relevant data has changed and developed over the years. For this reason, I wanted to examine in detail the changes in Turkey’s literacy rates and postgraduate education rates according to provinces and years."
   },
@@ -44,28 +44,28 @@
   {
     "objectID": "project.html#exploratory-data-analysis",
     "href": "project.html#exploratory-data-analysis",
-    "title": "Project Turkey",
+    "title": "Project Distribution of education levels by provinces and gender in Turkey over the years",
     "section": "3.1 Exploratory Data Analysis",
-    "text": "3.1 Exploratory Data Analysis\nxxxxxx"
+    "text": "3.1 Exploratory Data Analysis\n\n\nCode\nsuppressPackageStartupMessages(library(dplyr))\nlibrary(readxl)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggplot2)\n\neducation &lt;- read_excel(\"C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/education.xls\")\n\n\neducation &lt;- education %&gt;%\n  group_by(Year) %&gt;%\n  summarise(illiterateYearTotal = sum(illiterateTotal))\n\n\neducation %&gt;%\n  ggplot(aes(x = Year, y = illiterateYearTotal)) +\n  geom_bar(stat = \"identity\", color = \"black\") +\n  labs(title = \"Distribution of Illiterate Total Per Year\",\n       x = \"Year\",\n       y = \"Illiterate Total\") +\n theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5, hjust = 1),\n       axis.text.y = element_text(size = 8))"
   },
   {
     "objectID": "project.html#trend-analysis",
     "href": "project.html#trend-analysis",
-    "title": "Project Turkey",
+    "title": "Project Distribution of education levels by provinces and gender in Turkey over the years",
     "section": "3.2 Trend Analysis",
     "text": "3.2 Trend Analysis\nxxxxxx"
   },
   {
     "objectID": "project.html#model-fitting",
     "href": "project.html#model-fitting",
-    "title": "Project Turkey",
+    "title": "Project Distribution of education levels by provinces and gender in Turkey over the years",
     "section": "3.3 Model Fitting",
     "text": "3.3 Model Fitting\nxxxxxx"
   },
   {
     "objectID": "project.html#results",
     "href": "project.html#results",
-    "title": "Project Turkey",
+    "title": "Project Distribution of education levels by provinces and gender in Turkey over the years",
     "section": "3.4 Results",
     "text": "3.4 Results\nxxxxxx"
   },
