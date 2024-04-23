@@ -203,7 +203,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#project-overview-and-scope" id="toc-project-overview-and-scope" class="nav-link active" data-scroll-target="#project-overview-and-scope">1. Project Overview and Scope</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">2. Data</a>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">2. Data</a></li>
+  <li><a href="#you-can-see-crime-data-set-for-2020-below." id="toc-you-can-see-crime-data-set-for-2020-below." class="nav-link" data-scroll-target="#you-can-see-crime-data-set-for-2020-below.">You can see crime data set for 2020 below.</a>
   <ul class="collapse">
   <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source">2.1 Data Source</a></li>
   <li><a href="#general-information-about-data" id="toc-general-information-about-data" class="nav-link" data-scroll-target="#general-information-about-data">2.2 General Information About Data</a></li>
@@ -250,10 +251,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="project-overview-and-scope" class="level1">
 <h1>1. Project Overview and Scope</h1>
 <p># In this study, the Completed education by province (15+ years old) data set made available by TUIK will be used. It contains data on gender distribution of education levels by province in Turkey between 2011 and 2021.</p>
+<p># With the 2020 Data set of Convicts Entered into Penal Institutions by Crime Type and Educational Level, crime situations in the provinces will be examined according to education levels in 2020.</p>
 </section>
 <section id="data" class="level1">
 <h1>2. Data</h1>
-<p># You can see data below.</p>
+<p># You can see education data below.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -287,27 +289,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 #   LowerSecondarySchoolFemale &lt;dbl&gt;, UpperSecondarySchoolTotal &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
-<section id="data-source" class="level2">
-<h2 class="anchored" data-anchor-id="data-source">2.1 Data Source</h2>
-<p># You can access the raw data from the link below:</p>
-<p># https://data.tuik.gov.tr/Kategori/GetKategori?p=egitim-kultur-spor-ve-turizm-105&amp;dil=1</p>
 </section>
-<section id="general-information-about-data" class="level2">
-<h2 class="anchored" data-anchor-id="general-information-about-data">2.2 General Information About Data</h2>
-<p>Below you can find the names of all columns in the education data set and information about the data they represent.</p>
-<p>#Year : The Year where data is collected for statistical calculations. #ProvinceID : The ProvinceID where data is collected for statistical calculations. #ProvinceName : The ProvinceName where data is collected for statistical calculations. #illiterateTotal : The illiterateTotal where Total number of illiterate people in Turkey. #illiterateMale : The IlliterateMale where Total number of illiterate men in Turkey. #illiterateFemale : The IlliterateFemale where Total number of illiterate women in Turkey. #LiterateWithoutADiplomaTotal :The LiterateWithoutADiplomaTotal is total number of people in Turkey which has no diploma. #LiterateWithoutADiplomaMale :The LiterateWithoutADiplomaTotal is total number of men in Turkey which has no diploma. #LiterateWithoutADiplomaFemale :The LiterateWithoutADiplomaTotal is total number of women in Turkey which has no diploma. #PrimarySchoolTotal : The PrimarySchoolTotal is number of people which graduated from Primary school in Turkey. #PrimarySchoolMale : The PrimarySchoolMale is number of men which graduated from Primary school in Turkey. #PrimarySchoolFemale : The PrimarySchoolMale is number of women which graduated from Primary school in Turkey. #PrimaryEducationTotal : The PrimaryEducationTotal is number of people which graduated from Primary Education in Turkey. #PrimaryEducationMale : The PrimaryEducationMale is number of men which graduated from Primary Education in Turkey. #PrimaryEducationFemale : The PrimaryEducationFemale is number of women which graduated from Primary Education in Turkey. #LowerSecondarySchoolTotal : The LowerSecondarySchoolTotal is number of people which graduated from Lower Secondary School in Turkey. #LowerSecondarySchoolMale :The LowerSecondarySchoolMale is number of men which graduated from Lower Secondary School in Turkey. #LowerSecondarySchoolFemale :The LowerSecondarySchoolFemale is number of women which graduated from Lower Secondary School in Turkey. #UpperSecondarySchoolTotal :The UpperSecondarySchoolTotal is number of people which graduated from Upper Secondary School in Turkey. #UpperSecondarySchoolMale :The LowerSecondarySchoolMale is number of men which graduated from Upper Secondary School in Turkey. #UpperSecondarySchoolFemale :The LowerSecondarySchoolFemale is number of women which graduated from Upper Secondary School in Turkey. #HigherEducationalinstitutionsTotal :The HigherEducationalinstitutionsTotal is number of people which graduated from Higher Educational institutions in Turkey. #HigherEducationalinstitutionsMale :The HigherEducationalinstitutionsMale is number of men which graduated from Higher Educational institutions in Turkey. #HigherEducationalinstitutionsFemale :The HigherEducationalinstitutionsFemale is number of women which graduated from Higher Educational institutions in Turkey. #MasterTotal :The MasterTotal is number of people which graduated from Master in Turkey. #MasterMale : The MasterTotal is number of men which graduated from Master in Turkey. #MasterFemale : The MasterTotal is number of women which graduated from Master in Turkey. DoctorateTotal : The DoctorateTotal is number of people which graduated from Master in Turkey. DoctorateMale :The DoctorateTotal is number of men which graduated from Master in Turkey. DoctorateFemale :The DoctorateTotal is number of women which graduated from Master in Turkey. UnknownTotal : The UnknownTotal is the number of people whose educational status is unknown in Turkey. UnknownMale :The UnknownTotal is the number of men whose educational status is unknown in Turkey. UnknownFemale :The UnknownTotal is the number of women whose educational status is unknown in Turkey.</p>
-</section>
-<section id="reason-of-choice" class="level2">
-<h2 class="anchored" data-anchor-id="reason-of-choice">2.3 Reason of Choice</h2>
-<p>The change in education level over the years according to provinces in Turkey is an interesting data set. Comments can be made on how the relevant data has changed and developed over the years. For this reason, I wanted to examine in detail the changes in Turkey’s literacy rates and postgraduate education rates according to provinces and years.</p>
-</section>
-</section>
-<section id="analysis" class="level1">
-<h1>3. Analysis</h1>
-<p>We will have a lot of summary data thanks to the data set that will allow us to analyze the education levels in Turkey. And we will observe the relationships between the data.</p>
-<section id="exploratory-data-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="exploratory-data-analysis">3.1 Exploratory Data Analysis</h2>
-<p>Below you see the graph of the total number of illiterate people in Turkey according to years. From the graph, it can be observed that the number of illiterate people in Turkey has decreased over the years. Stay tuned for many more summary data like this and analysis of the relationships between data.</p>
+<section id="you-can-see-crime-data-set-for-2020-below." class="level1">
+<h1>You can see crime data set for 2020 below.</h1>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -317,25 +301,110 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>education <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/education.xls"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>education <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/crime.xls"</span>)</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>education2 <span class="ot">&lt;-</span> education <span class="sc">%&gt;%</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">illiterateYearTotal =</span> <span class="fu">sum</span>(illiterateTotal))</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>education2 <span class="sc">%&gt;%</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> illiterateYearTotal)) <span class="sc">+</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"purple"</span>) <span class="sc">+</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Illiterate Total Per Year"</span>,</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Illiterate Total"</span>) <span class="sc">+</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(education)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 17
+  `Type of crime` illiterateMale illiterateFemale LiterateWithoutADiplomaMale
+  &lt;chr&gt;                    &lt;dbl&gt;            &lt;dbl&gt;                       &lt;dbl&gt;
+1 Homicide                    30                1                         121
+2 Assault                    161               28                        1031
+3 SexualCrimes                38                0                         105
+4 Kidnapping                  34                9                         102
+5 Defamation                   8                3                          80
+6 Theft                      238              180                        2163
+# ℹ 13 more variables: LiterateWithoutADiplomaFemale &lt;dbl&gt;,
+#   PrimarySchoolMale &lt;dbl&gt;, PrimarySchoolFemale &lt;dbl&gt;,
+#   PrimaryEducationMale &lt;dbl&gt;, PrimaryEducationFemale &lt;dbl&gt;,
+#   LowerSecondarySchoolMale &lt;dbl&gt;, LowerSecondarySchoolFemale &lt;dbl&gt;,
+#   UpperSecondarySchoolMale &lt;dbl&gt;, UpperSecondarySchoolFemale &lt;dbl&gt;,
+#   HigherEducationalinstitutionsMale &lt;dbl&gt;,
+#   HigherEducationalinstitutionsFemale &lt;dbl&gt;, UnknownMale &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<section id="data-source" class="level2">
+<h2 class="anchored" data-anchor-id="data-source">2.1 Data Source</h2>
+<p># You can access both data set from the link below:</p>
+<p># https://data.tuik.gov.tr/Kategori/GetKategori?p=egitim-kultur-spor-ve-turizm-105&amp;dil=1</p>
+</section>
+<section id="general-information-about-data" class="level2">
+<h2 class="anchored" data-anchor-id="general-information-about-data">2.2 General Information About Data</h2>
+<p>Below you can find the names of all columns in the Education and Crime datasets and information about the data they represent.</p>
+<p>#Year : The Year where data is collected for statistical calculations. #ProvinceID : The ProvinceID where data is collected for statistical calculations. #ProvinceName : The ProvinceName where data is collected for statistical calculations. #illiterateTotal : The illiterateTotal where Total number of illiterate people in Turkey. #illiterateMale : The IlliterateMale where Total number of illiterate men in Turkey. #illiterateFemale : The IlliterateFemale where Total number of illiterate women in Turkey. #LiterateWithoutADiplomaTotal :The LiterateWithoutADiplomaTotal is total number of people in Turkey which has no diploma. #LiterateWithoutADiplomaMale :The LiterateWithoutADiplomaTotal is total number of men in Turkey which has no diploma. #LiterateWithoutADiplomaFemale :The LiterateWithoutADiplomaTotal is total number of women in Turkey which has no diploma. #PrimarySchoolTotal : The PrimarySchoolTotal is number of people which graduated from Primary school in Turkey. #PrimarySchoolMale : The PrimarySchoolMale is number of men which graduated from Primary school in Turkey. #PrimarySchoolFemale : The PrimarySchoolMale is number of women which graduated from Primary school in Turkey. #PrimaryEducationTotal : The PrimaryEducationTotal is number of people which graduated from Primary Education in Turkey. #PrimaryEducationMale : The PrimaryEducationMale is number of men which graduated from Primary Education in Turkey. #PrimaryEducationFemale : The PrimaryEducationFemale is number of women which graduated from Primary Education in Turkey. #LowerSecondarySchoolTotal : The LowerSecondarySchoolTotal is number of people which graduated from Lower Secondary School in Turkey. #LowerSecondarySchoolMale :The LowerSecondarySchoolMale is number of men which graduated from Lower Secondary School in Turkey. #LowerSecondarySchoolFemale :The LowerSecondarySchoolFemale is number of women which graduated from Lower Secondary School in Turkey. #UpperSecondarySchoolTotal :The UpperSecondarySchoolTotal is number of people which graduated from Upper Secondary School in Turkey. #UpperSecondarySchoolMale :The LowerSecondarySchoolMale is number of men which graduated from Upper Secondary School in Turkey. #UpperSecondarySchoolFemale :The LowerSecondarySchoolFemale is number of women which graduated from Upper Secondary School in Turkey. #HigherEducationalinstitutionsTotal :The HigherEducationalinstitutionsTotal is number of people which graduated from Higher Educational institutions in Turkey. #HigherEducationalinstitutionsMale :The HigherEducationalinstitutionsMale is number of men which graduated from Higher Educational institutions in Turkey. #HigherEducationalinstitutionsFemale :The HigherEducationalinstitutionsFemale is number of women which graduated from Higher Educational institutions in Turkey. #MasterTotal :The MasterTotal is number of people which graduated from Master in Turkey. #MasterMale : The MasterTotal is number of men which graduated from Master in Turkey. #MasterFemale : The MasterTotal is number of women which graduated from Master in Turkey. DoctorateTotal : The DoctorateTotal is number of people which graduated from Master in Turkey. DoctorateMale :The DoctorateTotal is number of men which graduated from Master in Turkey. DoctorateFemale :The DoctorateTotal is number of women which graduated from Master in Turkey. UnknownTotal : The UnknownTotal is the number of people whose educational status is unknown in Turkey. UnknownMale :The UnknownTotal is the number of men whose educational status is unknown in Turkey. UnknownFemale :The UnknownTotal is the number of women whose educational status is unknown in Turkey.</p>
+</section>
+<section id="reason-of-choice" class="level2">
+<h2 class="anchored" data-anchor-id="reason-of-choice">2.3 Reason of Choice</h2>
+<p>The change in education level by province in Turkey over the years is an interesting data set. Comments can be made on how the relevant data has changed and developed over the years. For this reason, I wanted to examine in detail the changes in Turkey’s literacy rates and postgraduate education rates according to provinces and years.</p>
+<p>Additionally, we will use a second data set to examine the relationship between education levels and crime rates. This data set provides us with crimes and crime rates according to education levels in 2020.</p>
+</section>
+</section>
+<section id="analysis" class="level1">
+<h1>3. Analysis</h1>
+<p>We will have many summary data thanks to the data set that will enable us to analyze education levels in Turkey. And we will observe the relationships between them and crime data.</p>
+<section id="exploratory-data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-data-analysis">3.1 Exploratory Data Analysis</h2>
+<p>Below you see the graph of the total number of illiterate people in Turkey according to years. From the graph, it can be observed that the number of illiterate people in Turkey has decreased over the years. Stay tuned for many more summary data like this and analysis of the relationships between data.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(dplyr))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>education <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/education.xls"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>education2 <span class="ot">&lt;-</span> education <span class="sc">%&gt;%</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">illiterateYearTotal =</span> <span class="fu">sum</span>(illiterateTotal))</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>education2 <span class="sc">%&gt;%</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> illiterateYearTotal)) <span class="sc">+</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"purple"</span>) <span class="sc">+</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Illiterate Total Per Year"</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Illiterate Total"</span>) <span class="sc">+</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="project_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<p><img src="project_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(dplyr))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>education <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/education.xls"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>education2 <span class="ot">&lt;-</span> education <span class="sc">%&gt;%</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">illiterateYearTotal =</span> <span class="fu">sum</span>(illiterateTotal))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>education2 <span class="sc">%&gt;%</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> illiterateYearTotal)) <span class="sc">+</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"purple"</span>) <span class="sc">+</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Illiterate Total Per Year"</span>,</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Illiterate Total"</span>) <span class="sc">+</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>

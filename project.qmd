@@ -16,11 +16,13 @@ Keep an eye on this space to stay updated with my project activities.
 # 1. Project Overview and Scope
 
  # In this study, the Completed education by province (15+ years old) data set made available by TUIK will be used. It contains data on gender distribution of education levels by province in Turkey between 2011 and 2021.
+ 
+ # With the 2020 Data set of Convicts Entered into Penal Institutions by Crime Type and Educational Level, crime situations in the provinces will be examined according to education levels in 2020.
 
  
 # 2. Data
 
- # You can see data below.
+ # You can see education data below.
 
 ```{r}
 
@@ -37,16 +39,32 @@ head(education)
 
 
 ```
+# You can see crime data set for 2020 below.
 
+```{r}
+
+suppressPackageStartupMessages(library(dplyr))
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+education <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/crime.xls")
+
+library(dslabs)
+head(education)
+
+
+```
 ## 2.1 Data Source
 
- # You can access the raw data from the link below:
+ # You can access both data set from the link below:
  
  # https://data.tuik.gov.tr/Kategori/GetKategori?p=egitim-kultur-spor-ve-turizm-105&dil=1
 
 ## 2.2 General Information About Data
 
-Below you can find the names of all columns in the education data set and information about the data they represent.
+Below you can find the names of all columns in the Education and Crime datasets and information about the data they represent.
 
  #Year : The Year where data is collected for statistical calculations. 
  #ProvinceID : The ProvinceID where data is collected for statistical calculations. 
@@ -85,11 +103,13 @@ Below you can find the names of all columns in the education data set and inform
 
 ## 2.3 Reason of Choice
 
-The change in education level over the years according to provinces in Turkey is an interesting data set. Comments can be made on how the relevant data has changed and developed over the years. For this reason, I wanted to examine in detail the changes in Turkey's literacy rates and postgraduate education rates according to provinces and years.
+The change in education level by province in Turkey over the years is an interesting data set. Comments can be made on how the relevant data has changed and developed over the years. For this reason, I wanted to examine in detail the changes in Turkey's literacy rates and postgraduate education rates according to provinces and years.
+
+Additionally, we will use a second data set to examine the relationship between education levels and crime rates. This data set provides us with crimes and crime rates according to education levels in 2020.
 
 # 3. Analysis
 
-We will have a lot of summary data thanks to the data set that will allow us to analyze the education levels in Turkey. And we will observe the relationships between the data.
+We will have many summary data thanks to the data set that will enable us to analyze education levels in Turkey. And we will observe the relationships between them and crime data.
 
 ## 3.1 Exploratory Data Analysis
 
@@ -115,6 +135,31 @@ education2 %>%
   geom_bar(stat = "identity", fill = "purple") +
   labs(title = "Distribution of Illiterate Total Per Year",
        x = "Year",
+       y = "Illiterate Total") +
+ theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5, hjust = 1),
+       axis.text.y = element_text(size = 8))
+
+```
+
+```{r}
+suppressPackageStartupMessages(library(dplyr))
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+education <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/crime.xls")
+
+crime <- crime %>% mutate(illiterateTotal = illiterateMale + illiterateFemale)
+crime2 <- crime %>%
+  group_by(illiterateTotal)
+
+
+crime2 %>%
+  ggplot(aes(x = `Type of crime`, y = illiterateTotal)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Distribution of Illiterate Total Per Type Of Crime",
+       x = "Type of crime",
        y = "Illiterate Total") +
  theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5, hjust = 1),
        axis.text.y = element_text(size = 8))
