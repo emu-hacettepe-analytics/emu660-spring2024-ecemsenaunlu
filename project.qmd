@@ -46,23 +46,54 @@ head(education)
 
 ## 2.2 General Information About Data
 
+Below you can find the names of all columns in the education data set and information about the data they represent.
+
  #Year : The Year where data is collected for statistical calculations. 
  #ProvinceID : The ProvinceID where data is collected for statistical calculations. 
  #ProvinceName : The ProvinceName where data is collected for statistical calculations. 
  #illiterateTotal : The illiterateTotal where Total number of illiterate people in Turkey.
  #illiterateMale : The IlliterateMale where Total number of illiterate men in Turkey.
  #illiterateFemale : The IlliterateFemale where Total number of illiterate women in Turkey.
- 
+ #LiterateWithoutADiplomaTotal :The LiterateWithoutADiplomaTotal is total number of people in Turkey which has no diploma.
+ #LiterateWithoutADiplomaMale :The LiterateWithoutADiplomaTotal is total number of men in Turkey which has no diploma.
+ #LiterateWithoutADiplomaFemale :The LiterateWithoutADiplomaTotal is total number of women in Turkey which has no diploma.
+ #PrimarySchoolTotal : The PrimarySchoolTotal is number of people which graduated from Primary school in Turkey. 
+  #PrimarySchoolMale : The PrimarySchoolMale is number of men which graduated from Primary school in Turkey. 
+   #PrimarySchoolFemale : The PrimarySchoolMale is number of women which graduated from Primary school in Turkey. 
+   #PrimaryEducationTotal : The PrimaryEducationTotal is number of people which graduated from Primary Education in Turkey. 
+   #PrimaryEducationMale : The PrimaryEducationMale is number of men which graduated from Primary Education in Turkey. 
+  #PrimaryEducationFemale : The PrimaryEducationFemale is number of women which graduated from Primary Education in Turkey. 
+  #LowerSecondarySchoolTotal : The LowerSecondarySchoolTotal is number of people which graduated from Lower Secondary School in Turkey. 
+  #LowerSecondarySchoolMale :The LowerSecondarySchoolMale is number of men which graduated from Lower Secondary School in Turkey. 
+  #LowerSecondarySchoolFemale :The LowerSecondarySchoolFemale is number of women which graduated from Lower Secondary School in Turkey. 
+  #UpperSecondarySchoolTotal	:The UpperSecondarySchoolTotal is number of people which graduated from Upper Secondary School in Turkey. 
+  #UpperSecondarySchoolMale	:The LowerSecondarySchoolMale is number of men which graduated from Upper Secondary School in Turkey. 
+  #UpperSecondarySchoolFemale	:The LowerSecondarySchoolFemale is number of women which graduated from Upper Secondary School in Turkey. 
+  #HigherEducationalinstitutionsTotal	:The HigherEducationalinstitutionsTotal is number of people which graduated from Higher Educational institutions in Turkey. 
+  #HigherEducationalinstitutionsMale	:The HigherEducationalinstitutionsMale is number of men which graduated from Higher Educational institutions in Turkey. 
+  #HigherEducationalinstitutionsFemale	:The HigherEducationalinstitutionsFemale is number of women which graduated from Higher Educational institutions in Turkey. 
+  #MasterTotal	:The MasterTotal is number of people which graduated from Master in Turkey. 
+  #MasterMale	: The MasterTotal is number of men which graduated from Master in Turkey. 
+  #MasterFemale : The MasterTotal is number of women which graduated from Master in Turkey. 
+  DoctorateTotal	: The DoctorateTotal is number of people which graduated from Master in Turkey. 
+  DoctorateMale	:The DoctorateTotal is number of men which graduated from Master in Turkey. 
+  DoctorateFemale	:The DoctorateTotal is number of women which graduated from Master in Turkey. 
+  UnknownTotal	: The UnknownTotal is the number of people whose educational status is unknown in Turkey.
+  UnknownMale	:The UnknownTotal is the number of men whose educational status is unknown in Turkey.
+  UnknownFemale :The UnknownTotal is the number of women whose educational status is unknown in Turkey.
+
+
 ## 2.3 Reason of Choice
 
 The change in education level over the years according to provinces in Turkey is an interesting data set. Comments can be made on how the relevant data has changed and developed over the years. For this reason, I wanted to examine in detail the changes in Turkey's literacy rates and postgraduate education rates according to provinces and years.
 
 # 3. Analysis
 
-xxxxxx
+We will have a lot of summary data thanks to the data set that will allow us to analyze the education levels in Turkey. And we will observe the relationships between the data.
 
 ## 3.1 Exploratory Data Analysis
 
+Below you see the graph of the total number of illiterate people in Turkey according to years. From the graph, it can be observed that the number of illiterate people in Turkey has decreased over the years. Stay tuned for many more summary data like this and analysis of the relationships between data.
 
 ```{r}
 suppressPackageStartupMessages(library(dplyr))
@@ -81,7 +112,7 @@ education2 <- education %>%
 
 education2 %>%
   ggplot(aes(x = Year, y = illiterateYearTotal)) +
-  geom_bar(stat = "identity", color = "black") +
+  geom_bar(stat = "identity", fill = "purple") +
   labs(title = "Distribution of Illiterate Total Per Year",
        x = "Year",
        y = "Illiterate Total") +
