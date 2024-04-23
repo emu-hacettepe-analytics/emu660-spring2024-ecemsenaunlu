@@ -90,47 +90,47 @@ Below you can find the names of all columns in the Education and Crime datasets 
   
    PrimarySchoolFemale : The PrimarySchoolMale is number of women which graduated from Primary school in Turkey. 
    
-   PrimaryEducationTotal : The PrimaryEducationTotal is number of people which graduated from Primary Education in Turkey. <br>
+   PrimaryEducationTotal : The PrimaryEducationTotal is number of people which graduated from Primary Education in Turkey.  
    
-   PrimaryEducationMale : The PrimaryEducationMale is number of men which graduated from Primary Education in Turkey. 
+   PrimaryEducationMale : The PrimaryEducationMale is number of men which graduated from Primary Education in Turkey.  
    
-  PrimaryEducationFemale : The PrimaryEducationFemale is number of women which graduated from Primary Education in Turkey. 
+  PrimaryEducationFemale : The PrimaryEducationFemale is number of women which graduated from Primary Education in Turkey.  
   
-  LowerSecondarySchoolTotal : The LowerSecondarySchoolTotal is number of people which graduated from Lower Secondary School in Turkey. 
+  LowerSecondarySchoolTotal : The LowerSecondarySchoolTotal is number of people which graduated from Lower Secondary School in Turkey.  
   
-  LowerSecondarySchoolMale :The LowerSecondarySchoolMale is number of men which graduated from Lower Secondary School in Turkey. 
+  LowerSecondarySchoolMale :The LowerSecondarySchoolMale is number of men which graduated from Lower Secondary School in Turkey.  
   
-  LowerSecondarySchoolFemale :The LowerSecondarySchoolFemale is number of women which graduated from Lower Secondary School in Turkey. 
+  LowerSecondarySchoolFemale :The LowerSecondarySchoolFemale is number of women which graduated from Lower Secondary School in Turkey.  
   
-  UpperSecondarySchoolTotal	:The UpperSecondarySchoolTotal is number of people which graduated from Upper Secondary School in Turkey. 
+  UpperSecondarySchoolTotal	:The UpperSecondarySchoolTotal is number of people which graduated from Upper Secondary School in Turkey.  
   
-  UpperSecondarySchoolMale	:The LowerSecondarySchoolMale is number of men which graduated from Upper Secondary School in Turkey. 
+  UpperSecondarySchoolMale	:The LowerSecondarySchoolMale is number of men which graduated from Upper Secondary School in Turkey.  
   
-  UpperSecondarySchoolFemale	:The LowerSecondarySchoolFemale is number of women which graduated from Upper Secondary School in Turkey. 
+  UpperSecondarySchoolFemale	:The LowerSecondarySchoolFemale is number of women which graduated from Upper Secondary School in Turkey.  
   
-  HigherEducationalinstitutionsTotal	:The HigherEducationalinstitutionsTotal is number of people which graduated from Higher Educational institutions in Turkey. 
+  HigherEducationalinstitutionsTotal	:The HigherEducationalinstitutionsTotal is number of people which graduated from Higher Educational institutions in Turkey.  
   
-  HigherEducationalinstitutionsMale	:The HigherEducationalinstitutionsMale is number of men which graduated from Higher Educational institutions in Turkey. 
+  HigherEducationalinstitutionsMale	:The HigherEducationalinstitutionsMale is number of men which graduated from Higher Educational institutions in Turkey.  
   
-  HigherEducationalinstitutionsFemale	:The HigherEducationalinstitutionsFemale is number of women which graduated from Higher Educational institutions in Turkey. 
+  HigherEducationalinstitutionsFemale	:The HigherEducationalinstitutionsFemale is number of women which graduated from Higher Educational institutions in Turkey.  
   
-  MasterTotal	:The MasterTotal is number of people which graduated from Master in Turkey. 
+  MasterTotal	:The MasterTotal is number of people which graduated from Master in Turkey.  
   
-  MasterMale	: The MasterTotal is number of men which graduated from Master in Turkey. 
+  MasterMale	: The MasterTotal is number of men which graduated from Master in Turkey.  
   
-  MasterFemale : The MasterTotal is number of women which graduated from Master in Turkey. 
+  MasterFemale : The MasterTotal is number of women which graduated from Master in Turkey.  
   
-  DoctorateTotal	: The DoctorateTotal is number of people which graduated from Master in Turkey. 
+  DoctorateTotal	: The DoctorateTotal is number of people which graduated from Master in Turkey.  
   
-  DoctorateMale	:The DoctorateTotal is number of men which graduated from Master in Turkey. 
+  DoctorateMale	:The DoctorateTotal is number of men which graduated from Master in Turkey.  
   
-  DoctorateFemale	:The DoctorateTotal is number of women which graduated from Master in Turkey. 
+  DoctorateFemale	:The DoctorateTotal is number of women which graduated from Master in Turkey.  
   
-  UnknownTotal	: The UnknownTotal is the number of people whose educational status is unknown in Turkey.
+  UnknownTotal	: The UnknownTotal is the number of people whose educational status is unknown in Turkey.  
+   
+  UnknownMale	:The UnknownTotal is the number of men whose educational status is unknown in Turkey.  
   
-  UnknownMale	:The UnknownTotal is the number of men whose educational status is unknown in Turkey.
-  
-  UnknownFemale :The UnknownTotal is the number of women whose educational status is unknown in Turkey.
+  UnknownFemale :The UnknownTotal is the number of women whose educational status is unknown in Turkey.  
 
 
 ## 2.3 Reason of Choice
