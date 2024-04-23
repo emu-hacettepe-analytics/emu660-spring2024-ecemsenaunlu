@@ -10,23 +10,36 @@ Keep an eye on this space to stay updated with my project activities.
 
 # 1. Project Overview and Scope
 
+ # In this study, the Completed education by province (15+ years old) data set made available by TUIK will be used. It contains data on gender distribution of education levels by province in Turkey between 2011 and 2021.
 
-
+ #| warning: false
+library(tidyverse)
 
 # 2. Data
 
- # In this study, the "Completed education by province (15+ years old)" data set made available by T????K will be used. It contains data on gender distribution of education levels by province in Turkey between 2011 and 2021.
- 
 
- 
- DATA:
- 
- str(education)
+
+
+
+ # You can see data below.
+
+```{r}
+suppressPackageStartupMessages(library(dplyr))
+library(readxl)
+library(dplyr)
+library(tidyr)
+
+education<- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/education.xls")
+
+library(dslabs)
+data("education")
+str(education)
+```
 
 
 ## 2.1 Data Source
 
-# You can access the raw data from the link below:
+ # You can access the raw data from the link below:
  
  # https://data.tuik.gov.tr/Kategori/GetKategori?p=egitim-kultur-spor-ve-turizm-105&dil=1
 
