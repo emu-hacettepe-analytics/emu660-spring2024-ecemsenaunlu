@@ -66,22 +66,30 @@ head(crime)
 
 Below you can find the names of all columns in the Education and Crime datasets and information about the data they represent.
 
- Year : The Year where data is collected for statistical calculations.
+ Year : The Year where data is collected for statistical calculations.  
  
- 
- ProvinceID : The ProvinceID where data is collected for statistical calculations.
+ ProvinceID : The ProvinceID where data is collected for statistical calculations.  
  
  ProvinceName : The ProvinceName where data is collected for statistical calculations. 
  
  illiterateTotal : The illiterateTotal where Total number of illiterate people in Turkey.
+ 
  illiterateMale : The IlliterateMale where Total number of illiterate men in Turkey.
+ 
  illiterateFemale : The IlliterateFemale where Total number of illiterate women in Turkey.
+ 
  LiterateWithoutADiplomaTotal :The LiterateWithoutADiplomaTotal is total number of people in Turkey which has no diploma.
+ 
  LiterateWithoutADiplomaMale :The LiterateWithoutADiplomaTotal is total number of men in Turkey which has no diploma.
+ 
  LiterateWithoutADiplomaFemale :The LiterateWithoutADiplomaTotal is total number of women in Turkey which has no diploma.
- PrimarySchoolTotal : The PrimarySchoolTotal is number of people which graduated from Primary school in Turkey. 
-  PrimarySchoolMale : The PrimarySchoolMale is number of men which graduated from Primary school in Turkey. 
+ 
+ PrimarySchoolTotal : The PrimarySchoolTotal is number of people which graduated from Primary school in Turkey.   
+ 
+  PrimarySchoolMale : The PrimarySchoolMale is number of men which graduated from Primary school in Turkey.  
+  
    PrimarySchoolFemale : The PrimarySchoolMale is number of women which graduated from Primary school in Turkey. 
+   
    PrimaryEducationTotal : The PrimaryEducationTotal is number of people which graduated from Primary Education in Turkey. 
    PrimaryEducationMale : The PrimaryEducationMale is number of men which graduated from Primary Education in Turkey. 
   PrimaryEducationFemale : The PrimaryEducationFemale is number of women which graduated from Primary Education in Turkey. 
