@@ -90,7 +90,7 @@ Below you can find the names of all columns in the Education and Crime datasets 
   
    PrimarySchoolFemale : The PrimarySchoolMale is number of women which graduated from Primary school in Turkey.  
    
-   PrimaryEducationTotal : The PrimaryEducationTotal is number of people which graduated from Primary Education in Turkey.  
+   PrimaryEducationTotal : The PrimaryEducationTotal is number of people which graduated from Primary Education in Turkey.  <br>
    
    PrimaryEducationMale : The PrimaryEducationMale is number of men which graduated from Primary Education in Turkey.  
    
