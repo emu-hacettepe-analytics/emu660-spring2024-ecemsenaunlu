@@ -49,10 +49,10 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 
-education <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/crime.xls")
+crime <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/crime.xls")
 
 library(dslabs)
-head(education)
+head(crime)
 
 
 ```
@@ -144,11 +144,9 @@ education2 %>%
 ```{r}
 suppressPackageStartupMessages(library(dplyr))
 library(readxl)
-library(dplyr)
-library(tidyr)
 library(ggplot2)
 
-education <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/crime.xls")
+crime <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/crime.xls")
 
 crime <- crime %>% mutate(CRilliterateTotal = CRilliterateMale + CRilliterateFemale)
 crime2 <- crime %>%
