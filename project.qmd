@@ -39,7 +39,7 @@ head(education)
 
 
 ```
-# You can see crime data set for 2020 below.
+ # You can see crime data set for 2020 below.
 
 ```{r}
 
@@ -58,9 +58,9 @@ head(education)
 ```
 ## 2.1 Data Source
 
- # You can access both data set from the link below:
+ You can access both data set from the link below:
  
- # https://data.tuik.gov.tr/Kategori/GetKategori?p=egitim-kultur-spor-ve-turizm-105&dil=1
+ https://data.tuik.gov.tr/Kategori/GetKategori?p=egitim-kultur-spor-ve-turizm-105&dil=1
 
 ## 2.2 General Information About Data
 
