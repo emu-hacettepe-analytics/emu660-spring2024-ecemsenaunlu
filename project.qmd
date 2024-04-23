@@ -66,8 +66,8 @@ head(education)
 
 Below you can find the names of all columns in the Education and Crime datasets and information about the data they represent.
 
- #Year : The Year where data is collected for statistical calculations. 
- #ProvinceID : The ProvinceID where data is collected for statistical calculations. 
+ Year : The Year where data is collected for statistical calculations. 
+ ProvinceID : The ProvinceID where data is collected for statistical calculations. 
  #ProvinceName : The ProvinceName where data is collected for statistical calculations. 
  #illiterateTotal : The illiterateTotal where Total number of illiterate people in Turkey.
  #illiterateMale : The IlliterateMale where Total number of illiterate men in Turkey.
