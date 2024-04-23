@@ -15,20 +15,24 @@ Keep an eye on this space to stay updated with my project activities.
 
 # 2. Data
 
- In this study, the "Completed education by province (15+ years old)" data set made available by T????K will be used. It contains data on gender distribution of education levels by province in Turkey between 2011 and 2021.
+ # In this study, the "Completed education by province (15+ years old)" data set made available by T????K will be used. It contains data on gender distribution of education levels by province in Turkey between 2011 and 2021.
  
- You can access the raw data from the link below:
+
  
- https://data.tuik.gov.tr/Kategori/GetKategori?p=egitim-kultur-spor-ve-turizm-105&dil=1 
+ DATA:
+ 
+ str(education)
 
 
 ## 2.1 Data Source
 
-xxxxxx
+# You can access the raw data from the link below:
+ 
+ # https://data.tuik.gov.tr/Kategori/GetKategori?p=egitim-kultur-spor-ve-turizm-105&dil=1
 
 ## 2.2 General Information About Data
 
-xxxxxx
+
 
 ## 2.3 Reason of Choice
 
