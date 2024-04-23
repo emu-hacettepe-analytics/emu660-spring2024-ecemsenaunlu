@@ -1,5 +1,10 @@
 ---
-title: "Project Turky"
+title: "Project Turkey"
+
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
 ---
 
 Welcome to my project page.
@@ -12,30 +17,26 @@ Keep an eye on this space to stay updated with my project activities.
 
  # In this study, the Completed education by province (15+ years old) data set made available by TUIK will be used. It contains data on gender distribution of education levels by province in Turkey between 2011 and 2021.
 
- #| warning: false
-library(tidyverse)
-
+ 
 # 2. Data
-
-
-
-
 
  # You can see data below.
 
 ```{r}
+
 suppressPackageStartupMessages(library(dplyr))
 library(readxl)
 library(dplyr)
 library(tidyr)
+library(ggplot2)
 
-education<- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/education.xls")
+education <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/education.xls")
 
 library(dslabs)
-data("education")
-str(education)
-```
+head(education)
 
+
+```
 
 ## 2.1 Data Source
 
@@ -45,15 +46,16 @@ str(education)
 
 ## 2.2 General Information About Data
 
-
-
+ #Year : The Year where data is collected for statistical calculations. 
+ #ProvinceID : The ProvinceID where data is collected for statistical calculations. 
+ #ProvinceName : The ProvinceName where data is collected for statistical calculations. 
+ #illiterateTotal : The illiterateTotal where Total number of illiterate people in Turkey.
+ #illiterateMale : The IlliterateMale where Total number of illiterate men in Turkey.
+ #illiterateFemale : The IlliterateFemale where Total number of illiterate women in Turkey.
+ 
 ## 2.3 Reason of Choice
 
-xxxxxx
-
-## 2.4 Preprocessing
-
-xxxxxx
+The change in education level over the years according to provinces in Turkey is an interesting data set. Comments can be made on how the relevant data has changed and developed over the years. For this reason, I wanted to examine in detail the changes in Turkey's literacy rates and postgraduate education rates according to provinces and years.
 
 # 3. Analysis
 

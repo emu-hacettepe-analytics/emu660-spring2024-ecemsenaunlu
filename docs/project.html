@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Ecem’s Analytics Lab - Project Turky</title>
+<title>Ecem’s Analytics Lab - Project Turkey</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -158,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Project Turky</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Project Turkey</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -208,7 +208,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#data-source" id="toc-data-source" class="nav-link" data-scroll-target="#data-source">2.1 Data Source</a></li>
   <li><a href="#general-information-about-data" id="toc-general-information-about-data" class="nav-link" data-scroll-target="#general-information-about-data">2.2 General Information About Data</a></li>
   <li><a href="#reason-of-choice" id="toc-reason-of-choice" class="nav-link" data-scroll-target="#reason-of-choice">2.3 Reason of Choice</a></li>
-  <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing">2.4 Preprocessing</a></li>
   </ul></li>
   <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">3. Analysis</a>
   <ul class="collapse">
@@ -230,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project Turky</h1>
+<h1 class="title">Project Turkey</h1>
 </div>
 
 
@@ -251,60 +250,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="project-overview-and-scope" class="level1">
 <h1>1. Project Overview and Scope</h1>
 <p># In this study, the Completed education by province (15+ years old) data set made available by TUIK will be used. It contains data on gender distribution of education levels by province in Turkey between 2011 and 2021.</p>
-<p>#| warning: false library(tidyverse)</p>
 </section>
 <section id="data" class="level1">
 <h1>2. Data</h1>
 <p># You can see data below.</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(dplyr))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>education<span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/education.xls"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"education"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in data("education"): data set 'education' not found</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(education)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>education <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/education.xls"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(education)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
-<pre><code>tibble [891 × 33] (S3: tbl_df/tbl/data.frame)
- $ Year                               : num [1:891] 2011 2011 2011 2011 2011 ...
- $ ProvinceID                         : num [1:891] 1 2 3 4 5 6 7 8 9 10 ...
- $ ProvinceName                       : chr [1:891] "Adana" "&nbsp; Adiyaman" "&nbsp; Afyon" "&nbsp; Agri" ...
- $ illiterateTotal                    : num [1:891] 108804 49954 25875 44182 13517 ...
- $ illiterateMale                     : num [1:891] 18731 10314 3446 8154 2615 ...
- $ illiterateFemale                   : num [1:891] 90073 39640 22429 36028 10902 ...
- $ LiterateWithoutADiplomaTotal       : num [1:891] 89724 27692 32223 62406 15804 ...
- $ LiterateWithoutADiplomaMale        : num [1:891] 32423 10426 8991 24960 5309 ...
- $ LiterateWithoutADiplomaFemale      : num [1:891] 57301 17266 23232 37446 10495 ...
- $ PrimarySchoolTotal                 : num [1:891] 391073 92860 195490 68177 83436 ...
- $ PrimarySchoolMale                  : num [1:891] 171102 40830 81736 37640 34793 ...
- $ PrimarySchoolFemale                : num [1:891] 219971 52030 113754 30537 48643 ...
- $ PrimaryEducationTotal              : num [1:891] 305965 103460 109485 66979 47683 ...
- $ PrimaryEducationMale               : num [1:891] 177179 56881 61059 46006 25303 ...
- $ PrimaryEducationFemale             : num [1:891] 128786 46579 48426 20973 22380 ...
- $ LowerSecondarySchoolTotal          : num [1:891] 87138 16322 27322 7828 12484 ...
- $ LowerSecondarySchoolMale           : num [1:891] 50325 11320 18592 5717 8185 ...
- $ LowerSecondarySchoolFemale         : num [1:891] 36813 5002 8730 2111 4299 ...
- $ UpperSecondarySchoolTotal          : num [1:891] 354770 76331 92711 40506 50292 ...
- $ UpperSecondarySchoolMale           : num [1:891] 196399 47534 58173 30134 30254 ...
- $ UpperSecondarySchoolFemale         : num [1:891] 158371 28797 34538 10372 20038 ...
- $ HigherEducationalinstitutionsTotal : num [1:891] 144333 25339 37334 14373 22220 ...
- $ HigherEducationalinstitutionsMale  : num [1:891] 83002 16913 23506 9811 14041 ...
- $ HigherEducationalinstitutionsFemale: num [1:891] 61331 8426 13828 4562 8179 ...
- $ MasterTotal                        : num [1:891] 8668 1005 2196 710 969 ...
- $ MasterMale                         : num [1:891] 5060 722 1433 496 610 ...
- $ MasterFemale                       : num [1:891] 3608 283 763 214 359 ...
- $ DoctorateTotal                     : num [1:891] 2785 353 737 230 230 ...
- $ DoctorateMale                      : num [1:891] 1689 230 501 145 127 ...
- $ DoctorateFemale                    : num [1:891] 1096 123 236 85 103 ...
- $ UnknownTotal                       : num [1:891] 46455 14612 3192 28862 7747 ...
- $ UnknownMale                        : num [1:891] 25292 7866 1696 14571 3682 ...
- $ UnknownFemale                      : num [1:891] 21163 6746 1496 14291 4065 ...</code></pre>
+<pre><code># A tibble: 6 × 33
+   Year ProvinceID ProvinceName illiterateTotal illiterateMale illiterateFemale
+  &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;          &lt;dbl&gt;            &lt;dbl&gt;
+1  2011          1 Adana                 108804          18731            90073
+2  2011          2 &nbsp; Adiyaman             49954          10314            39640
+3  2011          3 &nbsp; Afyon                25875           3446            22429
+4  2011          4 &nbsp; Agri                 44182           8154            36028
+5  2011          5 &nbsp; Amasya               13517           2615            10902
+6  2011          6 &nbsp; Ankara              120037          16612           103425
+# ℹ 27 more variables: LiterateWithoutADiplomaTotal &lt;dbl&gt;,
+#   LiterateWithoutADiplomaMale &lt;dbl&gt;, LiterateWithoutADiplomaFemale &lt;dbl&gt;,
+#   PrimarySchoolTotal &lt;dbl&gt;, PrimarySchoolMale &lt;dbl&gt;,
+#   PrimarySchoolFemale &lt;dbl&gt;, PrimaryEducationTotal &lt;dbl&gt;,
+#   PrimaryEducationMale &lt;dbl&gt;, PrimaryEducationFemale &lt;dbl&gt;,
+#   LowerSecondarySchoolTotal &lt;dbl&gt;, LowerSecondarySchoolMale &lt;dbl&gt;,
+#   LowerSecondarySchoolFemale &lt;dbl&gt;, UpperSecondarySchoolTotal &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
 <section id="data-source" class="level2">
@@ -314,14 +294,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="general-information-about-data" class="level2">
 <h2 class="anchored" data-anchor-id="general-information-about-data">2.2 General Information About Data</h2>
+<p>#Year : The Year where data is collected for statistical calculations. #ProvinceID : The ProvinceID where data is collected for statistical calculations. #ProvinceName : The ProvinceName where data is collected for statistical calculations. #illiterateTotal : The illiterateTotal where Total number of illiterate people in Turkey. #illiterateMale : The IlliterateMale where Total number of illiterate men in Turkey. #illiterateFemale : The IlliterateFemale where Total number of illiterate women in Turkey.</p>
 </section>
 <section id="reason-of-choice" class="level2">
 <h2 class="anchored" data-anchor-id="reason-of-choice">2.3 Reason of Choice</h2>
-<p>xxxxxx</p>
-</section>
-<section id="preprocessing" class="level2">
-<h2 class="anchored" data-anchor-id="preprocessing">2.4 Preprocessing</h2>
-<p>xxxxxx</p>
+<p>The change in education level over the years according to provinces in Turkey is an interesting data set. Comments can be made on how the relevant data has changed and developed over the years. For this reason, I wanted to examine in detail the changes in Turkey’s literacy rates and postgraduate education rates according to provinces and years.</p>
 </section>
 </section>
 <section id="analysis" class="level1">
