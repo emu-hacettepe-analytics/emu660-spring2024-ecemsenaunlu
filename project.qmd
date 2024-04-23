@@ -150,13 +150,13 @@ library(ggplot2)
 
 education <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/crime.xls")
 
-crime <- crime %>% mutate(illiterateTotal = illiterateMale + illiterateFemale)
+crime <- crime %>% mutate(CRilliterateTotal = CRilliterateMale + CRilliterateFemale)
 crime2 <- crime %>%
-  group_by(illiterateTotal)
+  group_by(CRilliterateTotal)
 
 
 crime2 %>%
-  ggplot(aes(x = `Type of crime`, y = illiterateTotal)) +
+  ggplot(aes(x = `Type of crime`, y = CRilliterateTotal)) +
   geom_bar(stat = "identity", fill = "green") +
   labs(title = "Distribution of Illiterate Total Per Type Of Crime",
        x = "Type of crime",
