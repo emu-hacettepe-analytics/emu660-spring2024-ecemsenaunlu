@@ -157,7 +157,7 @@ crime2 <- crime %>%
 
 crime2 %>%
   ggplot(aes(x = `Type of crime`, y = illiterateTotal)) +
-  geom_bar(stat = "identity", fill = "purple") +
+  geom_bar(stat = "identity", fill = "green") +
   labs(title = "Distribution of Illiterate Total Per Type Of Crime",
        x = "Type of crime",
        y = "Illiterate Total") +
