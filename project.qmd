@@ -74,12 +74,12 @@ library(ggplot2)
 education <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/education.xls")
 
 
-education <- education %>%
+education2 <- education %>%
   group_by(Year) %>%
   summarise(illiterateYearTotal = sum(illiterateTotal))
 
 
-education %>%
+education2 %>%
   ggplot(aes(x = Year, y = illiterateYearTotal)) +
   geom_bar(stat = "identity", color = "black") +
   labs(title = "Distribution of Illiterate Total Per Year",
