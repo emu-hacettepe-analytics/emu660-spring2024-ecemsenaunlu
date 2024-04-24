@@ -11,7 +11,7 @@ Welcome to my project page.
 
 Keep an eye on this space to stay updated with my project activities.
 
-![](assets/images/analiz.gif){fig-align="center"}
+![](images/analiz.gif){fig-align="center"}
 
 # 1. Project Overview and Scope
 
