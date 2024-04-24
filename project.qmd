@@ -15,14 +15,15 @@ Keep an eye on this space to stay updated with my project activities.
 
 # 1. Project Overview and Scope
 
- In this study, the Completed education by province (15+ years old) data set made available by TUIK will be used. It contains data on gender distribution of education levels by province in Turkey between 2011 and 2021.
- 
-  With the 2020 Data set of Convicts Entered into Penal Institutions by Crime Type and Educational Level, crime situations in the provinces will be examined according to education levels in 2020.
+In this study, the Completed education by province (15+ years old) data set made available by TUIK will be used. It contains data on gender distribution of education levels by province in Turkey between 2011 and 2021.
 
- 
+With the 2020 Data set of Convicts Entered into Penal Institutions by Crime Type and Educational Level, crime situations in the provinces will be examined according to education levels in 2020.
+
 # 2. Data
 
-  You can see education data below.
+You can see education data below.
+
+[Also, click and reach .RData File](https://github.com/emu-hacettepe-analytics/emu660-spring2024-ecemsenaunlu/tree/main/data)
 
 ```{r}
 
@@ -39,7 +40,8 @@ head(education)
 
 
 ```
- # You can see crime data set for 2020 below.
+
+\# You can see crime data set for 2020 below.
 
 ```{r}
 
@@ -56,82 +58,82 @@ head(crime)
 
 
 ```
+
 ## 2.1 Data Source
 
- You can access both data set from the link below:
- 
- https://data.tuik.gov.tr/Kategori/GetKategori?p=egitim-kultur-spor-ve-turizm-105&dil=1
+You can access both data set from the link below:
+
+[Reach Out To Data Source](https://data.tuik.gov.tr/Kategori/GetKategori?p=egitim-kultur-spor-ve-turizm-105&dil=1)
 
 ## 2.2 General Information About Data
 
 Below you can find the names of all columns in the Education and Crime datasets and information about the data they represent.
 
- Year : The Year where data is collected for statistical calculations.<br>
- 
- ProvinceID : The ProvinceID where data is collected for statistical calculations.  
- 
- ProvinceName : The ProvinceName where data is collected for statistical calculations. 
- 
- illiterateTotal : The illiterateTotal where Total number of illiterate people in Turkey.
- 
- illiterateMale : The IlliterateMale where Total number of illiterate men in Turkey.
- 
- illiterateFemale : The IlliterateFemale where Total number of illiterate women in Turkey.
- 
- LiterateWithoutADiplomaTotal :The LiterateWithoutADiplomaTotal is total number of people in Turkey which has no diploma.
- 
- LiterateWithoutADiplomaMale :The LiterateWithoutADiplomaTotal is total number of men in Turkey which has no diploma.
- 
- LiterateWithoutADiplomaFemale :The LiterateWithoutADiplomaTotal is total number of women in Turkey which has no diploma.
- 
- PrimarySchoolTotal : The PrimarySchoolTotal is number of people which graduated from Primary school in Turkey.   
- 
-  PrimarySchoolMale : The PrimarySchoolMale is number of men which graduated from Primary school in Turkey.  
-  
-   PrimarySchoolFemale : The PrimarySchoolMale is number of women which graduated from Primary school in Turkey.  
-   
-   PrimaryEducationTotal : The PrimaryEducationTotal is number of people which graduated from Primary Education in Turkey.  <br>
-   
-   PrimaryEducationMale : The PrimaryEducationMale is number of men which graduated from Primary Education in Turkey.  
-   
-  PrimaryEducationFemale : The PrimaryEducationFemale is number of women which graduated from Primary Education in Turkey.  
-  
-  LowerSecondarySchoolTotal : The LowerSecondarySchoolTotal is number of people which graduated from Lower Secondary School in Turkey.  
-  
-  LowerSecondarySchoolMale :The LowerSecondarySchoolMale is number of men which graduated from Lower Secondary School in Turkey.  
-  
-  LowerSecondarySchoolFemale :The LowerSecondarySchoolFemale is number of women which graduated from Lower Secondary School in Turkey.  
-  
-  UpperSecondarySchoolTotal	:The UpperSecondarySchoolTotal is number of people which graduated from Upper Secondary School in Turkey.  
-  
-  UpperSecondarySchoolMale	:The LowerSecondarySchoolMale is number of men which graduated from Upper Secondary School in Turkey.  
-  
-  UpperSecondarySchoolFemale	:The LowerSecondarySchoolFemale is number of women which graduated from Upper Secondary School in Turkey.  
-  
-  HigherEducationalinstitutionsTotal	:The HigherEducationalinstitutionsTotal is number of people which graduated from Higher Educational institutions in Turkey.  
-  
-  HigherEducationalinstitutionsMale	:The HigherEducationalinstitutionsMale is number of men which graduated from Higher Educational institutions in Turkey.  
-  
-  HigherEducationalinstitutionsFemale	:The HigherEducationalinstitutionsFemale is number of women which graduated from Higher Educational institutions in Turkey.  
-  
-  MasterTotal	:The MasterTotal is number of people which graduated from Master in Turkey.  
-  
-  MasterMale	: The MasterTotal is number of men which graduated from Master in Turkey.  
-  
-  MasterFemale : The MasterTotal is number of women which graduated from Master in Turkey.  
-  
-  DoctorateTotal	: The DoctorateTotal is number of people which graduated from Master in Turkey.  
-  
-  DoctorateMale	:The DoctorateTotal is number of men which graduated from Master in Turkey.  
-  
-  DoctorateFemale	:The DoctorateTotal is number of women which graduated from Master in Turkey.  
-  
-  UnknownTotal	: The UnknownTotal is the number of people whose educational status is unknown in Turkey.  
-   
-  UnknownMale	:The UnknownTotal is the number of men whose educational status is unknown in Turkey.  
-  
-  UnknownFemale :The UnknownTotal is the number of women whose educational status is unknown in Turkey.  
+Year : The Year where data is collected for statistical calculations.<br>
 
+ProvinceID : The ProvinceID where data is collected for statistical calculations.
+
+ProvinceName : The ProvinceName where data is collected for statistical calculations.
+
+illiterateTotal : The illiterateTotal where Total number of illiterate people in Turkey.
+
+illiterateMale : The IlliterateMale where Total number of illiterate men in Turkey.
+
+illiterateFemale : The IlliterateFemale where Total number of illiterate women in Turkey.
+
+LiterateWithoutADiplomaTotal :The LiterateWithoutADiplomaTotal is total number of people in Turkey which has no diploma.
+
+LiterateWithoutADiplomaMale :The LiterateWithoutADiplomaTotal is total number of men in Turkey which has no diploma.
+
+LiterateWithoutADiplomaFemale :The LiterateWithoutADiplomaTotal is total number of women in Turkey which has no diploma.
+
+PrimarySchoolTotal : The PrimarySchoolTotal is number of people which graduated from Primary school in Turkey.
+
+PrimarySchoolMale : The PrimarySchoolMale is number of men which graduated from Primary school in Turkey.
+
+PrimarySchoolFemale : The PrimarySchoolMale is number of women which graduated from Primary school in Turkey.
+
+PrimaryEducationTotal : The PrimaryEducationTotal is number of people which graduated from Primary Education in Turkey. <br>
+
+PrimaryEducationMale : The PrimaryEducationMale is number of men which graduated from Primary Education in Turkey.
+
+PrimaryEducationFemale : The PrimaryEducationFemale is number of women which graduated from Primary Education in Turkey.
+
+LowerSecondarySchoolTotal : The LowerSecondarySchoolTotal is number of people which graduated from Lower Secondary School in Turkey.
+
+LowerSecondarySchoolMale :The LowerSecondarySchoolMale is number of men which graduated from Lower Secondary School in Turkey.
+
+LowerSecondarySchoolFemale :The LowerSecondarySchoolFemale is number of women which graduated from Lower Secondary School in Turkey.
+
+UpperSecondarySchoolTotal :The UpperSecondarySchoolTotal is number of people which graduated from Upper Secondary School in Turkey.
+
+UpperSecondarySchoolMale :The LowerSecondarySchoolMale is number of men which graduated from Upper Secondary School in Turkey.
+
+UpperSecondarySchoolFemale :The LowerSecondarySchoolFemale is number of women which graduated from Upper Secondary School in Turkey.
+
+HigherEducationalinstitutionsTotal :The HigherEducationalinstitutionsTotal is number of people which graduated from Higher Educational institutions in Turkey.
+
+HigherEducationalinstitutionsMale :The HigherEducationalinstitutionsMale is number of men which graduated from Higher Educational institutions in Turkey.
+
+HigherEducationalinstitutionsFemale :The HigherEducationalinstitutionsFemale is number of women which graduated from Higher Educational institutions in Turkey.
+
+MasterTotal :The MasterTotal is number of people which graduated from Master in Turkey.
+
+MasterMale : The MasterTotal is number of men which graduated from Master in Turkey.
+
+MasterFemale : The MasterTotal is number of women which graduated from Master in Turkey.
+
+DoctorateTotal : The DoctorateTotal is number of people which graduated from Master in Turkey.
+
+DoctorateMale :The DoctorateTotal is number of men which graduated from Master in Turkey.
+
+DoctorateFemale :The DoctorateTotal is number of women which graduated from Master in Turkey.
+
+UnknownTotal : The UnknownTotal is the number of people whose educational status is unknown in Turkey.
+
+UnknownMale :The UnknownTotal is the number of men whose educational status is unknown in Turkey.
+
+UnknownFemale :The UnknownTotal is the number of women whose educational status is unknown in Turkey.
 
 ## 2.3 Reason of Choice
 
@@ -195,6 +197,7 @@ crime2 %>%
        axis.text.y = element_text(size = 8))
 
 ```
+
 ## 3.2 Trend Analysis
 
 xxxxxx
