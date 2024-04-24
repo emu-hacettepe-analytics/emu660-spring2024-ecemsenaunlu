@@ -11,7 +11,7 @@ Welcome to my project page.
 
 Keep an eye on this space to stay updated with my project activities.
 
-(The titles below are provided as examples; please feel free to adjust them as necessary.)
+![](images/analiz.gif){fig-align="center"}
 
 # 1. Project Overview and Scope
 
@@ -41,7 +41,7 @@ head(education)
 
 ```
 
-\# You can see crime data set for 2020 below.
+You can see crime data set for 2020 below.
 
 ```{r}
 
@@ -65,10 +65,9 @@ Completed education by province (15+ years old)
 
 2020 Data set of Convicts Entered into Penal Institutions by Crime Type and Educational Level, crime situations in the province
 
-You can access following datas from the link below:
+You can access following data sets from the link below:
 
 [Reach Out To Data Source](https://data.tuik.gov.tr/Kategori/GetKategori?p=egitim-kultur-spor-ve-turizm-105&dil=1)
-
 
 ## 2.2 General Information About Data
 
