@@ -23,7 +23,7 @@ With the 2020 Data set of Convicts Entered into Penal Institutions by Crime Type
 
 You can see education data below.
 
-[Also, click and reach .RData File](https://github.com/emu-hacettepe-analytics/emu660-spring2024-ecemsenaunlu/tree/main/data)
+[Also, click and reach .RData's File](https://github.com/emu-hacettepe-analytics/emu660-spring2024-ecemsenaunlu/tree/main/data)
 
 ```{r}
 
@@ -61,9 +61,14 @@ head(crime)
 
 ## 2.1 Data Source
 
-You can access both data set from the link below:
+Completed education by province (15+ years old)
+
+2020 Data set of Convicts Entered into Penal Institutions by Crime Type and Educational Level, crime situations in the province
+
+You can access following datas from the link below:
 
 [Reach Out To Data Source](https://data.tuik.gov.tr/Kategori/GetKategori?p=egitim-kultur-spor-ve-turizm-105&dil=1)
+
 
 ## 2.2 General Information About Data
 
