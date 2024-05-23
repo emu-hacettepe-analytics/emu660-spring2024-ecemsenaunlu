@@ -17,6 +17,8 @@ Keep an eye on this space to stay updated with my project activities.
 
 In this study, the Completed education by province (15+ years old) data set made available by TUIK will be used. It contains data on gender distribution of education levels by province in Turkey between 2011 and 2021.
 
+The population data set will be used to interpret the training data set meaningfully. This data set contains the numbers of women, men and total population in all cities in 2020.
+
 With the 2020 Data set of Convicts Entered into Penal Institutions by Crime Type and Educational Level, crime situations in the provinces will be examined according to education levels in 2020.
 
 # 2. Data
@@ -58,16 +60,35 @@ head(crime)
 
 
 ```
+You can see population data set for 2020 below.
 
+```{r}
+
+suppressPackageStartupMessages(library(dplyr))
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+populasyon <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/populasyon.xls")
+
+library(dslabs)
+head(populasyon)
+
+
+```
 ## 2.1 Data Source
 
 Completed education by province (15+ years old)
 
 2020 Data set of Convicts Entered into Penal Institutions by Crime Type and Educational Level, crime situations in the province
 
+Address-Based Population Registration System Results, 2020, Table 3
+
 You can access following data sets from the link below:
 
 [Reach Out To Data Source](https://data.tuik.gov.tr/Kategori/GetKategori?p=egitim-kultur-spor-ve-turizm-105&dil=1)
+
 
 ## 2.2 General Information About Data
 
@@ -204,7 +225,30 @@ crime2 %>%
 
 ## 3.2 Trend Analysis
 
-xxxxxx
+First of all, how many doctoral and master's students were in each city in 2020, these statistics will be discussed.
+
+```{r}
+suppressPackageStartupMessages(library(dplyr))
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+education <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/education.xls")
+
+
+education2020 <- education %>% filter(Year == 2020)
+
+education2020 %>%
+  ggplot(aes(x = ProvinceName, y = DoctorateTotal)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Distribution of Doctorate Total per Province in 2020",
+       x = "Province",
+       y = "Doctorate Total") +
+ theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5, hjust = 1),
+       axis.text.y = element_text(size = 8))
+
+```
 
 ## 3.3 Model Fitting
 

@@ -18,7 +18,7 @@
     "href": "project.html#data-source",
     "title": "Project Distribution of education levels by provinces and gender in Turkey over the years",
     "section": "2.1 Data Source",
-    "text": "2.1 Data Source\nCompleted education by province (15+ years old)\n2020 Data set of Convicts Entered into Penal Institutions by Crime Type and Educational Level, crime situations in the province\nYou can access following data sets from the link below:\nReach Out To Data Source"
+    "text": "2.1 Data Source\nCompleted education by province (15+ years old)\n2020 Data set of Convicts Entered into Penal Institutions by Crime Type and Educational Level, crime situations in the province\nAddress-Based Population Registration System Results, 2020, Table 3\nYou can access following data sets from the link below:\nReach Out To Data Source"
   },
   {
     "objectID": "project.html#general-information-about-data",
@@ -53,7 +53,7 @@
     "href": "project.html#trend-analysis",
     "title": "Project Distribution of education levels by provinces and gender in Turkey over the years",
     "section": "3.2 Trend Analysis",
-    "text": "3.2 Trend Analysis\nxxxxxx"
+    "text": "3.2 Trend Analysis\nFirst of all, how many doctoral and master’s students were in each city in 2020, these statistics will be discussed.\n\n\nCode\nsuppressPackageStartupMessages(library(dplyr))\nlibrary(readxl)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggplot2)\n\neducation &lt;- read_excel(\"C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/education.xls\")\n\n\neducation2020 &lt;- education %&gt;% filter(Year == 2020)\n\neducation2020 %&gt;%\n  ggplot(aes(x = ProvinceName, y = DoctorateTotal)) +\n  geom_bar(stat = \"identity\", fill = \"purple\") +\n  labs(title = \"Distribution of Doctorate Total per Province in 2020\",\n       x = \"Province\",\n       y = \"Doctorate Total\") +\n theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5, hjust = 1),\n       axis.text.y = element_text(size = 8))"
   },
   {
     "objectID": "project.html#model-fitting",
