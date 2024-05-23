@@ -70,10 +70,10 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 
-populasyon <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/populasyon.xls")
+population <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/population.xls")
 
 library(dslabs)
-head(populasyon)
+head(population)
 
 
 ```
@@ -160,11 +160,23 @@ UnknownMale :The UnknownTotal is the number of men whose educational status is u
 
 UnknownFemale :The UnknownTotal is the number of women whose educational status is unknown in Turkey.
 
+
+Below you can find the names of all columns in the Population dataset and information about the data they represent.
+
+Provinces : The Provinces where data is collected for statistical calculations.
+
+TotalPopulation : TotalPopulation data gives the total number of people living in that city.
+
+TotalFemale : TotalPopulation data gives the total number of women living in that city.
+
+TotalMale : TotalPopulation data gives the total number of men living in that city.
+
+
 ## 2.3 Reason of Choice
 
 The change in education level by province in Turkey over the years is an interesting data set. Comments can be made on how the relevant data has changed and developed over the years. For this reason, I wanted to examine in detail the changes in Turkey's literacy rates and postgraduate education rates according to provinces and years.
 
-Additionally, we will use a second data set to examine the relationship between education levels and crime rates. This data set provides us with crimes and crime rates according to education levels in 2020.
+Additionally, we will use a second data set to examine the relationship between education levels and crime rates. This data set provides us with crimes and crime rates according to education levels in 2020. In addition, I think that the population numbers of the provinces in 2020 are an important data source to evaluate the relevant data correctly.
 
 # 3. Analysis
 

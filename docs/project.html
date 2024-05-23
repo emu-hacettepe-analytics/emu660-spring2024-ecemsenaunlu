@@ -338,21 +338,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>populasyon <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/populasyon.xls"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/population.xls"</span>)</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(populasyon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(population)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  Provinces      `\nTotal`    Male  Female
-  &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 Adana            2258718 1127516 1131202
-2 Adiyaman          632459  318755  313704
-3 Afyonkarahisar    736912  367399  369513
-4 Agri              535435  276800  258635
-5 Amasya            335494  167624  167870
-6 Ankara           5663322 2805877 2857445</code></pre>
+  Provinces      TotalPopulation MalePopulation FemalePopulation
+  &lt;chr&gt;                    &lt;dbl&gt;          &lt;dbl&gt;            &lt;dbl&gt;
+1 Adana                  2258718        1127516          1131202
+2 Adiyaman                632459         318755           313704
+3 Afyonkarahisar          736912         367399           369513
+4 Agri                    535435         276800           258635
+5 Amasya                  335494         167624           167870
+6 Ankara                 5663322        2805877          2857445</code></pre>
 </div>
 </div>
 <section id="data-source" class="level2">
@@ -399,11 +399,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>UnknownTotal : The UnknownTotal is the number of people whose educational status is unknown in Turkey.</p>
 <p>UnknownMale :The UnknownTotal is the number of men whose educational status is unknown in Turkey.</p>
 <p>UnknownFemale :The UnknownTotal is the number of women whose educational status is unknown in Turkey.</p>
+<p>Below you can find the names of all columns in the Population dataset and information about the data they represent.</p>
+<p>Provinces : The Provinces where data is collected for statistical calculations.</p>
+<p>TotalPopulation : TotalPopulation data gives the total number of people living in that city.</p>
+<p>TotalFemale : TotalPopulation data gives the total number of women living in that city.</p>
+<p>TotalMale : TotalPopulation data gives the total number of men living in that city.</p>
 </section>
 <section id="reason-of-choice" class="level2">
 <h2 class="anchored" data-anchor-id="reason-of-choice">2.3 Reason of Choice</h2>
 <p>The change in education level by province in Turkey over the years is an interesting data set. Comments can be made on how the relevant data has changed and developed over the years. For this reason, I wanted to examine in detail the changes in Turkey’s literacy rates and postgraduate education rates according to provinces and years.</p>
-<p>Additionally, we will use a second data set to examine the relationship between education levels and crime rates. This data set provides us with crimes and crime rates according to education levels in 2020.</p>
+<p>Additionally, we will use a second data set to examine the relationship between education levels and crime rates. This data set provides us with crimes and crime rates according to education levels in 2020. In addition, I think that the population numbers of the provinces in 2020 are an important data source to evaluate the relevant data correctly.</p>
 </section>
 </section>
 <section id="analysis" class="level1">
