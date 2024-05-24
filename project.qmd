@@ -264,7 +264,45 @@ education2020 %>%
 
 ## 3.3 Model Fitting
 
-xxxxxx
+```{r}
+
+result <- inner_join(education2020, population, by = "ProvinceName")
+
+DoctorateResult <- result %>%
+  mutate(DoctoratePercentage = DoctorateTotal / TotalPopulation * 100 )
+
+Doctorate <- DoctorateResult %>%
+  ggplot() +
+  geom_bar(aes(x = ProvinceName, y = DoctoratePercentage), 
+           stat = "identity", fill = "blue", position = "dodge") + 
+  labs(title = "Distribution of Doctorate Total per Total Population by Province in 2020",
+       x = "Province",
+       y = "Percentage") +
+  theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5, hjust = 1),
+        axis.text.y = element_text(size = 8))
+
+
+result <- inner_join(education2020, population, by = "ProvinceName")
+
+MasterResult <- result %>%
+  mutate(MasterPercentage = MasterTotal / TotalPopulation * 100)
+
+Master <- MasterResult %>%
+  ggplot() +
+  geom_bar(aes(x = ProvinceName, y = MasterPercentage), 
+           stat = "identity", fill = "purple", position = "dodge") + 
+  labs(title = "Distribution of Master Total per Total Population by Province in 2020",
+       x = "Province",
+       y = "Percentage") +
+  theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5, hjust = 1),
+        axis.text.y = element_text(size = 8))
+
+library(gridExtra)
+
+grid.arrange(Doctorate, Master, nrow = 2)
+
+```
+
 
 ## 3.4 Results
 
@@ -273,3 +311,20 @@ xxxxxx
 # 4. Results and Key Takeaways
 
 xxxxxx
+# MasterTotal için çubuk grafik oluşturma
+plot2 <- result %>%
+  ggplot() +
+  geom_bar(aes(x = ProvinceName, y = MasterTotal, fill = "Master Total"), 
+           stat = "identity", position = "dodge") +
+  labs(title = "Distribution of Master Total by Province in 2020",
+       x = "Province",
+       y = "Total Count",
+       fill = "Education Level") +
+  theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5, hjust = 1),
+        axis.text.y = element_text(size = 8))
+
+# İki grafiği üst üste yerleştirme
+combined_plot <- plot1 / plot2
+
+# Grafikleri gösterme
+print(combined_plot)

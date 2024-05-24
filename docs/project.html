@@ -217,6 +217,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">3.4 Results</a></li>
   </ul></li>
   <li><a href="#results-and-key-takeaways" id="toc-results-and-key-takeaways" class="nav-link" data-scroll-target="#results-and-key-takeaways">4. Results and Key Takeaways</a></li>
+  <li><a href="#iki-grafiği-üst-üste-yerleştirme" id="toc-iki-grafiği-üst-üste-yerleştirme" class="nav-link" data-scroll-target="#iki-grafiği-üst-üste-yerleştirme">İki grafiği üst üste yerleştirme</a></li>
+  <li><a href="#grafikleri-gösterme" id="toc-grafikleri-gösterme" class="nav-link" data-scroll-target="#grafikleri-gösterme">Grafikleri gösterme</a></li>
   </ul>
 </nav>
 </nav>
@@ -345,14 +347,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  Provinces      TotalPopulation MalePopulation FemalePopulation
-  &lt;chr&gt;                    &lt;dbl&gt;          &lt;dbl&gt;            &lt;dbl&gt;
-1 Adana                  2258718        1127516          1131202
-2 Adiyaman                632459         318755           313704
-3 Afyonkarahisar          736912         367399           369513
-4 Agri                    535435         276800           258635
-5 Amasya                  335494         167624           167870
-6 Ankara                 5663322        2805877          2857445</code></pre>
+  ProvinceName TotalPopulation MalePopulation FemalePopulation
+  &lt;chr&gt;                  &lt;dbl&gt;          &lt;dbl&gt;            &lt;dbl&gt;
+1 Adana                2258718        1127516          1131202
+2 Adiyaman              632459         318755           313704
+3 Afyon                 736912         367399           369513
+4 Agri                  535435         276800           258635
+5 Amasya                335494         167624           167870
+6 Ankara               5663322        2805877          2857445</code></pre>
 </div>
 </div>
 <section id="data-source" class="level2">
@@ -508,7 +510,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="model-fitting" class="level2">
 <h2 class="anchored" data-anchor-id="model-fitting">3.3 Model Fitting</h2>
-<p>xxxxxx</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(education2020, population, <span class="at">by =</span> <span class="st">"ProvinceName"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>DoctorateResult <span class="ot">&lt;-</span> result <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">DoctoratePercentage =</span> DoctorateTotal <span class="sc">/</span> TotalPopulation <span class="sc">*</span> <span class="dv">100</span> )</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>Doctorate <span class="ot">&lt;-</span> DoctorateResult <span class="sc">%&gt;%</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> ProvinceName, <span class="at">y =</span> DoctoratePercentage), </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span> </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Doctorate Total per Total Population by Province in 2020"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Province"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percentage"</span>) <span class="sc">+</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>))</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(education2020, population, <span class="at">by =</span> <span class="st">"ProvinceName"</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>MasterResult <span class="ot">&lt;-</span> result <span class="sc">%&gt;%</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">MasterPercentage =</span> MasterTotal <span class="sc">/</span> TotalPopulation <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>Master <span class="ot">&lt;-</span> MasterResult <span class="sc">%&gt;%</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> ProvinceName, <span class="at">y =</span> MasterPercentage), </span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"purple"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span> </span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Master Total per Total Population by Province in 2020"</span>,</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Province"</span>,</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percentage"</span>) <span class="sc">+</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>))</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'gridExtra'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:dplyr':
+
+    combine</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(Doctorate, Master, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="project_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">3.4 Results</h2>
@@ -517,7 +571,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="results-and-key-takeaways" class="level1">
 <h1>4. Results and Key Takeaways</h1>
-<p>xxxxxx</p>
+<p>xxxxxx # MasterTotal için çubuk grafik oluşturma plot2 &lt;- result %&gt;% ggplot() + geom_bar(aes(x = ProvinceName, y = MasterTotal, fill = “Master Total”), stat = “identity”, position = “dodge”) + labs(title = “Distribution of Master Total by Province in 2020”, x = “Province”, y = “Total Count”, fill = “Education Level”) + theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5, hjust = 1), axis.text.y = element_text(size = 8))</p>
+</section>
+<section id="iki-grafiği-üst-üste-yerleştirme" class="level1">
+<h1>İki grafiği üst üste yerleştirme</h1>
+<p>combined_plot &lt;- plot1 / plot2</p>
+</section>
+<section id="grafikleri-gösterme" class="level1">
+<h1>Grafikleri gösterme</h1>
+<p>print(combined_plot)</p>
 
 
 </section>
