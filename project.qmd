@@ -21,6 +21,8 @@ The population data set will be used to interpret the training data set meaningf
 
 With the 2020 Data set of Convicts Entered into Penal Institutions by Crime Type and Educational Level, crime situations in the provinces will be examined according to education levels in 2020.
 
+With the Gross Domestic Product, 2020 data set, provinces' contribution volume data to the general Turkish domestic national product is kept. With this data set, it is aimed to associate the education data set with the contributions of the provinces to Turkey's gross national product.
+
 # 2. Data
 
 You can see education data below.
@@ -77,6 +79,23 @@ head(population)
 
 
 ```
+You can see GSYMH data set for 2020 below.
+
+```{r}
+
+suppressPackageStartupMessages(library(dplyr))
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+GSYMH <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/GSYMH.xlsx")
+
+library(dslabs)
+head(GSYMH)
+
+
+```
 ## 2.1 Data Source
 
 Completed education by province (15+ years old)
@@ -84,6 +103,8 @@ Completed education by province (15+ years old)
 2020 Data set of Convicts Entered into Penal Institutions by Crime Type and Educational Level, crime situations in the province
 
 Address-Based Population Registration System Results, 2020, Table 3
+
+Gross Domestic Product (GDP) 2018,2019,2020, Table 7
 
 You can access following data sets from the link below:
 
@@ -172,12 +193,64 @@ TotalFemale : TotalPopulation data gives the total number of women living in tha
 TotalMale : TotalPopulation data gives the total number of men living in that city.
 
 
+Below you can find the names of all columns in the GSYMH dataset and information about the data they represent.
+
+ProvinceNames : The Provinces where data is collected for statistical calculations.
+
+2018 : It is the contribution rate of cities to Turkey's Gross National Product in 2018.
+
+2019 : It is the contribution rate of cities to Turkey's Gross National Product in 2019.
+
+2020 : It is the contribution rate of cities to Turkey's Gross National Product in 2020.
+
 ## 2.3 Reason of Choice
 
-The change in education level by province in Turkey over the years is an interesting data set. Comments can be made on how the relevant data has changed and developed over the years. For this reason, I wanted to examine in detail the changes in Turkey's literacy rates and postgraduate education rates according to provinces and years.
+The change in education level by province in Turkey over the years is an interesting data set. Comments can be made on how the relevant data has changed and developed over the years. For this reason, the changes in Turkey's literacy rates and postgraduate education rates according to provinces and years will be examined in detail.
 
-Additionally, we will use a second data set to examine the relationship between education levels and crime rates. This data set provides us with crimes and crime rates according to education levels in 2020. In addition, I think that the population numbers of the provinces in 2020 are an important data source to evaluate the relevant data correctly.
+Additionally, a second data set will be used to examine the relationship between education levels and crime rates. This data set provides us with crimes and crime rates according to education levels in 2020. In addition, it is seen that the 2020 population numbers of the provinces are an important data source for the correct evaluation of the relevant data. 
 
+In addition, another data set showing the contribution of provinces to Turkey's gross national product will be used. I predict that there is a linear relationship between this data and graduate education rates in cities. An analysis will be carried out in this direction.
+
+# 2.4 Data Preprocessing
+
+Data preprocessing was carried out to edit the Turkish characters in the Turkey data set that we will use on the map, and the uses of K. Maras and KahramanMaras, which are not common with other data sets.
+
+```{r}
+install.packages("rnaturalearth")
+install.packages("rnaturalearthdata")
+install.packages("devtools")
+install.packages("ggplot2")
+install.packages("sf")
+install.packages("dplyr")
+
+install.packages("ggrepel")
+library(ggrepel)
+library(sf)
+library(dplyr)
+library(ggplot2)
+library(sf)
+library(dplyr)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(devtools)
+
+devtools::install_github("ropensci/rnaturalearthhires")
+
+turkey <- ne_states(country = "Turkey", returnclass = "sf")
+head(turkey$`name`)
+turkey$name <- iconv(turkey$name, "UTF-8", "ASCII//TRANSLIT")
+turkey$name <- gsub("Igdir", "igdir", turkey$name, fixed = TRUE)
+turkey$name <- gsub("Zinguldak", "Zonguldak", turkey$name, fixed = TRUE)
+turkey$name <- gsub("Kinkkale", "Kirikkale", turkey$name, fixed = TRUE)
+turkey$name <- gsub("Sirnak", "sirnak", turkey$name, fixed = TRUE)
+turkey$name <- gsub("Sanliurfa", "sanliurfa", turkey$name, fixed = TRUE)
+turkey$name <- gsub("K. Maras", "Kahramanmaras", turkey$name, fixed = TRUE)
+turkey$name <- gsub("Afyonkarahisar", "Afyon", turkey$name, fixed = TRUE)
+turkey$name <- gsub("Canakkale", "canakkale", turkey$name, fixed = TRUE)
+turkey$name <- gsub("Cankiri", "cankiri", turkey$name, fixed = TRUE)
+turkey$ProvinceNames <- turkey$name
+turkeyChanged <- turkey
+```
 # 3. Analysis
 
 We will have many summary data thanks to the data set that will enable us to analyze education levels in Turkey. And we will observe the relationships between them and crime data.
@@ -336,9 +409,47 @@ topDoctorate <- ggplot(top_doctorate) +
 
 grid.arrange(topMaster, topDoctorate, nrow = 2)
 ```
+```{r}
+install.packages("rnaturalearth")
+install.packages("rnaturalearthdata")
+install.packages("devtools")
+install.packages("ggplot2")
+install.packages("sf")
+install.packages("dplyr")
+
+install.packages("ggrepel")
+library(ggrepel)
+library(sf)
+library(dplyr)
+library(ggplot2)
+library(sf)
+library(dplyr)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(devtools)
+
+devtools::install_github("ropensci/rnaturalearthhires")
+
+GSYMH2020 <- GSYMH %>% select(ProvinceNames, `2020`)
+
+
+turkeyChanged <- turkeyChanged[complete.cases(turkeyChanged$featurecla),]
+turkeyGSYMH <- inner_join(turkeyChanged, GSYMH2020, by = c("name" = "ProvinceNames"))
+
+ggplot(turkeyGSYMH) +
+  geom_sf(aes(fill = `2020`), color = "black") +
+  geom_sf_text(aes(label = ProvinceNames), size = 1.5, color = "black") +  
+  scale_fill_continuous(low = "white", high = "blue", name = "GSYMH2020") +
+  theme_minimal() +
+  labs(title = "Turkey's Provinces by GSYMH2020",
+       subtitle = "GSYMH2020 values for illustration purposes",
+       caption = "Source: Generated data") +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank())
+
 ```
-
-
 ## 3.4 Results
 
 xxxxxx
