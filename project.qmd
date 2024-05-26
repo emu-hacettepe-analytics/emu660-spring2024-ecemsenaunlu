@@ -89,10 +89,27 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 
-GSYMH <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/GSYMH.xlsx")
+GSYMH <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/GSYMH.xls")
 
 library(dslabs)
 head(GSYMH)
+
+
+```
+You can see GDP data set for 2020 below.
+
+```{r}
+
+suppressPackageStartupMessages(library(dplyr))
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+GDP <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/GDP.xls")
+
+library(dslabs)
+head(GDP)
 
 
 ```
@@ -202,6 +219,16 @@ ProvinceNames : The Provinces where data is collected for statistical calculatio
 2019 : It is the contribution rate of cities to Turkey's Gross National Product in 2019.
 
 2020 : It is the contribution rate of cities to Turkey's Gross National Product in 2020.
+
+Below you can find the names of all columns in the GDP dataset and information about the data they represent.
+
+ProvinceNames : The Provinces where data is collected for statistical calculations.
+
+2018 : It is the Gross National Product per capita in cities in Türkiye in 2018.
+
+2019 : It is the Gross National Product per capita in cities in Türkiye in 2019.
+
+2020 : It is the Gross National Product per capita in cities in Türkiye in 2020.
 
 ## 2.3 Reason of Choice
 
@@ -447,6 +474,8 @@ print(top_GSYMH2020)
 As can be seen, Ankara ranks first with the highest GDP contribution. The city with the highest number of people with postgraduate education was Ankara. In this context, the contribution of the high number of people who have completed postgraduate education to the Gross National Product will be investigated.
 
 ```{r}
+GSYMH2020$ProvinceName <- GSYMH2020$ProvinceNames
+regressionData <- full_join(GSYMH2020, DoctorateResult, by = "ProvinceName")
 
 model <- lm(`2020`~ DoctoratePercentage, data = regressionData)
 
@@ -468,7 +497,37 @@ n <- length(residuals)
 mean_residual_variance <- sum_squared_residuals / n
 print(paste("Modelin hata terimlerinin varyansı:", mean_residual_variance))
 ```
-The variance of the error terms turned out to be 0.009, and since the p value is less than 0.05, it can be interpreted that it does not have a constant variance. It took the value of p = 0.0707 and is not significant. The F-statistic is 3.362 and the p-value is 0.07069. This is used to evaluate whether the model is statistically significant in explaining the dependent variable. Since the p-value here is greater than 0.05, it cannot be said that the model is statistically significant. The R-squared value of the model is 0.0429. A low R-squared value indicates that the model does not have sufficient power to explain it.
+The variance of the error terms turned out to be 0.015, and since the p value is less than 0.05, it can be interpreted that it does not have a constant variance. It took the value of p = 0.06927 and is not significant. The F-statistic is 3.395 and the p-value is 0.06927 This is used to evaluate whether the model is statistically significant in explaining the dependent variable. Since the p-value here is greater than 0.05, it cannot be said that the model is statistically significant. The R-squared value of the model is 0.03017 A low R-squared value indicates that the model does not have sufficient power to explain it.
+
+```{r}
+library(dplyr)
+
+GDP2020 <- GDP %>% select(ProvinceNames, `2020`)
+GDP2020$ProvinceName <- GDP2020$ProvinceNames
+regressionData2 <- full_join(GDP2020, DoctorateResult, by = c("ProvinceName"))
+
+model <- lm(`2020`~ DoctoratePercentage, data = regressionData2)
+
+summary(model)
+
+plot(regressionData$DoctoratePercentage, regressionData$`2020`,
+     main = "The relationship between the GDP per person of provinces and the rate of people with a doctorate in 2020",
+     xlab ="Doctorate Percentage" , ylab = "GDP Percentage", pch = 19, col = "blue")
+abline(model, col = "red")
+
+par(mfrow = c(2, 2))
+plot(model)
+
+residuals <- resid(model)
+residuals_squared <- residuals^2
+sum_squared_residuals <- sum(residuals_squared)
+n <- length(residuals)
+
+mean_residual_variance <- sum_squared_residuals / n
+print(paste("Modelin hata terimlerinin varyansı:", mean_residual_variance))
+```
+
+The p-value is quite low (4.078e-06), indicating that the model is significant.Multiple R-squared value is 0.2451. This indicates that the model explains approximately 24.51% of the variance between the independent variables and the dependent variable.The variable DoctoratePercentage is 74056 and indicates how much the mean of the dependent variable will change as the DoctoratePercentage variable increases by one unit. The p-value is quite low (4.08e-06), which indicates that the model is highly significant.
 
 
 
