@@ -216,14 +216,7 @@ In addition, another data set showing the contribution of provinces to Turkey's 
 Data preprocessing was carried out to edit the Turkish characters in the Turkey data set that we will use on the map, and the uses of K. Maras and KahramanMaras, which are not common with other data sets.
 
 ```{r}
-install.packages("rnaturalearth")
-install.packages("rnaturalearthdata")
-install.packages("devtools")
-install.packages("ggplot2")
-install.packages("sf")
-install.packages("dplyr")
 
-install.packages("ggrepel")
 library(ggrepel)
 library(sf)
 library(dplyr)
@@ -410,14 +403,6 @@ topDoctorate <- ggplot(top_doctorate) +
 grid.arrange(topMaster, topDoctorate, nrow = 2)
 ```
 ```{r}
-install.packages("rnaturalearth")
-install.packages("rnaturalearthdata")
-install.packages("devtools")
-install.packages("ggplot2")
-install.packages("sf")
-install.packages("dplyr")
-
-install.packages("ggrepel")
 library(ggrepel)
 library(sf)
 library(dplyr)
