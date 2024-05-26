@@ -435,6 +435,43 @@ ggplot(turkeyGSYMH) +
         axis.ticks = element_blank())
 
 ```
+The ranking of the provinces that contribute the most to Turkey's Gross National Product is given below.
+```{r}
+top_GSYMH2020 <- turkeyGSYMH %>%
+  arrange(desc(`2020`))
+
+top_GSYMH2020 <- top_GSYMH2020 %>%
+  select(`ProvinceNames`, `2020`)
+print(top_GSYMH2020)
+```
+As can be seen, Ankara ranks first with the highest GDP contribution. The city with the highest number of people with postgraduate education was Ankara. In this context, the contribution of the high number of people who have completed postgraduate education to the Gross National Product will be investigated.
+
+```{r}
+
+model <- lm(`2020`~ DoctoratePercentage, data = regressionData)
+
+summary(model)
+
+plot(regressionData$DoctoratePercentage, regressionData$`2020`,
+     main = "The relationship between the GDP percentage of provinces and the rate of people with a doctorate in 2020",
+     xlab ="Doctorate Percentage" , ylab = "GDP Percentage", pch = 19, col = "blue")
+abline(model, col = "red")
+
+par(mfrow = c(2, 2))
+plot(model)
+
+residuals <- resid(model)
+residuals_squared <- residuals^2
+sum_squared_residuals <- sum(residuals_squared)
+n <- length(residuals)
+
+mean_residual_variance <- sum_squared_residuals / n
+print(paste("Modelin hata terimlerinin varyansı:", mean_residual_variance))
+```
+The variance of the error terms turned out to be 0.009, and since the p value is less than 0.05, it can be interpreted that it does not have a constant variance. It took the value of p = 0.0707 and is not significant. The F-statistic is 3.362 and the p-value is 0.07069. This is used to evaluate whether the model is statistically significant in explaining the dependent variable. Since the p-value here is greater than 0.05, it cannot be said that the model is statistically significant. The R-squared value of the model is 0.0429. A low R-squared value indicates that the model does not have sufficient power to explain it.
+
+
+
 ## 3.4 Results
 
 xxxxxx

@@ -753,6 +753,38 @@ give correct results for longitude/latitude data</code></pre>
 <p><img src="project_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>The ranking of the provinces that contribute the most to Turkey’s Gross National Product is given below.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>top_GSYMH2020 <span class="ot">&lt;-</span> turkeyGSYMH <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">2020</span><span class="st">`</span>))</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>top_GSYMH2020 <span class="ot">&lt;-</span> top_GSYMH2020 <span class="sc">%&gt;%</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">ProvinceNames</span><span class="st">`</span>, <span class="st">`</span><span class="at">2020</span><span class="st">`</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(top_GSYMH2020)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 81 features and 2 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 25.66326 ymin: 35.81978 xmax: 44.80699 ymax: 42.09878
+Geodetic CRS:  WGS 84
+First 10 features:
+   ProvinceNames       2020                       geometry
+1         Ankara 0.58719741 MULTIPOLYGON (((30.86357 40...
+2      Gaziantep 0.20996101 MULTIPOLYGON (((38.02601 36...
+3        Kocaeli 0.18701053 MULTIPOLYGON (((29.88461 41...
+4         Mersin 0.12683053 MULTIPOLYGON (((34.93328 36...
+5          Konya 0.12432588 MULTIPOLYGON (((31.86145 39...
+6          Adana 0.11374267 MULTIPOLYGON (((35.93252 36...
+7          Izmir 0.10941476 MULTIPOLYGON (((27.2618 37....
+8      canakkale 0.08856653 MULTIPOLYGON (((26.96354 40...
+9       Tekirdag 0.08580904 MULTIPOLYGON (((28.17473 41...
+10       Kayseri 0.07095621 MULTIPOLYGON (((35.19065 37...</code></pre>
+</div>
+</div>
+<p>As can be seen, Ankara ranks first with the highest GDP contribution. The city with the highest number of people with postgraduate education was Ankara. In this context, the contribution of the high number of people who have completed postgraduate education to the Gross National Product will be investigated.</p>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">3.4 Results</h2>
