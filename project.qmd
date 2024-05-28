@@ -1,10 +1,11 @@
 ---
-title: "Project Distribution of education levels by provinces and gender in Turkey over the years"
+title: "Project Turkey Istatistics"
 
 format:
   html:
     code-fold: true
     code-summary: "Show the code"
+
 ---
 
 Welcome to my project page.
@@ -748,9 +749,40 @@ A low sigma^2 value indicates that model errors are low. Negative AIC, AICc and 
 
 ## 3.4 Results
 
-As a result 
+As a result, data sets were examined using correlation, regression analysis and time series analysis. Interesting information was obtained by detecting significant significant relationships and, contrary to expectations, insignificant relationships. In the future, meaningful relationships and prediction studies can be developed by adding new data sets.
 
 # 4. Results and Key Takeaways
 
 xxxxxx
 
+
+You can reach PDF version below.
+
+install.packages("tinytex")
+library(tinytex)
+tex_content <- "\\documentclass[a4paper,11pt]{article}
+\\usepackage{hyperref}
+
+\\hypersetup{
+    colorlinks=true,
+}
+
+\\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\\title{Project X}
+\\author{}
+\\date{}
+
+\\begin{document}
+
+\\maketitle
+
+Bu, 'Project X' belgesinin içeriğidir.
+
+\\end{document}"
+
+cat(tex_content, file = "Project_X.tex")
+
+
+
+tinytex::pdflatex("Project_X.tex")

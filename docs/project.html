@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Ecem’s Analytics Lab - Project Distribution of education levels by provinces and gender in Turkey over the years</title>
+<title>Ecem’s Analytics Lab - Project Turkey Istatistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -158,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Project Distribution of education levels by provinces and gender in Turkey over the years</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Project Turkey Istatistics</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -233,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project Distribution of education levels by provinces and gender in Turkey over the years</h1>
+<h1 class="title">Project Turkey Istatistics</h1>
 </div>
 
 
@@ -1294,12 +1294,23 @@ Training set -0.04309067</code></pre>
 <p>The fact that sigma^2 = 6.651e-06 shows that the variance of the residuals is quite low. This indicates that the error terms of the model are small. The log likelihood value is 18.17. This value shows how well the model fits the data. If it is positive, it indicates that the model fits the data quite well. MASE (Mean Absolute Scaled Error) value was 0.8009155. Less than 1 indicates that the model performs well. Looking at the various statistical measures of this model: A low sigma^2 value indicates that model errors are low. Negative AIC, AICc and BIC values indicate that the model fits the data quite well. ME, RMSE, MAE, MPE, MAPE, MASE values are low and at an appropriate level. The ACF1 value shows that the residuals are independent and do not contain autocorrelation. As a result, we can say that the ARIMA(0,1,0) model is a suitable model for time series. Errors are low and the model has a good fit to the data.</p>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">3.4 Results</h2>
-<p>As a result</p>
+<p>As a result, data sets were examined using correlation, regression analysis and time series analysis. Interesting information was obtained by detecting significant significant relationships and, contrary to expectations, insignificant relationships. In the future, meaningful relationships and prediction studies can be developed by adding new data sets.</p>
 </section>
 </section>
 <section id="results-and-key-takeaways" class="level1">
 <h1>4. Results and Key Takeaways</h1>
 <p>xxxxxx</p>
+<p>You can reach PDF version below.</p>
+<p>install.packages(“tinytex”) library(tinytex) tex_content &lt;- “\documentclass[a4paper,11pt]{article} \usepackage{hyperref}</p>
+<p>\hypersetup{ colorlinks=true, }</p>
+<p>\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}</p>
+<p>\title{Project X} \author{} \date{}</p>
+<p>\begin{document}</p>
+<p>\maketitle</p>
+<p>Bu, ‘Project X’ belgesinin içeriğidir.</p>
+<p>\end{document}”</p>
+<p>cat(tex_content, file = “Project_X.tex”)</p>
+<p>tinytex::pdflatex(“Project_X.tex”)</p>
 
 
 </section>
