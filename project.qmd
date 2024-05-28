@@ -27,8 +27,6 @@ With the Gross Domestic Product, 2020 data set, provinces' contribution volume d
 
 You can see education data below.
 
-[Also, click and reach .RData's File](https://github.com/emu-hacettepe-analytics/emu660-spring2024-ecemsenaunlu/tree/main/data)
-
 ```{r}
 
 suppressPackageStartupMessages(library(dplyr))
@@ -62,6 +60,8 @@ head(crime)
 
 
 ```
+In exploratory data analysis, data sets were found insufficient for analysis and new data sets were added. Additional Datasets are provided below.
+
 You can see population data set for 2020 below.
 
 ```{r}
@@ -113,15 +113,36 @@ head(GDP)
 
 
 ```
+You can see yearCrime data set below.
+
+```{r}
+
+suppressPackageStartupMessages(library(dplyr))
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+yearCrime <- read_excel("C:/Users/w10/Documents/GitHub/emu660-spring2024-ecemsenaunlu/data/yearCrime.xls")
+
+library(dslabs)
+head(yearCrime)
+
+
+```
+[Also, click and reach .RData's File](https://github.com/emu-hacettepe-analytics/emu660-spring2024-ecemsenaunlu/tree/main/data)
+
 ## 2.1 Data Source
 
 Completed education by province (15+ years old)
 
-2020 Data set of Convicts Entered into Penal Institutions by Crime Type and Educational Level, crime situations in the province
+2020 Data set of Convicts Entered into Penal Institutions by Crime Type and Educational Level, crime situations in the province, Table 5
 
 Address-Based Population Registration System Results, 2020, Table 3
 
 Gross Domestic Product (GDP) 2018,2019,2020, Table 7
+
+2020 Data set of Convicts Entered into Penal Institutions by Crime Type and Educational Level, crime situations in the province, Table 4
 
 You can access following data sets from the link below:
 
@@ -236,7 +257,9 @@ The change in education level by province in Turkey over the years is an interes
 
 Additionally, a second data set will be used to examine the relationship between education levels and crime rates. This data set provides us with crimes and crime rates according to education levels in 2020. In addition, it is seen that the 2020 population numbers of the provinces are an important data source for the correct evaluation of the relevant data. 
 
-In addition, another data set showing the contribution of provinces to Turkey's gross national product will be used. I predict that there is a linear relationship between this data and graduate education rates in cities. An analysis will be carried out in this direction.
+In the yearCrime data set, data on crime rates according to years and education levels is presented. It is aimed to perform time series analysis using relevant data.
+
+In addition, another data set showing the contribution of provinces to Turkey's gross national product will also be used. I estimate that there is a linear relationship between these data and graduate education rates in cities. A regression analysis will be conducted in this direction.
 
 # 2.4 Data Preprocessing
 
@@ -499,6 +522,9 @@ print(paste("Modelin hata terimlerinin varyansı:", mean_residual_variance))
 ```
 The variance of the error terms turned out to be 0.015, and since the p value is less than 0.05, it can be interpreted that it does not have a constant variance. It took the value of p = 0.06927 and is not significant. The F-statistic is 3.395 and the p-value is 0.06927 This is used to evaluate whether the model is statistically significant in explaining the dependent variable. Since the p-value here is greater than 0.05, it cannot be said that the model is statistically significant. The R-squared value of the model is 0.03017 A low R-squared value indicates that the model does not have sufficient power to explain it.
 
+
+The analysis here examines whether the gross national product data per capita in 2020 by provinces in Turkey has a relationship with the rates of doctoral graduates in the provinces in the same year.
+
 ```{r}
 library(dplyr)
 
@@ -529,6 +555,76 @@ print(paste("Modelin hata terimlerinin varyansı:", mean_residual_variance))
 
 The p-value is quite low (4.078e-06), indicating that the model is significant.Multiple R-squared value is 0.2451. This indicates that the model explains approximately 24.51% of the variance between the independent variables and the dependent variable.The variable DoctoratePercentage is 74056 and indicates how much the mean of the dependent variable will change as the DoctoratePercentage variable increases by one unit. The p-value is quite low (4.08e-06), which indicates that the model is highly significant.
 
+
+# 3.3.2. Time Series
+
+A time series study was conducted based on the crime rates of people receiving postgraduate education according to years and education levels between 2016 and 2020.
+
+
+```{r}
+
+library(readxl)
+library(forecast)
+library(tseries)
+library(ggplot2)
+
+suppressPackageStartupMessages(library(dplyr))
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+
+educationTotal <- education %>%
+  group_by(Year) %>%
+  summarise(illiterateYearTotal = sum(illiterateTotal), LiterateWithoutADiplomaTotal =sum(LiterateWithoutADiplomaTotal),PrimarySchoolTotal =sum(PrimarySchoolTotal), PrimaryEducationTotal =sum(PrimaryEducationTotal),UpperSecondarySchoolTotal=sum(UpperSecondarySchoolTotal), HigherEducationalinstitutionsTotal=sum(HigherEducationalinstitutionsTotal), HigherEducationTotal = sum(MasterTotal + DoctorateTotal), UnknownTotal=sum(UnknownTotal))
+  
+merged_data <- merged_data %>%
+  mutate(IlliterateRate = IlliterateTotal / illiterateYearTotal)
+merged_data <- merged_data %>%
+  mutate(LiterateWithoutADiplomaRate = LiterateWithoutADiplomaTotal.x / LiterateWithoutADiplomaTotal.y)
+merged_data <- merged_data %>%
+  mutate(PrimarySchoolRate = PrimarySchoolTotal.x / PrimarySchoolTotal.y)
+merged_data <- merged_data %>%
+  mutate(PrimaryEducationRate = PrimaryEducationTotal.x / PrimaryEducationTotal.y)
+merged_data <- merged_data %>%
+  mutate(UpperSecondaryRate = UpperSecondaryTotal / UpperSecondarySchoolTotal )
+merged_data <- merged_data %>%
+  mutate(HigherEducationalinstitutionsRate = HigherEducationalinstitutionsTotal.x / HigherEducationalinstitutionsTotal.y)
+merged_data <- merged_data %>%
+  mutate(HigherEducationRate = HigherEducationTotal.x / HigherEducationTotal.y)
+merged_data <- merged_data %>%
+  mutate(UnknownRate = UnknownTotal.x / UnknownTotal.y)
+
+
+timeSeriesData <- ts(merged_data$HigherEducationRate, start=min(merged_data$Year), end=max(merged_data$Year), frequency=1)
+
+plot(timeSeriesData, main="Crime Rate with Higher Education People Time Series", ylab="Higher Education Rate", xlab="Year")
+
+autoplot(timeSeriesData) + 
+  ggtitle("Crime Rate with Higher Education People Time Series") + 
+  ylab("Higher Education Rate") + 
+  xlab("Year")
+
+
+  print(timeSeriesData)
+adf_test <- adf.test(timeSeriesData)
+print(adf_test)
+
+acf(timeSeriesData, main="ACF of Higher Education Rate")
+pacf(timeSeriesData, main="PACF of Higher Education Rate")
+
+best_arima_model <- auto.arima(timeSeriesData)
+summary(best_arima_model)
+
+forecast_model <- forecast(best_arima_model, h=5)
+autoplot(forecast_model) + 
+  ggtitle("Forecast of Higher Education Rate") + 
+  ylab("Higher Education Rate") + 
+  xlab("Year")
+```
+The fact that sigma^2 = 6.651e-06 shows that the variance of the residuals is quite low. This indicates that the error terms of the model are small. The log likelihood value is 18.17. This value shows how well the model fits the data. If it is positive, it indicates that the model fits the data quite well. MASE (Mean Absolute Scaled Error) value was 0.8009155. Less than 1 indicates that the model performs well. Looking at the various statistical measures of this model:
+A low sigma^2 value indicates that model errors are low. Negative AIC, AICc and BIC values indicate that the model fits the data quite well. ME, RMSE, MAE, MPE, MAPE, MASE values are low and at an appropriate level. The ACF1 value shows that the residuals are independent and do not contain autocorrelation. As a result, we can say that the ARIMA(0,1,0) model is a suitable model for time series. Errors are low and the model has a good fit to the data.
 
 
 ## 3.4 Results
