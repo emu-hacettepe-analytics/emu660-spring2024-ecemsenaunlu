@@ -757,7 +757,7 @@ xxxxxx
 
 
 You can reach PDF version below.
-
+```{r}
 install.packages("tinytex")
 library(tinytex)
 tex_content <- "\\documentclass[a4paper,11pt]{article}
@@ -786,3 +786,4 @@ cat(tex_content, file = "Project_X.tex")
 
 
 tinytex::pdflatex("Project_X.tex")
+```
