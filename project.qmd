@@ -513,8 +513,21 @@ ggplot(turkeyGSYMH) +
         axis.ticks = element_blank())
 
 top_GSYMH <- GSYMH2020 %>%
-  arrange(desc('2020')) %>%
+  filter(`2020` > 0) %>%
+  arrange(desc(`2020`)) %>%
   head(10)
+print(top_GSYMH)
+
+topGSYMH <- ggplot(top_GSYMH) +
+  geom_bar(aes(x = reorder(ProvinceNames, -`2020`), y = `2020`), 
+           stat = "identity", fill = "blue", position = "dodge") + 
+  labs(title = "Distribution of the provinces with the highest GDP of Turkey in 2020",
+       x = "Province",
+       y = "GDP in 2020") +
+  theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5, hjust = 1),
+        axis.text.y = element_text(size = 8))
+
+print(topGSYMH)
 ```
 In this context, we will get support from correlation to examine the relationship between these two situations.
 ```{r}
@@ -535,9 +548,9 @@ correlation_plot <- ggplot(data = NULL, aes(x = top_doctorate$DoctoratePercentag
 print(correlation_plot)
 
 ```
-The correlation coefficient took the value of -0.319, which indicates a weak negative relationship between the two variables.
-The p-value is 0.3688. indicates that this correlation is not statistically significant
-As a result, although there appears to be a weak negative correlation between the variables DoctoratePercentage and 2020, this correlation is not statistically significant. Therefore, it cannot be concluded that there is a significant relationship between these two variables.
+The correlation coefficient took the value of 0.9178788, indicating that there is a very strong positive relationship between these two variables.
+The p-value is 0.00018, indicating that this correlation is statistically significant. The confidence interval is quite narrow, indicating the accuracy of the correlation.
+As a result, we can say that there is a very strong and statistically significant positive correlation between DoctoratePercentage and GDP contribution rate variables. This shows that GDP tends to increase as the percentage of PhDs increases.
 
 
 The ranking of the provinces that contribute the most to Turkey's Gross National Product is given below.
