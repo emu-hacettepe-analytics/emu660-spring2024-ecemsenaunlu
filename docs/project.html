@@ -736,42 +736,67 @@ Attaching package: 'gridExtra'</code></pre>
 <p><img src="project_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>We see that Ankara is the province with the highest percentage of people with doctorate and master’s degrees in 2020. It seems that the cities in the top 10 list with a high percentage of both master’s and doctorate degrees are Ankara, Isparta, Eskişehir, Edirne, Canakkale, Izmir and Istanbul.</p>
+<p>We see that Ankara is the province with the highest percentage of people with doctorate and master’s degrees in 2020. It seems that the cities in the top 10 list with a high percentage of both master’s and doctorate degrees are Ankara, Isparta, Eskişehir, Edirne, Canakkale, Izmir and Istanbul. At the same time, we aim to filter the provinces with the highest number of illiterate people and see if they can be associated with the general structure of the provinces.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>top_master <span class="ot">&lt;-</span> MasterResult <span class="sc">%&gt;%</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(MasterPercentage)) <span class="sc">%&gt;%</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>top_doctorate <span class="ot">&lt;-</span> DoctorateResult <span class="sc">%&gt;%</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(DoctoratePercentage)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>top_master <span class="ot">&lt;-</span> MasterResult <span class="sc">%&gt;%</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(MasterPercentage)) <span class="sc">%&gt;%</span></span>
 <span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
 <span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>topMaster <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(top_master) <span class="sc">+</span></span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(ProvinceName, <span class="sc">-</span>MasterPercentage), <span class="at">y =</span> MasterPercentage), </span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"purple"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span> </span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of the provinces with the highest percentage of master's degrees in 2020"</span>,</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Province"</span>,</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percentage"</span>) <span class="sc">+</span></span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>))</span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>topDoctorate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(top_doctorate) <span class="sc">+</span></span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(ProvinceName, <span class="sc">-</span>DoctoratePercentage), <span class="at">y =</span> DoctoratePercentage), </span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"purple"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span> </span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of the provinces with the highest percentage of Doctorate's degrees in 2020"</span>,</span>
-<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Province"</span>,</span>
-<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percentage"</span>) <span class="sc">+</span></span>
-<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
-<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>))</span>
-<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(topMaster, topDoctorate, <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>top_doctorate <span class="ot">&lt;-</span> DoctorateResult <span class="sc">%&gt;%</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(DoctoratePercentage)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>topMaster <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(top_master) <span class="sc">+</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(ProvinceName, <span class="sc">-</span>MasterPercentage), <span class="at">y =</span> MasterPercentage), </span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"purple"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span> </span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of the provinces with the highest percentage of master's degrees in 2020"</span>,</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Province"</span>,</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percentage"</span>) <span class="sc">+</span></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>))</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>topDoctorate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(top_doctorate) <span class="sc">+</span></span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(ProvinceName, <span class="sc">-</span>DoctoratePercentage), <span class="at">y =</span> DoctoratePercentage), </span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"pink"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span> </span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of the provinces with the highest percentage of Doctorate's degrees in 2020"</span>,</span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Province"</span>,</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percentage"</span>) <span class="sc">+</span></span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>))</span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(education2020, population, <span class="at">by =</span> <span class="st">"ProvinceName"</span>)</span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>IlliterateResult <span class="ot">&lt;-</span> result <span class="sc">%&gt;%</span></span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">IlliteratePercentage =</span> illiterateTotal <span class="sc">/</span> TotalPopulation <span class="sc">*</span> <span class="dv">100</span> )</span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>top_illiterate <span class="ot">&lt;-</span> IlliterateResult <span class="sc">%&gt;%</span></span>
+<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(IlliteratePercentage)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-41"><a href="#cb32-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-42"><a href="#cb32-42" aria-hidden="true" tabindex="-1"></a>topIlliterate <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(top_illiterate) <span class="sc">+</span></span>
+<span id="cb32-43"><a href="#cb32-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(ProvinceName, <span class="sc">-</span>IlliteratePercentage), <span class="at">y =</span> IlliteratePercentage), </span>
+<span id="cb32-44"><a href="#cb32-44" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span> </span>
+<span id="cb32-45"><a href="#cb32-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of the provinces with the highest percentage of Illiterate people in Turkey in 2020"</span>,</span>
+<span id="cb32-46"><a href="#cb32-46" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Province"</span>,</span>
+<span id="cb32-47"><a href="#cb32-47" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percentage"</span>) <span class="sc">+</span></span>
+<span id="cb32-48"><a href="#cb32-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb32-49"><a href="#cb32-49" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>))</span>
+<span id="cb32-50"><a href="#cb32-50" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(topMaster, topDoctorate,topIlliterate, <span class="at">nrow =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="project_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>It is observed that the cities where people with doctorates and master’s degrees are concentrated are different from the cities where illiterate people are concentrated.In this context, it can be associated with different data sets and other analyzes can be made.</p>
+<p>Based on the above analysis results, analyzes will continue to be made with the prediction that it can be associated with a data set related to Turkey’s development level. In this context, the contribution data of the provinces to Türkiye’s gross national product will be used. Below, Turkey’s contribution rates to the gross national product by province for 2020 are examined. As can be seen, Ankara is among the provinces with the highest contribution. Ankara was also one of the provinces with the highest rates of doctoral and master’s degree holders. Based on this data, it comes to mind to examine whether there is a relationship between the high contribution to the gross national product in the provinces with high rates of doctoral and master’s degree holders.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -819,17 +844,65 @@ give correct results for longitude/latitude data</code></pre>
 <div class="cell-output-display">
 <p><img src="project_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>top_GSYMH <span class="ot">&lt;-</span> GSYMH2020 <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">'2020'</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
+<p>In this context, we will get support from correlation to examine the relationship between these two situations.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>correlationTest <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(top_doctorate<span class="sc">$</span>DoctoratePercentage, top_GSYMH<span class="sc">$</span><span class="st">`</span><span class="at">2020</span><span class="st">`</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(correlationTest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  top_doctorate$DoctoratePercentage and top_GSYMH$`2020`
+t = -0.95226, df = 8, p-value = 0.3688
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.7899940  0.3886237
+sample estimates:
+       cor 
+-0.3190768 </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>correlation_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x =</span> top_doctorate<span class="sc">$</span>DoctoratePercentage, <span class="at">y =</span> top_GSYMH<span class="sc">$</span><span class="st">`</span><span class="at">2020</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Correlation Doctorate Percentage and GSYMH 2020"</span>,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">" Doctorate Percentage"</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"GSYMH 2020"</span>) <span class="sc">+</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(correlation_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="project_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The correlation coefficient took the value of -0.319, which indicates a weak negative relationship between the two variables. The p-value is 0.3688. indicates that this correlation is not statistically significant As a result, although there appears to be a weak negative correlation between the variables DoctoratePercentage and 2020, this correlation is not statistically significant. Therefore, it cannot be concluded that there is a significant relationship between these two variables.</p>
 <p>The ranking of the provinces that contribute the most to Turkey’s Gross National Product is given below.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>top_GSYMH2020 <span class="ot">&lt;-</span> turkeyGSYMH <span class="sc">%&gt;%</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">2020</span><span class="st">`</span>))</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>top_GSYMH2020 <span class="ot">&lt;-</span> top_GSYMH2020 <span class="sc">%&gt;%</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">ProvinceNames</span><span class="st">`</span>, <span class="st">`</span><span class="at">2020</span><span class="st">`</span>)</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(top_GSYMH2020)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>top_GSYMH2020 <span class="ot">&lt;-</span> turkeyGSYMH <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">2020</span><span class="st">`</span>))</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>top_GSYMH2020 <span class="ot">&lt;-</span> top_GSYMH2020 <span class="sc">%&gt;%</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">ProvinceNames</span><span class="st">`</span>, <span class="st">`</span><span class="at">2020</span><span class="st">`</span>)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(top_GSYMH2020)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Simple feature collection with 80 features and 2 fields
@@ -856,12 +929,12 @@ First 10 features:
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>GSYMH2020<span class="sc">$</span>ProvinceName <span class="ot">&lt;-</span> GSYMH2020<span class="sc">$</span>ProvinceNames</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>regressionData <span class="ot">&lt;-</span> <span class="fu">full_join</span>(GSYMH2020, DoctorateResult, <span class="at">by =</span> <span class="st">"ProvinceName"</span>)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="st">`</span><span class="at">2020</span><span class="st">`</span><span class="sc">~</span> DoctoratePercentage, <span class="at">data =</span> regressionData)</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>GSYMH2020<span class="sc">$</span>ProvinceName <span class="ot">&lt;-</span> GSYMH2020<span class="sc">$</span>ProvinceNames</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>regressionData <span class="ot">&lt;-</span> <span class="fu">full_join</span>(GSYMH2020, DoctorateResult, <span class="at">by =</span> <span class="st">"ProvinceName"</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="st">`</span><span class="at">2020</span><span class="st">`</span><span class="sc">~</span> DoctoratePercentage, <span class="at">data =</span> regressionData)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -886,31 +959,31 @@ F-statistic: 3.395 on 1 and 76 DF,  p-value: 0.06927</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(regressionData<span class="sc">$</span>DoctoratePercentage, regressionData<span class="sc">$</span><span class="st">`</span><span class="at">2020</span><span class="st">`</span>,</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"The relationship between the GDP percentage of provinces and the rate of people with a doctorate in 2020"</span>,</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span><span class="st">"Doctorate Percentage"</span> , <span class="at">ylab =</span> <span class="st">"GDP Percentage"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(regressionData<span class="sc">$</span>DoctoratePercentage, regressionData<span class="sc">$</span><span class="st">`</span><span class="at">2020</span><span class="st">`</span>,</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"The relationship between the GDP percentage of provinces and the rate of people with a doctorate in 2020"</span>,</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span><span class="st">"Doctorate Percentage"</span> , <span class="at">ylab =</span> <span class="st">"GDP Percentage"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="project_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<p><img src="project_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="project_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid" width="672"></p>
+<p><img src="project_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="ot">&lt;-</span> <span class="fu">resid</span>(model)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>residuals_squared <span class="ot">&lt;-</span> residuals<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>sum_squared_residuals <span class="ot">&lt;-</span> <span class="fu">sum</span>(residuals_squared)</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(residuals)</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>mean_residual_variance <span class="ot">&lt;-</span> sum_squared_residuals <span class="sc">/</span> n</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Modelin hata terimlerinin varyansı:"</span>, mean_residual_variance))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="ot">&lt;-</span> <span class="fu">resid</span>(model)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>residuals_squared <span class="ot">&lt;-</span> residuals<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>sum_squared_residuals <span class="ot">&lt;-</span> <span class="fu">sum</span>(residuals_squared)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(residuals)</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>mean_residual_variance <span class="ot">&lt;-</span> sum_squared_residuals <span class="sc">/</span> n</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Modelin hata terimlerinin varyansı:"</span>, mean_residual_variance))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Modelin hata terimlerinin varyansı: 0.0150575998368249"</code></pre>
@@ -921,15 +994,15 @@ F-statistic: 3.395 on 1 and 76 DF,  p-value: 0.06927</code></pre>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>GDP2020 <span class="ot">&lt;-</span> GDP <span class="sc">%&gt;%</span> <span class="fu">select</span>(ProvinceNames, <span class="st">`</span><span class="at">2020</span><span class="st">`</span>)</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>GDP2020<span class="sc">$</span>ProvinceName <span class="ot">&lt;-</span> GDP2020<span class="sc">$</span>ProvinceNames</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>regressionData2 <span class="ot">&lt;-</span> <span class="fu">full_join</span>(GDP2020, DoctorateResult, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"ProvinceName"</span>))</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="st">`</span><span class="at">2020</span><span class="st">`</span><span class="sc">~</span> DoctoratePercentage, <span class="at">data =</span> regressionData2)</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>GDP2020 <span class="ot">&lt;-</span> GDP <span class="sc">%&gt;%</span> <span class="fu">select</span>(ProvinceNames, <span class="st">`</span><span class="at">2020</span><span class="st">`</span>)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>GDP2020<span class="sc">$</span>ProvinceName <span class="ot">&lt;-</span> GDP2020<span class="sc">$</span>ProvinceNames</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>regressionData2 <span class="ot">&lt;-</span> <span class="fu">full_join</span>(GDP2020, DoctorateResult, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"ProvinceName"</span>))</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="st">`</span><span class="at">2020</span><span class="st">`</span><span class="sc">~</span> DoctoratePercentage, <span class="at">data =</span> regressionData2)</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -954,31 +1027,31 @@ F-statistic: 24.67 on 1 and 76 DF,  p-value: 4.078e-06</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(regressionData<span class="sc">$</span>DoctoratePercentage, regressionData<span class="sc">$</span><span class="st">`</span><span class="at">2020</span><span class="st">`</span>,</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"The relationship between the GDP per person of provinces and the rate of people with a doctorate in 2020"</span>,</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span><span class="st">"Doctorate Percentage"</span> , <span class="at">ylab =</span> <span class="st">"GDP Percentage"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(regressionData<span class="sc">$</span>DoctoratePercentage, regressionData<span class="sc">$</span><span class="st">`</span><span class="at">2020</span><span class="st">`</span>,</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"The relationship between the GDP per person of provinces and the rate of people with a doctorate in 2020"</span>,</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span><span class="st">"Doctorate Percentage"</span> , <span class="at">ylab =</span> <span class="st">"GDP Percentage"</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="project_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<p><img src="project_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="project_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid" width="672"></p>
+<p><img src="project_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="ot">&lt;-</span> <span class="fu">resid</span>(model)</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>residuals_squared <span class="ot">&lt;-</span> residuals<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>sum_squared_residuals <span class="ot">&lt;-</span> <span class="fu">sum</span>(residuals_squared)</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(residuals)</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>mean_residual_variance <span class="ot">&lt;-</span> sum_squared_residuals <span class="sc">/</span> n</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Modelin hata terimlerinin varyansı:"</span>, mean_residual_variance))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="ot">&lt;-</span> <span class="fu">resid</span>(model)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>residuals_squared <span class="ot">&lt;-</span> residuals<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>sum_squared_residuals <span class="ot">&lt;-</span> <span class="fu">sum</span>(residuals_squared)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(residuals)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>mean_residual_variance <span class="ot">&lt;-</span> sum_squared_residuals <span class="sc">/</span> n</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Modelin hata terimlerinin varyansı:"</span>, mean_residual_variance))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Modelin hata terimlerinin varyansı: 159946237.57373"</code></pre>
@@ -993,51 +1066,51 @@ F-statistic: 24.67 on 1 and 76 DF,  p-value: 4.078e-06</code></pre>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>educationTotal <span class="ot">&lt;-</span> education <span class="sc">%&gt;%</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">illiterateYearTotal =</span> <span class="fu">sum</span>(illiterateTotal), <span class="at">LiterateWithoutADiplomaTotal =</span><span class="fu">sum</span>(LiterateWithoutADiplomaTotal),<span class="at">PrimarySchoolTotal =</span><span class="fu">sum</span>(PrimarySchoolTotal), <span class="at">PrimaryEducationTotal =</span><span class="fu">sum</span>(PrimaryEducationTotal),<span class="at">UpperSecondarySchoolTotal=</span><span class="fu">sum</span>(UpperSecondarySchoolTotal), <span class="at">HigherEducationalinstitutionsTotal=</span><span class="fu">sum</span>(HigherEducationalinstitutionsTotal), <span class="at">HigherEducationTotal =</span> <span class="fu">sum</span>(MasterTotal <span class="sc">+</span> DoctorateTotal), <span class="at">UnknownTotal=</span><span class="fu">sum</span>(UnknownTotal))</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(educationTotal, yearCrime, <span class="at">by =</span> <span class="st">"Year"</span>)</span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">IlliterateRate =</span> IlliterateTotal <span class="sc">/</span> illiterateYearTotal)</span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">LiterateWithoutADiplomaRate =</span> LiterateWithoutADiplomaTotal.x <span class="sc">/</span> LiterateWithoutADiplomaTotal.y)</span>
-<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">PrimarySchoolRate =</span> PrimarySchoolTotal.x <span class="sc">/</span> PrimarySchoolTotal.y)</span>
-<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
-<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PrimaryEducationRate =</span> PrimaryEducationTotal.x <span class="sc">/</span> PrimaryEducationTotal.y)</span>
-<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
-<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">UpperSecondaryRate =</span> UpperSecondaryTotal <span class="sc">/</span> UpperSecondarySchoolTotal )</span>
-<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
-<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HigherEducationalinstitutionsRate =</span> HigherEducationalinstitutionsTotal.x <span class="sc">/</span> HigherEducationalinstitutionsTotal.y)</span>
-<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
-<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HigherEducationRate =</span> HigherEducationTotal.x <span class="sc">/</span> HigherEducationTotal.y)</span>
-<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
-<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">UnknownRate =</span> UnknownTotal.x <span class="sc">/</span> UnknownTotal.y)</span>
-<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>grafik <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> Year)) <span class="sc">+</span></span>
-<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> IlliterateRate, <span class="at">color =</span> <span class="st">"Illiterate Rate"</span>)) <span class="sc">+</span></span>
-<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> LiterateWithoutADiplomaRate, <span class="at">color =</span> <span class="st">"Literate Without A Diploma Rate"</span>)) <span class="sc">+</span></span>
-<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> PrimarySchoolRate, <span class="at">color =</span> <span class="st">"Primary School Rate"</span>)) <span class="sc">+</span></span>
-<span id="cb51-24"><a href="#cb51-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> PrimaryEducationRate, <span class="at">color =</span> <span class="st">"Primary Education Rate"</span>)) <span class="sc">+</span></span>
-<span id="cb51-25"><a href="#cb51-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> UpperSecondaryRate, <span class="at">color =</span> <span class="st">"Upper Secondary Rate"</span>)) <span class="sc">+</span></span>
-<span id="cb51-26"><a href="#cb51-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> HigherEducationalinstitutionsRate, <span class="at">color =</span> <span class="st">"Higher Educational Institutions Rate"</span>)) <span class="sc">+</span></span>
-<span id="cb51-27"><a href="#cb51-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> HigherEducationRate, <span class="at">color =</span> <span class="st">"Higher Education Rate"</span>)) <span class="sc">+</span></span>
-<span id="cb51-28"><a href="#cb51-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> UnknownRate, <span class="at">color =</span> <span class="st">"Unknown Rate"</span>)) <span class="sc">+</span></span>
-<span id="cb51-29"><a href="#cb51-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Change in Crime Rate over Years by Education Types"</span>,</span>
-<span id="cb51-30"><a href="#cb51-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Yıl"</span>,</span>
-<span id="cb51-31"><a href="#cb51-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Oran"</span>,</span>
-<span id="cb51-32"><a href="#cb51-32" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Crime Rate "</span>) <span class="sc">+</span></span>
-<span id="cb51-33"><a href="#cb51-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb51-34"><a href="#cb51-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"orange"</span>, <span class="st">"purple"</span>, <span class="st">"brown"</span>, <span class="st">"black"</span>,<span class="st">"pink"</span>))</span>
-<span id="cb51-35"><a href="#cb51-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-36"><a href="#cb51-36" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(grafik)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>educationTotal <span class="ot">&lt;-</span> education <span class="sc">%&gt;%</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">illiterateYearTotal =</span> <span class="fu">sum</span>(illiterateTotal), <span class="at">LiterateWithoutADiplomaTotal =</span><span class="fu">sum</span>(LiterateWithoutADiplomaTotal),<span class="at">PrimarySchoolTotal =</span><span class="fu">sum</span>(PrimarySchoolTotal), <span class="at">PrimaryEducationTotal =</span><span class="fu">sum</span>(PrimaryEducationTotal),<span class="at">UpperSecondarySchoolTotal=</span><span class="fu">sum</span>(UpperSecondarySchoolTotal), <span class="at">HigherEducationalinstitutionsTotal=</span><span class="fu">sum</span>(HigherEducationalinstitutionsTotal), <span class="at">HigherEducationTotal =</span> <span class="fu">sum</span>(MasterTotal <span class="sc">+</span> DoctorateTotal), <span class="at">UnknownTotal=</span><span class="fu">sum</span>(UnknownTotal))</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(educationTotal, yearCrime, <span class="at">by =</span> <span class="st">"Year"</span>)</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">IlliterateRate =</span> IlliterateTotal <span class="sc">/</span> illiterateYearTotal)</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">LiterateWithoutADiplomaRate =</span> LiterateWithoutADiplomaTotal.x <span class="sc">/</span> LiterateWithoutADiplomaTotal.y)</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">PrimarySchoolRate =</span> PrimarySchoolTotal.x <span class="sc">/</span> PrimarySchoolTotal.y)</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PrimaryEducationRate =</span> PrimaryEducationTotal.x <span class="sc">/</span> PrimaryEducationTotal.y)</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">UpperSecondaryRate =</span> UpperSecondaryTotal <span class="sc">/</span> UpperSecondarySchoolTotal )</span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HigherEducationalinstitutionsRate =</span> HigherEducationalinstitutionsTotal.x <span class="sc">/</span> HigherEducationalinstitutionsTotal.y)</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HigherEducationRate =</span> HigherEducationTotal.x <span class="sc">/</span> HigherEducationTotal.y)</span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">UnknownRate =</span> UnknownTotal.x <span class="sc">/</span> UnknownTotal.y)</span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a>grafik <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(merged_data, <span class="fu">aes</span>(<span class="at">x =</span> Year)) <span class="sc">+</span></span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> IlliterateRate, <span class="at">color =</span> <span class="st">"Illiterate Rate"</span>)) <span class="sc">+</span></span>
+<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> LiterateWithoutADiplomaRate, <span class="at">color =</span> <span class="st">"Literate Without A Diploma Rate"</span>)) <span class="sc">+</span></span>
+<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> PrimarySchoolRate, <span class="at">color =</span> <span class="st">"Primary School Rate"</span>)) <span class="sc">+</span></span>
+<span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> PrimaryEducationRate, <span class="at">color =</span> <span class="st">"Primary Education Rate"</span>)) <span class="sc">+</span></span>
+<span id="cb56-25"><a href="#cb56-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> UpperSecondaryRate, <span class="at">color =</span> <span class="st">"Upper Secondary Rate"</span>)) <span class="sc">+</span></span>
+<span id="cb56-26"><a href="#cb56-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> HigherEducationalinstitutionsRate, <span class="at">color =</span> <span class="st">"Higher Educational Institutions Rate"</span>)) <span class="sc">+</span></span>
+<span id="cb56-27"><a href="#cb56-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> HigherEducationRate, <span class="at">color =</span> <span class="st">"Higher Education Rate"</span>)) <span class="sc">+</span></span>
+<span id="cb56-28"><a href="#cb56-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> UnknownRate, <span class="at">color =</span> <span class="st">"Unknown Rate"</span>)) <span class="sc">+</span></span>
+<span id="cb56-29"><a href="#cb56-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Change in Crime Rate over Years by Education Types"</span>,</span>
+<span id="cb56-30"><a href="#cb56-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Yıl"</span>,</span>
+<span id="cb56-31"><a href="#cb56-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Oran"</span>,</span>
+<span id="cb56-32"><a href="#cb56-32" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Crime Rate "</span>) <span class="sc">+</span></span>
+<span id="cb56-33"><a href="#cb56-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb56-34"><a href="#cb56-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"orange"</span>, <span class="st">"purple"</span>, <span class="st">"brown"</span>, <span class="st">"black"</span>,<span class="st">"pink"</span>))</span>
+<span id="cb56-35"><a href="#cb56-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-36"><a href="#cb56-36" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(grafik)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="project_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<p><img src="project_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>korelasyon_testi <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(merged_data<span class="sc">$</span>HigherEducationTotal.x, merged_data<span class="sc">$</span>HigherEducationTotal.y)</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(korelasyon_testi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>korelasyon_testi <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(merged_data<span class="sc">$</span>HigherEducationTotal.x, merged_data<span class="sc">$</span>HigherEducationTotal.y)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(korelasyon_testi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1059,8 +1132,8 @@ sample estimates:
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forecast)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forecast)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Registered S3 method overwritten by 'quantmod':
@@ -1069,57 +1142,57 @@ sample estimates:
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tseries)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(dplyr))</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>educationTotal <span class="ot">&lt;-</span> education <span class="sc">%&gt;%</span></span>
-<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">illiterateYearTotal =</span> <span class="fu">sum</span>(illiterateTotal), <span class="at">LiterateWithoutADiplomaTotal =</span><span class="fu">sum</span>(LiterateWithoutADiplomaTotal),<span class="at">PrimarySchoolTotal =</span><span class="fu">sum</span>(PrimarySchoolTotal), <span class="at">PrimaryEducationTotal =</span><span class="fu">sum</span>(PrimaryEducationTotal),<span class="at">UpperSecondarySchoolTotal=</span><span class="fu">sum</span>(UpperSecondarySchoolTotal), <span class="at">HigherEducationalinstitutionsTotal=</span><span class="fu">sum</span>(HigherEducationalinstitutionsTotal), <span class="at">HigherEducationTotal =</span> <span class="fu">sum</span>(MasterTotal <span class="sc">+</span> DoctorateTotal), <span class="at">UnknownTotal=</span><span class="fu">sum</span>(UnknownTotal))</span>
-<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(educationTotal, yearCrime, <span class="at">by =</span> <span class="st">"Year"</span>)</span>
-<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">IlliterateRate =</span> IlliterateTotal <span class="sc">/</span> illiterateYearTotal)</span>
-<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
-<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">LiterateWithoutADiplomaRate =</span> LiterateWithoutADiplomaTotal.x <span class="sc">/</span> LiterateWithoutADiplomaTotal.y)</span>
-<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
-<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PrimarySchoolRate =</span> PrimarySchoolTotal.x <span class="sc">/</span> PrimarySchoolTotal.y)</span>
-<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
-<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PrimaryEducationRate =</span> PrimaryEducationTotal.x <span class="sc">/</span> PrimaryEducationTotal.y)</span>
-<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
-<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">UpperSecondaryRate =</span> UpperSecondaryTotal <span class="sc">/</span> UpperSecondarySchoolTotal )</span>
-<span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
-<span id="cb56-25"><a href="#cb56-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HigherEducationalinstitutionsRate =</span> HigherEducationalinstitutionsTotal.x <span class="sc">/</span> HigherEducationalinstitutionsTotal.y)</span>
-<span id="cb56-26"><a href="#cb56-26" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
-<span id="cb56-27"><a href="#cb56-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HigherEducationRate =</span> HigherEducationTotal.x <span class="sc">/</span> HigherEducationTotal.y)</span>
-<span id="cb56-28"><a href="#cb56-28" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
-<span id="cb56-29"><a href="#cb56-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">UnknownRate =</span> UnknownTotal.x <span class="sc">/</span> UnknownTotal.y)</span>
-<span id="cb56-30"><a href="#cb56-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-31"><a href="#cb56-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-32"><a href="#cb56-32" aria-hidden="true" tabindex="-1"></a>timeSeriesData <span class="ot">&lt;-</span> <span class="fu">ts</span>(merged_data<span class="sc">$</span>HigherEducationRate, <span class="at">start=</span><span class="fu">min</span>(merged_data<span class="sc">$</span>Year), <span class="at">end=</span><span class="fu">max</span>(merged_data<span class="sc">$</span>Year), <span class="at">frequency=</span><span class="dv">1</span>)</span>
-<span id="cb56-33"><a href="#cb56-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-34"><a href="#cb56-34" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(timeSeriesData, <span class="at">main=</span><span class="st">"Crime Rate with Higher Education People Time Series"</span>, <span class="at">ylab=</span><span class="st">"Higher Education Rate"</span>, <span class="at">xlab=</span><span class="st">"Year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tseries)</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(dplyr))</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>educationTotal <span class="ot">&lt;-</span> education <span class="sc">%&gt;%</span></span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">illiterateYearTotal =</span> <span class="fu">sum</span>(illiterateTotal), <span class="at">LiterateWithoutADiplomaTotal =</span><span class="fu">sum</span>(LiterateWithoutADiplomaTotal),<span class="at">PrimarySchoolTotal =</span><span class="fu">sum</span>(PrimarySchoolTotal), <span class="at">PrimaryEducationTotal =</span><span class="fu">sum</span>(PrimaryEducationTotal),<span class="at">UpperSecondarySchoolTotal=</span><span class="fu">sum</span>(UpperSecondarySchoolTotal), <span class="at">HigherEducationalinstitutionsTotal=</span><span class="fu">sum</span>(HigherEducationalinstitutionsTotal), <span class="at">HigherEducationTotal =</span> <span class="fu">sum</span>(MasterTotal <span class="sc">+</span> DoctorateTotal), <span class="at">UnknownTotal=</span><span class="fu">sum</span>(UnknownTotal))</span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(educationTotal, yearCrime, <span class="at">by =</span> <span class="st">"Year"</span>)</span>
+<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">IlliterateRate =</span> IlliterateTotal <span class="sc">/</span> illiterateYearTotal)</span>
+<span id="cb61-16"><a href="#cb61-16" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
+<span id="cb61-17"><a href="#cb61-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">LiterateWithoutADiplomaRate =</span> LiterateWithoutADiplomaTotal.x <span class="sc">/</span> LiterateWithoutADiplomaTotal.y)</span>
+<span id="cb61-18"><a href="#cb61-18" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
+<span id="cb61-19"><a href="#cb61-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PrimarySchoolRate =</span> PrimarySchoolTotal.x <span class="sc">/</span> PrimarySchoolTotal.y)</span>
+<span id="cb61-20"><a href="#cb61-20" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
+<span id="cb61-21"><a href="#cb61-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PrimaryEducationRate =</span> PrimaryEducationTotal.x <span class="sc">/</span> PrimaryEducationTotal.y)</span>
+<span id="cb61-22"><a href="#cb61-22" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
+<span id="cb61-23"><a href="#cb61-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">UpperSecondaryRate =</span> UpperSecondaryTotal <span class="sc">/</span> UpperSecondarySchoolTotal )</span>
+<span id="cb61-24"><a href="#cb61-24" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
+<span id="cb61-25"><a href="#cb61-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HigherEducationalinstitutionsRate =</span> HigherEducationalinstitutionsTotal.x <span class="sc">/</span> HigherEducationalinstitutionsTotal.y)</span>
+<span id="cb61-26"><a href="#cb61-26" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
+<span id="cb61-27"><a href="#cb61-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">HigherEducationRate =</span> HigherEducationTotal.x <span class="sc">/</span> HigherEducationTotal.y)</span>
+<span id="cb61-28"><a href="#cb61-28" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> merged_data <span class="sc">%&gt;%</span></span>
+<span id="cb61-29"><a href="#cb61-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">UnknownRate =</span> UnknownTotal.x <span class="sc">/</span> UnknownTotal.y)</span>
+<span id="cb61-30"><a href="#cb61-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-31"><a href="#cb61-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-32"><a href="#cb61-32" aria-hidden="true" tabindex="-1"></a>timeSeriesData <span class="ot">&lt;-</span> <span class="fu">ts</span>(merged_data<span class="sc">$</span>HigherEducationRate, <span class="at">start=</span><span class="fu">min</span>(merged_data<span class="sc">$</span>Year), <span class="at">end=</span><span class="fu">max</span>(merged_data<span class="sc">$</span>Year), <span class="at">frequency=</span><span class="dv">1</span>)</span>
+<span id="cb61-33"><a href="#cb61-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-34"><a href="#cb61-34" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(timeSeriesData, <span class="at">main=</span><span class="st">"Crime Rate with Higher Education People Time Series"</span>, <span class="at">ylab=</span><span class="st">"Higher Education Rate"</span>, <span class="at">xlab=</span><span class="st">"Year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="project_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<p><img src="project_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(timeSeriesData) <span class="sc">+</span> </span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Crime Rate with Higher Education People Time Series"</span>) <span class="sc">+</span> </span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Higher Education Rate"</span>) <span class="sc">+</span> </span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(timeSeriesData) <span class="sc">+</span> </span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Crime Rate with Higher Education People Time Series"</span>) <span class="sc">+</span> </span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Higher Education Rate"</span>) <span class="sc">+</span> </span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="project_files/figure-html/unnamed-chunk-18-2.png" class="img-fluid" width="672"></p>
+<p><img src="project_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(timeSeriesData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(timeSeriesData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time Series:
@@ -1130,8 +1203,8 @@ Frequency = 1
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>adf_test <span class="ot">&lt;-</span> <span class="fu">adf.test</span>(timeSeriesData)</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(adf_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>adf_test <span class="ot">&lt;-</span> <span class="fu">adf.test</span>(timeSeriesData)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(adf_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1143,22 +1216,22 @@ alternative hypothesis: stationary</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(timeSeriesData, <span class="at">main=</span><span class="st">"ACF of Higher Education Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(timeSeriesData, <span class="at">main=</span><span class="st">"ACF of Higher Education Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="project_files/figure-html/unnamed-chunk-18-3.png" class="img-fluid" width="672"></p>
+<p><img src="project_files/figure-html/unnamed-chunk-19-3.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pacf</span>(timeSeriesData, <span class="at">main=</span><span class="st">"PACF of Higher Education Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pacf</span>(timeSeriesData, <span class="at">main=</span><span class="st">"PACF of Higher Education Rate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="project_files/figure-html/unnamed-chunk-18-4.png" class="img-fluid" width="672"></p>
+<p><img src="project_files/figure-html/unnamed-chunk-19-4.png" class="img-fluid" width="672"></p>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>best_arima_model <span class="ot">&lt;-</span> <span class="fu">auto.arima</span>(timeSeriesData)</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(best_arima_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>best_arima_model <span class="ot">&lt;-</span> <span class="fu">auto.arima</span>(timeSeriesData)</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(best_arima_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Series: timeSeriesData 
@@ -1175,14 +1248,14 @@ Training set -0.04309067</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>forecast_model <span class="ot">&lt;-</span> <span class="fu">forecast</span>(best_arima_model, <span class="at">h=</span><span class="dv">5</span>)</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(forecast_model) <span class="sc">+</span> </span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Forecast of Higher Education Rate"</span>) <span class="sc">+</span> </span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Higher Education Rate"</span>) <span class="sc">+</span> </span>
-<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>forecast_model <span class="ot">&lt;-</span> <span class="fu">forecast</span>(best_arima_model, <span class="at">h=</span><span class="dv">5</span>)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(forecast_model) <span class="sc">+</span> </span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Forecast of Higher Education Rate"</span>) <span class="sc">+</span> </span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Higher Education Rate"</span>) <span class="sc">+</span> </span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="project_files/figure-html/unnamed-chunk-18-5.png" class="img-fluid" width="672"></p>
+<p><img src="project_files/figure-html/unnamed-chunk-19-5.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The fact that sigma^2 = 6.651e-06 shows that the variance of the residuals is quite low. This indicates that the error terms of the model are small. The log likelihood value is 18.17. This value shows how well the model fits the data. If it is positive, it indicates that the model fits the data quite well. MASE (Mean Absolute Scaled Error) value was 0.8009155. Less than 1 indicates that the model performs well. Looking at the various statistical measures of this model: A low sigma^2 value indicates that model errors are low. Negative AIC, AICc and BIC values indicate that the model fits the data quite well. ME, RMSE, MAE, MPE, MAPE, MASE values are low and at an appropriate level. The ACF1 value shows that the residuals are independent and do not contain autocorrelation. As a result, we can say that the ARIMA(0,1,0) model is a suitable model for time series. Errors are low and the model has a good fit to the data.</p>

@@ -421,9 +421,14 @@ library(gridExtra)
 grid.arrange(Doctorate, Master, nrow = 2)
 ```
 
-We see that Ankara is the province with the highest percentage of people with doctorate and master's degrees in 2020. It seems that the cities in the top 10 list with a high percentage of both master's and doctorate degrees are Ankara, Isparta, Eskişehir, Edirne, Canakkale, Izmir and Istanbul.
+We see that Ankara is the province with the highest percentage of people with doctorate and master's degrees in 2020. It seems that the cities in the top 10 list with a high percentage of both master's and doctorate degrees are Ankara, Isparta, Eskişehir, Edirne, Canakkale, Izmir and Istanbul. At the same time, we aim to filter the provinces with the highest number of illiterate people and see if they can be associated with the general structure of the provinces.
 
 ```{r}
+
+library(ggplot2)
+library(dplyr)
+library(gridExtra)
+
 top_master <- MasterResult %>%
   arrange(desc(MasterPercentage)) %>%
   head(10)
@@ -443,15 +448,38 @@ topMaster <- ggplot(top_master) +
 
 topDoctorate <- ggplot(top_doctorate) +
   geom_bar(aes(x = reorder(ProvinceName, -DoctoratePercentage), y = DoctoratePercentage), 
-           stat = "identity", fill = "purple", position = "dodge") + 
+           stat = "identity", fill = "pink", position = "dodge") + 
   labs(title = "Distribution of the provinces with the highest percentage of Doctorate's degrees in 2020",
        x = "Province",
        y = "Percentage") +
   theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5, hjust = 1),
         axis.text.y = element_text(size = 8))
 
-grid.arrange(topMaster, topDoctorate, nrow = 2)
+
+result <- inner_join(education2020, population, by = "ProvinceName")
+
+IlliterateResult <- result %>%
+  mutate(IlliteratePercentage = illiterateTotal / TotalPopulation * 100 )
+
+top_illiterate <- IlliterateResult %>%
+  arrange(desc(IlliteratePercentage)) %>%
+  head(10)
+
+
+topIlliterate <- ggplot(top_illiterate) +
+  geom_bar(aes(x = reorder(ProvinceName, -IlliteratePercentage), y = IlliteratePercentage), 
+           stat = "identity", fill = "blue", position = "dodge") + 
+  labs(title = "Distribution of the provinces with the highest percentage of Illiterate people in Turkey in 2020",
+       x = "Province",
+       y = "Percentage") +
+  theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5, hjust = 1),
+        axis.text.y = element_text(size = 8))
+grid.arrange(topMaster, topDoctorate,topIlliterate, nrow = 3)
 ```
+It is observed that the cities where people with doctorates and master's degrees are concentrated are different from the cities where illiterate people are concentrated.In this context, it can be associated with different data sets and other analyzes can be made.
+
+Based on the above analysis results, analyzes will continue to be made with the prediction that it can be associated with a data set related to Turkey's development level. In this context, the contribution data of the provinces to Türkiye's gross national product will be used. Below, Turkey's contribution rates to the gross national product by province for 2020 are examined. As can be seen, Ankara is among the provinces with the highest contribution. Ankara was also one of the provinces with the highest rates of doctoral and master's degree holders. Based on this data, it comes to mind to examine whether there is a relationship between the high contribution to the gross national product in the provinces with high rates of doctoral and master's degree holders.
+
 ```{r}
 library(ggrepel)
 library(sf)
@@ -484,7 +512,34 @@ ggplot(turkeyGSYMH) +
         axis.text = element_blank(),
         axis.ticks = element_blank())
 
+top_GSYMH <- GSYMH2020 %>%
+  arrange(desc('2020')) %>%
+  head(10)
 ```
+In this context, we will get support from correlation to examine the relationship between these two situations.
+```{r}
+
+correlationTest <- cor.test(top_doctorate$DoctoratePercentage, top_GSYMH$`2020`)
+
+
+print(correlationTest)
+
+correlation_plot <- ggplot(data = NULL, aes(x = top_doctorate$DoctoratePercentage, y = top_GSYMH$`2020`)) +
+  geom_point(color = "blue") +
+  geom_smooth(method = "lm", color = "red", se = FALSE) +
+  labs(title = "Correlation Doctorate Percentage and GSYMH 2020",
+       x = " Doctorate Percentage",
+       y = "GSYMH 2020") +
+  theme_minimal()
+
+print(correlation_plot)
+
+```
+The correlation coefficient took the value of -0.319, which indicates a weak negative relationship between the two variables.
+The p-value is 0.3688. indicates that this correlation is not statistically significant
+As a result, although there appears to be a weak negative correlation between the variables DoctoratePercentage and 2020, this correlation is not statistically significant. Therefore, it cannot be concluded that there is a significant relationship between these two variables.
+
+
 The ranking of the provinces that contribute the most to Turkey's Gross National Product is given below.
 ```{r}
 top_GSYMH2020 <- turkeyGSYMH %>%
