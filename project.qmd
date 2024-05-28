@@ -582,6 +582,24 @@ merged_data <- merged_data %>%
 merged_data <- merged_data %>%
   mutate(UnknownRate = UnknownTotal.x / UnknownTotal.y)
 
+grafik <- ggplot(merged_data, aes(x = Year)) +
+  geom_line(aes(y = IlliterateRate, color = "Illiterate Rate")) +
+  geom_line(aes(y = LiterateWithoutADiplomaRate, color = "Literate Without A Diploma Rate")) +
+  geom_line(aes(y = PrimarySchoolRate, color = "Primary School Rate")) +
+  geom_line(aes(y = PrimaryEducationRate, color = "Primary Education Rate")) +
+  geom_line(aes(y = UpperSecondaryRate, color = "Upper Secondary Rate")) +
+  geom_line(aes(y = HigherEducationalinstitutionsRate, color = "Higher Educational Institutions Rate")) +
+  geom_line(aes(y = HigherEducationRate, color = "Higher Education Rate")) +
+  geom_line(aes(y = UnknownRate, color = "Unknown Rate")) +
+  labs(title = "Change in Crime Rate over Years by Education Types",
+       x = "Yıl",
+       y = "Oran",
+       color = "Crime Rate ") +
+  theme_minimal() +
+  scale_color_manual(values = c("red", "blue", "green", "orange", "purple", "brown", "black","pink"))
+
+print(grafik)
+
 korelasyon_testi <- cor.test(merged_data$HigherEducationTotal.x, merged_data$HigherEducationTotal.y)
 
 print(korelasyon_testi)
@@ -662,7 +680,7 @@ A low sigma^2 value indicates that model errors are low. Negative AIC, AICc and 
 
 ## 3.4 Results
 
-xxxxxx
+As a result 
 
 # 4. Results and Key Takeaways
 
