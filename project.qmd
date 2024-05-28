@@ -496,6 +496,8 @@ print(top_GSYMH2020)
 ```
 As can be seen, Ankara ranks first with the highest GDP contribution. The city with the highest number of people with postgraduate education was Ankara. In this context, the contribution of the high number of people who have completed postgraduate education to the Gross National Product will be investigated.
 
+#3.3.2. Regression Analysis
+
 ```{r}
 GSYMH2020$ProvinceName <- GSYMH2020$ProvinceNames
 regressionData <- full_join(GSYMH2020, DoctorateResult, by = "ProvinceName")
@@ -556,7 +558,38 @@ print(paste("Modelin hata terimlerinin varyansı:", mean_residual_variance))
 The p-value is quite low (4.078e-06), indicating that the model is significant.Multiple R-squared value is 0.2451. This indicates that the model explains approximately 24.51% of the variance between the independent variables and the dependent variable.The variable DoctoratePercentage is 74056 and indicates how much the mean of the dependent variable will change as the DoctoratePercentage variable increases by one unit. The p-value is quite low (4.08e-06), which indicates that the model is highly significant.
 
 
-# 3.3.2. Time Series
+
+# 3.3.3. Time Series
+
+The relationship between people with postgraduate degrees and the number of crimes committed in Turkey between 2016 and 2020 will be examined.
+```{r}
+educationTotal <- education %>%
+  group_by(Year) %>%
+  summarise(illiterateYearTotal = sum(illiterateTotal), LiterateWithoutADiplomaTotal =sum(LiterateWithoutADiplomaTotal),PrimarySchoolTotal =sum(PrimarySchoolTotal), PrimaryEducationTotal =sum(PrimaryEducationTotal),UpperSecondarySchoolTotal=sum(UpperSecondarySchoolTotal), HigherEducationalinstitutionsTotal=sum(HigherEducationalinstitutionsTotal), HigherEducationTotal = sum(MasterTotal + DoctorateTotal), UnknownTotal=sum(UnknownTotal))
+
+merged_data <- merge(educationTotal, yearCrime, by = "Year")
+merged_data <- merged_data %>% mutate(IlliterateRate = IlliterateTotal / illiterateYearTotal)
+merged_data <- merged_data %>% mutate(LiterateWithoutADiplomaRate = LiterateWithoutADiplomaTotal.x / LiterateWithoutADiplomaTotal.y)
+merged_data <- merged_data %>% mutate(PrimarySchoolRate = PrimarySchoolTotal.x / PrimarySchoolTotal.y)
+merged_data <- merged_data %>%
+  mutate(PrimaryEducationRate = PrimaryEducationTotal.x / PrimaryEducationTotal.y)
+merged_data <- merged_data %>%
+  mutate(UpperSecondaryRate = UpperSecondaryTotal / UpperSecondarySchoolTotal )
+merged_data <- merged_data %>%
+  mutate(HigherEducationalinstitutionsRate = HigherEducationalinstitutionsTotal.x / HigherEducationalinstitutionsTotal.y)
+merged_data <- merged_data %>%
+  mutate(HigherEducationRate = HigherEducationTotal.x / HigherEducationTotal.y)
+merged_data <- merged_data %>%
+  mutate(UnknownRate = UnknownTotal.x / UnknownTotal.y)
+
+korelasyon_testi <- cor.test(merged_data$HigherEducationTotal.x, merged_data$HigherEducationTotal.y)
+
+print(korelasyon_testi)
+```
+
+The correlation coefficient was estimated to be 0.915. This value indicates a strong positive relationship between the two variables. That is, these two variables tend to increase together.P value is a value that determines whether the correlation is statistically significant or not. Here, the p-value is 0.02917, which indicates that the correlation is statistically significant.
+
+As a result, it can be said that there is a strong positive correlation between the two variables and this correlation is statistically significant.
 
 A time series study was conducted based on the crime rates of people receiving postgraduate education according to years and education levels between 2016 and 2020.
 
@@ -578,9 +611,8 @@ library(ggplot2)
 educationTotal <- education %>%
   group_by(Year) %>%
   summarise(illiterateYearTotal = sum(illiterateTotal), LiterateWithoutADiplomaTotal =sum(LiterateWithoutADiplomaTotal),PrimarySchoolTotal =sum(PrimarySchoolTotal), PrimaryEducationTotal =sum(PrimaryEducationTotal),UpperSecondarySchoolTotal=sum(UpperSecondarySchoolTotal), HigherEducationalinstitutionsTotal=sum(HigherEducationalinstitutionsTotal), HigherEducationTotal = sum(MasterTotal + DoctorateTotal), UnknownTotal=sum(UnknownTotal))
-  
-merged_data <- merged_data %>%
-  mutate(IlliterateRate = IlliterateTotal / illiterateYearTotal)
+merged_data <- merge(educationTotal, yearCrime, by = "Year")
+merged_data <- merged_data %>% mutate(IlliterateRate = IlliterateTotal / illiterateYearTotal)
 merged_data <- merged_data %>%
   mutate(LiterateWithoutADiplomaRate = LiterateWithoutADiplomaTotal.x / LiterateWithoutADiplomaTotal.y)
 merged_data <- merged_data %>%
@@ -625,6 +657,7 @@ autoplot(forecast_model) +
 ```
 The fact that sigma^2 = 6.651e-06 shows that the variance of the residuals is quite low. This indicates that the error terms of the model are small. The log likelihood value is 18.17. This value shows how well the model fits the data. If it is positive, it indicates that the model fits the data quite well. MASE (Mean Absolute Scaled Error) value was 0.8009155. Less than 1 indicates that the model performs well. Looking at the various statistical measures of this model:
 A low sigma^2 value indicates that model errors are low. Negative AIC, AICc and BIC values indicate that the model fits the data quite well. ME, RMSE, MAE, MPE, MAPE, MASE values are low and at an appropriate level. The ACF1 value shows that the residuals are independent and do not contain autocorrelation. As a result, we can say that the ARIMA(0,1,0) model is a suitable model for time series. Errors are low and the model has a good fit to the data.
+
 
 
 ## 3.4 Results
