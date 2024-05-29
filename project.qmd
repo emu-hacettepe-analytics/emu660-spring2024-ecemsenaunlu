@@ -756,7 +756,8 @@ As a result, data sets were examined using correlation, regression analysis and 
 
 # 4. Results and Key Takeaways
 
+In conclusion;
 
+ 4.1. As predicted, it has been confirmed by both correlation and regression analyzes that the provinces contributing to Turkey's gross domestic product have a linear relationship with education levels.
 
-
-You can reach PDF version below.
+ 4.2. According to the 5-year time series analysis conducted with the second data set, which includes the distribution of crime rates over years by education levels, it was observed that the relevant data was compatible with the model and that education levels were also related to crime rates. When we look at the 5-year analysis, it is concluded that the crime rate has stabilized.
