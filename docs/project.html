@@ -962,13 +962,14 @@ sample estimates:
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>GSYMH2020<span class="sc">$</span>ProvinceName <span class="ot">&lt;-</span> GSYMH2020<span class="sc">$</span>ProvinceNames</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>GSYMH2020 <span class="ot">&lt;-</span> GSYMH2020 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">2020</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>regressionData <span class="ot">&lt;-</span> <span class="fu">full_join</span>(GSYMH2020, DoctorateResult, <span class="at">by =</span> <span class="st">"ProvinceName"</span>)</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="st">`</span><span class="at">2020</span><span class="st">`</span><span class="sc">~</span> DoctoratePercentage, <span class="at">data =</span> regressionData)</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>GSYMH2020<span class="sc">$</span>ProvinceName <span class="ot">&lt;-</span> GSYMH2020<span class="sc">$</span>ProvinceNames</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>GSYMH2020 <span class="ot">&lt;-</span> GSYMH2020 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">2020</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>regressionData <span class="ot">&lt;-</span> <span class="fu">full_join</span>(GSYMH2020, DoctorateResult, <span class="at">by =</span> <span class="st">"ProvinceName"</span>)</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="st">`</span><span class="at">2020</span><span class="st">`</span><span class="sc">~</span> DoctoratePercentage, <span class="at">data =</span> regressionData)</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>

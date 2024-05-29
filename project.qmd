@@ -569,6 +569,7 @@ As a result, we can say that there is a very strong and statistically significan
 #3.3.2. Regression Analysis
 
 ```{r}
+library(dplyr)
 GSYMH2020$ProvinceName <- GSYMH2020$ProvinceNames
 GSYMH2020 <- GSYMH2020 %>% filter(`2020` > 0)
 regressionData <- full_join(GSYMH2020, DoctorateResult, by = "ProvinceName")
