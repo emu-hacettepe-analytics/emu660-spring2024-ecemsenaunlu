@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Ecem’s Analytics Lab - Project Turkey Istatistics</title>
+<title>Ecem’s Analytics Lab - Project Turkey’s Education Istatistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -158,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Project Turkey Istatistics</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Project Turkey’s Education Istatistics</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -233,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Project Turkey Istatistics</h1>
+<h1 class="title">Project Turkey’s Education Istatistics</h1>
 </div>
 
 
@@ -884,58 +884,16 @@ give correct results for longitude/latitude data</code></pre>
 <p><img src="project_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>In this context, we will get support from correlation to examine the relationship between these two situations.</p>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>correlationTest <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(top_doctorate<span class="sc">$</span>DoctoratePercentage, top_GSYMH<span class="sc">$</span><span class="st">`</span><span class="at">2020</span><span class="st">`</span>)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(correlationTest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  top_doctorate$DoctoratePercentage and top_GSYMH$`2020`
-t = 6.5417, df = 8, p-value = 0.00018
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- 0.6829344 0.9807243
-sample estimates:
-      cor 
-0.9178788 </code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>correlation_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x =</span> top_doctorate<span class="sc">$</span>DoctoratePercentage, <span class="at">y =</span> top_GSYMH<span class="sc">$</span><span class="st">`</span><span class="at">2020</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Correlation Doctorate Percentage and GSYMH 2020"</span>,</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">" Doctorate Percentage"</span>,</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"GSYMH 2020"</span>) <span class="sc">+</span></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(correlation_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="project_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>The correlation coefficient took the value of 0.9178788, indicating that there is a very strong positive relationship between these two variables. The p-value is 0.00018, indicating that this correlation is statistically significant. The confidence interval is quite narrow, indicating the accuracy of the correlation. As a result, we can say that there is a very strong and statistically significant positive correlation between DoctoratePercentage and GDP contribution rate variables. This shows that GDP tends to increase as the percentage of PhDs increases.</p>
 <p>The ranking of the provinces that contribute the most to Turkey’s Gross National Product is given below.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>top_GSYMH2020 <span class="ot">&lt;-</span> turkeyGSYMH <span class="sc">%&gt;%</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">2020</span><span class="st">`</span>))</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>top_GSYMH2020 <span class="ot">&lt;-</span> top_GSYMH2020 <span class="sc">%&gt;%</span></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">ProvinceNames</span><span class="st">`</span>, <span class="st">`</span><span class="at">2020</span><span class="st">`</span>)</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(top_GSYMH2020)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>top_GSYMH2020 <span class="ot">&lt;-</span> turkeyGSYMH <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">2020</span><span class="st">`</span>))</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>top_GSYMH2020 <span class="ot">&lt;-</span> top_GSYMH2020 <span class="sc">%&gt;%</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="st">`</span><span class="at">ProvinceNames</span><span class="st">`</span>, <span class="st">`</span><span class="at">2020</span><span class="st">`</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(top_GSYMH2020)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Simple feature collection with 80 features and 2 fields
@@ -958,16 +916,59 @@ First 10 features:
 </div>
 </div>
 <p>As can be seen, Ankara ranks first with the highest GDP contribution. The city with the highest number of people with postgraduate education was Ankara. In this context, the contribution of the high number of people who have completed postgraduate education to the Gross National Product will be investigated.</p>
+<p>In this context, we will get support from correlation to examine the relationship between these two situations.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>correlationTest <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(top_doctorate<span class="sc">$</span>DoctoratePercentage, top_GSYMH<span class="sc">$</span><span class="st">`</span><span class="at">2020</span><span class="st">`</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(correlationTest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Pearson's product-moment correlation
+
+data:  top_doctorate$DoctoratePercentage and top_GSYMH$`2020`
+t = 6.5417, df = 8, p-value = 0.00018
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.6829344 0.9807243
+sample estimates:
+      cor 
+0.9178788 </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>correlation_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x =</span> top_doctorate<span class="sc">$</span>DoctoratePercentage, <span class="at">y =</span> top_GSYMH<span class="sc">$</span><span class="st">`</span><span class="at">2020</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Correlation Doctorate Percentage and GSYMH 2020"</span>,</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">" Doctorate Percentage"</span>,</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"GSYMH 2020"</span>) <span class="sc">+</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(correlation_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="project_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The correlation coefficient took the value of 0.9178788, indicating that there is a very strong positive relationship between these two variables. The p-value is 0.00018, indicating that this correlation is statistically significant. The confidence interval is quite narrow, indicating the accuracy of the correlation. As a result, we can say that there is a very strong and statistically significant positive correlation between DoctoratePercentage and GDP contribution rate variables. This shows that GDP tends to increase as the percentage of PhDs increases.</p>
 <p>#3.3.2. Regression Analysis</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>GSYMH2020<span class="sc">$</span>ProvinceName <span class="ot">&lt;-</span> GSYMH2020<span class="sc">$</span>ProvinceNames</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>regressionData <span class="ot">&lt;-</span> <span class="fu">full_join</span>(GSYMH2020, DoctorateResult, <span class="at">by =</span> <span class="st">"ProvinceName"</span>)</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="st">`</span><span class="at">2020</span><span class="st">`</span><span class="sc">~</span> DoctoratePercentage, <span class="at">data =</span> regressionData)</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>GSYMH2020 <span class="ot">&lt;-</span> GSYMH2020 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="st">`</span><span class="at">2020</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>regressionData <span class="ot">&lt;-</span> <span class="fu">full_join</span>(GSYMH2020, DoctorateResult, <span class="at">by =</span> <span class="st">"ProvinceName"</span>)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="st">`</span><span class="at">2020</span><span class="st">`</span><span class="sc">~</span> DoctoratePercentage, <span class="at">data =</span> regressionData)</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -976,19 +977,19 @@ lm(formula = `2020` ~ DoctoratePercentage, data = regressionData)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.87508 -0.02190 -0.00004  0.02527  0.45290 
+-0.10942 -0.03117 -0.01215  0.01128  0.41458 
 
 Coefficients:
-                    Estimate Std. Error t value Pr(&gt;|t|)  
-(Intercept)         -0.03454    0.03383  -1.021   0.3106  
-DoctoratePercentage  0.26658    0.14467   1.843   0.0693 .
+                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)         -0.02460    0.01974  -1.246 0.217020    
+DoctoratePercentage  0.31138    0.08483   3.671 0.000481 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1243 on 76 degrees of freedom
-  (6 observations deleted due to missingness)
-Multiple R-squared:  0.04277,   Adjusted R-squared:  0.03017 
-F-statistic: 3.395 on 1 and 76 DF,  p-value: 0.06927</code></pre>
+Residual standard error: 0.07143 on 67 degrees of freedom
+  (14 observations deleted due to missingness)
+Multiple R-squared:  0.1674,    Adjusted R-squared:  0.155 
+F-statistic: 13.47 on 1 and 67 DF,  p-value: 0.0004811</code></pre>
 </div>
 <details>
 <summary>Code</summary>
@@ -1019,7 +1020,7 @@ F-statistic: 3.395 on 1 and 76 DF,  p-value: 0.06927</code></pre>
 <span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Modelin hata terimlerinin varyansı:"</span>, mean_residual_variance))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Modelin hata terimlerinin varyansı: 0.0150575998368249"</code></pre>
+<pre><code>[1] "Modelin hata terimlerinin varyansı: 0.00495377108512356"</code></pre>
 </div>
 </div>
 <p>The variance of the error terms turned out to be 0.015, and since the p value is less than 0.05, it can be interpreted that it does not have a constant variance. It took the value of p = 0.06927 and is not significant. The F-statistic is 3.395 and the p-value is 0.06927 This is used to evaluate whether the model is statistically significant in explaining the dependent variable. Since the p-value here is greater than 0.05, it cannot be said that the model is statistically significant. The R-squared value of the model is 0.03017 A low R-squared value indicates that the model does not have sufficient power to explain it.</p>
@@ -1090,7 +1091,7 @@ F-statistic: 24.67 on 1 and 76 DF,  p-value: 4.078e-06</code></pre>
 <pre><code>[1] "Modelin hata terimlerinin varyansı: 159946237.57373"</code></pre>
 </div>
 </div>
-<p>The p-value is quite low (4.078e-06), indicating that the model is significant.Multiple R-squared value is 0.2451. This indicates that the model explains approximately 24.51% of the variance between the independent variables and the dependent variable.The variable DoctoratePercentage is 74056 and indicates how much the mean of the dependent variable will change as the DoctoratePercentage variable increases by one unit. The p-value is quite low (4.08e-06), which indicates that the model is highly significant.</p>
+<p>The slope took the value of 0.31138. Each time DoctoratePercentage increases by one unit, the GDP contribution rate variable increases by approximately 0.31138 units. This coefficient is highly significant (p-value &lt; 0.001). R-squared took the value of 0.1674. Approximately 16.74% of the variance in the GDP contribution rate variable is explained by DoctoratePercentage. This suggests that DoctoratePercentage is a significant predictor, but other factors not included in the model also greatly add to the variability. The adjusted R-squared had a value of 0.155. It is slightly lower than the R-squared value and makes the model have low explanatory power. As a result, it can be said that DoctoratePercentage is a significant predictor of the GDP contribution rate variable.</p>
 </section>
 </section>
 <section id="time-series" class="level1">
@@ -1299,7 +1300,6 @@ Training set -0.04309067</code></pre>
 </section>
 <section id="results-and-key-takeaways" class="level1">
 <h1>4. Results and Key Takeaways</h1>
-<p>xxxxxx</p>
 <p>You can reach PDF version below.</p>
 
 
