@@ -1,5 +1,5 @@
 ---
-title: "Project Turkey Istatistics"
+title: "Project Turkey's Education Istatistics"
 
 format:
   html:
@@ -530,6 +530,18 @@ topGSYMH <- ggplot(top_GSYMH) +
 
 print(topGSYMH)
 ```
+
+The ranking of the provinces that contribute the most to Turkey's Gross National Product is given below.
+```{r}
+top_GSYMH2020 <- turkeyGSYMH %>%
+  arrange(desc(`2020`))
+
+top_GSYMH2020 <- top_GSYMH2020 %>%
+  select(`ProvinceNames`, `2020`)
+print(top_GSYMH2020)
+```
+As can be seen, Ankara ranks first with the highest GDP contribution. The city with the highest number of people with postgraduate education was Ankara. In this context, the contribution of the high number of people who have completed postgraduate education to the Gross National Product will be investigated.
+
 In this context, we will get support from correlation to examine the relationship between these two situations.
 ```{r}
 
@@ -554,21 +566,11 @@ The p-value is 0.00018, indicating that this correlation is statistically signif
 As a result, we can say that there is a very strong and statistically significant positive correlation between DoctoratePercentage and GDP contribution rate variables. This shows that GDP tends to increase as the percentage of PhDs increases.
 
 
-The ranking of the provinces that contribute the most to Turkey's Gross National Product is given below.
-```{r}
-top_GSYMH2020 <- turkeyGSYMH %>%
-  arrange(desc(`2020`))
-
-top_GSYMH2020 <- top_GSYMH2020 %>%
-  select(`ProvinceNames`, `2020`)
-print(top_GSYMH2020)
-```
-As can be seen, Ankara ranks first with the highest GDP contribution. The city with the highest number of people with postgraduate education was Ankara. In this context, the contribution of the high number of people who have completed postgraduate education to the Gross National Product will be investigated.
-
 #3.3.2. Regression Analysis
 
 ```{r}
 GSYMH2020$ProvinceName <- GSYMH2020$ProvinceNames
+GSYMH2020 <- GSYMH2020 %>% filter(`2020` > 0)
 regressionData <- full_join(GSYMH2020, DoctorateResult, by = "ProvinceName")
 
 model <- lm(`2020`~ DoctoratePercentage, data = regressionData)
@@ -624,7 +626,8 @@ mean_residual_variance <- sum_squared_residuals / n
 print(paste("Modelin hata terimlerinin varyansı:", mean_residual_variance))
 ```
 
-The p-value is quite low (4.078e-06), indicating that the model is significant.Multiple R-squared value is 0.2451. This indicates that the model explains approximately 24.51% of the variance between the independent variables and the dependent variable.The variable DoctoratePercentage is 74056 and indicates how much the mean of the dependent variable will change as the DoctoratePercentage variable increases by one unit. The p-value is quite low (4.08e-06), which indicates that the model is highly significant.
+The slope took the value of 0.31138. Each time DoctoratePercentage increases by one unit, the GDP contribution rate variable increases by approximately 0.31138 units. This coefficient is highly significant (p-value < 0.001). R-squared took the value of 0.1674. Approximately 16.74% of the variance in the GDP contribution rate variable is explained by DoctoratePercentage. This suggests that DoctoratePercentage is a significant predictor, but other factors not included in the model also greatly add to the variability. The adjusted R-squared had a value of 0.155. It is slightly lower than the R-squared value and makes the model have low explanatory power.
+As a result, it can be said that DoctoratePercentage is a significant predictor of the GDP contribution rate variable.
 
 
 
@@ -753,7 +756,7 @@ As a result, data sets were examined using correlation, regression analysis and 
 
 # 4. Results and Key Takeaways
 
-xxxxxx
+
 
 
 You can reach PDF version below.
