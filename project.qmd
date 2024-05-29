@@ -5,7 +5,6 @@ format:
   html:
     code-fold: true
     code-summary: "Show the code"
-
 ---
 
 Welcome to my project page.
@@ -13,6 +12,8 @@ Welcome to my project page.
 Keep an eye on this space to stay updated with my project activities.
 
 ![](images/analiz.gif){fig-align="center"}
+
+[You can access the presentation video in which I explain my project here.](https://drive.google.com/file/d/1ji47EJItlquwl-ewJ_y4Zu3mRUE5Dv_d/view?usp=drive_link)
 
 # 1. Project Overview and Scope
 
@@ -61,6 +62,7 @@ head(crime)
 
 
 ```
+
 In exploratory data analysis, data sets were found insufficient for analysis and new data sets were added. Additional Datasets are provided below.
 
 You can see population data set for 2020 below.
@@ -80,6 +82,7 @@ head(population)
 
 
 ```
+
 You can see GSYMH data set for 2020 below.
 
 ```{r}
@@ -97,6 +100,7 @@ head(GSYMH)
 
 
 ```
+
 You can see GDP data set for 2020 below.
 
 ```{r}
@@ -114,6 +118,7 @@ head(GDP)
 
 
 ```
+
 You can see yearCrime data set below.
 
 ```{r}
@@ -131,6 +136,7 @@ head(yearCrime)
 
 
 ```
+
 [Also, click and reach .RData's File](https://github.com/emu-hacettepe-analytics/emu660-spring2024-ecemsenaunlu/tree/main/data)
 
 ## 2.1 Data Source
@@ -148,7 +154,6 @@ Gross Domestic Product (GDP) 2018,2019,2020, Table 7
 You can access following data sets from the link below:
 
 [Reach Out To Data Source](https://data.tuik.gov.tr/Kategori/GetKategori?p=egitim-kultur-spor-ve-turizm-105&dil=1)
-
 
 ## 2.2 General Information About Data
 
@@ -220,7 +225,6 @@ UnknownMale :The UnknownTotal is the number of men whose educational status is u
 
 UnknownFemale :The UnknownTotal is the number of women whose educational status is unknown in Turkey.
 
-
 Below you can find the names of all columns in the Population dataset and information about the data they represent.
 
 Provinces : The Provinces where data is collected for statistical calculations.
@@ -230,7 +234,6 @@ TotalPopulation : TotalPopulation data gives the total number of people living i
 TotalFemale : TotalPopulation data gives the total number of women living in that city.
 
 TotalMale : TotalPopulation data gives the total number of men living in that city.
-
 
 Below you can find the names of all columns in the GSYMH dataset and information about the data they represent.
 
@@ -256,7 +259,7 @@ ProvinceNames : The Provinces where data is collected for statistical calculatio
 
 The change in education level by province in Turkey over the years is an interesting data set. Comments can be made on how the relevant data has changed and developed over the years. For this reason, the changes in Turkey's literacy rates and postgraduate education rates according to provinces and years will be examined in detail.
 
-Additionally, a second data set will be used to examine the relationship between education levels and crime rates. This data set provides us with crimes and crime rates according to education levels in 2020. In addition, it is seen that the 2020 population numbers of the provinces are an important data source for the correct evaluation of the relevant data. 
+Additionally, a second data set will be used to examine the relationship between education levels and crime rates. This data set provides us with crimes and crime rates according to education levels in 2020. In addition, it is seen that the 2020 population numbers of the provinces are an important data source for the correct evaluation of the relevant data.
 
 In the yearCrime data set, data on crime rates according to years and education levels is presented. It is aimed to perform time series analysis using relevant data.
 
@@ -295,6 +298,7 @@ turkey$name <- gsub("Cankiri", "cankiri", turkey$name, fixed = TRUE)
 turkey$ProvinceNames <- turkey$name
 turkeyChanged <- turkey
 ```
+
 # 3. Analysis
 
 We will have many summary data thanks to the data set that will enable us to analyze education levels in Turkey. And we will observe the relationships between them and crime data.
@@ -477,6 +481,7 @@ topIlliterate <- ggplot(top_illiterate) +
         axis.text.y = element_text(size = 8))
 grid.arrange(topMaster, topDoctorate,topIlliterate, nrow = 3)
 ```
+
 It is observed that the cities where people with doctorates and master's degrees are concentrated are different from the cities where illiterate people are concentrated.In this context, it can be associated with different data sets and other analyzes can be made.
 
 Based on the above analysis results, analyzes will continue to be made with the prediction that it can be associated with a data set related to Turkey's development level. In this context, the contribution data of the provinces to Türkiye's gross national product will be used. Below, Turkey's contribution rates to the gross national product by province for 2020 are examined. As can be seen, Ankara is among the provinces with the highest contribution. Ankara was also one of the provinces with the highest rates of doctoral and master's degree holders. Based on this data, it comes to mind to examine whether there is a relationship between the high contribution to the gross national product in the provinces with high rates of doctoral and master's degree holders.
@@ -532,6 +537,7 @@ print(topGSYMH)
 ```
 
 The ranking of the provinces that contribute the most to Turkey's Gross National Product is given below.
+
 ```{r}
 top_GSYMH2020 <- turkeyGSYMH %>%
   arrange(desc(`2020`))
@@ -540,9 +546,11 @@ top_GSYMH2020 <- top_GSYMH2020 %>%
   select(`ProvinceNames`, `2020`)
 print(top_GSYMH2020)
 ```
+
 As can be seen, Ankara ranks first with the highest GDP contribution. The city with the highest number of people with postgraduate education was Ankara. In this context, the contribution of the high number of people who have completed postgraduate education to the Gross National Product will be investigated.
 
 In this context, we will get support from correlation to examine the relationship between these two situations.
+
 ```{r}
 
 correlationTest <- cor.test(top_doctorate$DoctoratePercentage, top_GSYMH$`2020`)
@@ -561,12 +569,12 @@ correlation_plot <- ggplot(data = NULL, aes(x = top_doctorate$DoctoratePercentag
 print(correlation_plot)
 
 ```
-The correlation coefficient took the value of 0.9178788, indicating that there is a very strong positive relationship between these two variables.
-The p-value is 0.00018, indicating that this correlation is statistically significant. The confidence interval is quite narrow, indicating the accuracy of the correlation.
-As a result, we can say that there is a very strong and statistically significant positive correlation between DoctoratePercentage and GDP contribution rate variables. This shows that GDP tends to increase as the percentage of PhDs increases.
 
+The correlation coefficient took the value of 0.9178788, indicating that there is a very strong positive relationship between these two variables. The p-value is 0.00018, indicating that this correlation is statistically significant. The confidence interval is quite narrow, indicating the accuracy of the correlation. As a result, we can say that there is a very strong and statistically significant positive correlation between DoctoratePercentage and GDP contribution rate variables. This shows that GDP tends to increase as the percentage of PhDs increases.
 
 #3.3.2. Regression Analysis
+
+The analysis here examines whether the gross national product data per capita in 2020 by provinces in Turkey has a relationship with the rates of doctoral graduates in the provinces in the same year.
 
 ```{r}
 library(dplyr)
@@ -594,47 +602,13 @@ n <- length(residuals)
 mean_residual_variance <- sum_squared_residuals / n
 print(paste("Modelin hata terimlerinin varyansı:", mean_residual_variance))
 ```
-The variance of the error terms turned out to be 0.015, and since the p value is less than 0.05, it can be interpreted that it does not have a constant variance. It took the value of p = 0.06927 and is not significant. The F-statistic is 3.395 and the p-value is 0.06927 This is used to evaluate whether the model is statistically significant in explaining the dependent variable. Since the p-value here is greater than 0.05, it cannot be said that the model is statistically significant. The R-squared value of the model is 0.03017 A low R-squared value indicates that the model does not have sufficient power to explain it.
 
-
-The analysis here examines whether the gross national product data per capita in 2020 by provinces in Turkey has a relationship with the rates of doctoral graduates in the provinces in the same year.
-
-```{r}
-library(dplyr)
-
-GDP2020 <- GDP %>% select(ProvinceNames, `2020`)
-GDP2020$ProvinceName <- GDP2020$ProvinceNames
-regressionData2 <- full_join(GDP2020, DoctorateResult, by = c("ProvinceName"))
-
-model <- lm(`2020`~ DoctoratePercentage, data = regressionData2)
-
-summary(model)
-
-plot(regressionData$DoctoratePercentage, regressionData$`2020`,
-     main = "The relationship between the GDP per person of provinces and the rate of people with a doctorate in 2020",
-     xlab ="Doctorate Percentage" , ylab = "GDP Percentage", pch = 19, col = "blue")
-abline(model, col = "red")
-
-par(mfrow = c(2, 2))
-plot(model)
-
-residuals <- resid(model)
-residuals_squared <- residuals^2
-sum_squared_residuals <- sum(residuals_squared)
-n <- length(residuals)
-
-mean_residual_variance <- sum_squared_residuals / n
-print(paste("Modelin hata terimlerinin varyansı:", mean_residual_variance))
-```
-
-The slope took the value of 0.31138. Each time DoctoratePercentage increases by one unit, the GDP contribution rate variable increases by approximately 0.31138 units. This coefficient is highly significant (p-value < 0.001). R-squared took the value of 0.1674. Approximately 16.74% of the variance in the GDP contribution rate variable is explained by DoctoratePercentage. This suggests that DoctoratePercentage is a significant predictor, but other factors not included in the model also greatly add to the variability. The adjusted R-squared had a value of 0.155. It is slightly lower than the R-squared value and makes the model have low explanatory power.
-As a result, it can be said that DoctoratePercentage is a significant predictor of the GDP contribution rate variable.
-
-
+The slope took the value of 0.31138. Each time DoctoratePercentage increases by one unit, the GDP contribution rate variable increases by approximately 0.31138 units. p-value is 0.00048 and this coefficient is highly significant (p-value \< 0.001). R-squared took the value of 0.1674. Approximately 16.74% of the variance in the GDP contribution rate variable is explained by DoctoratePercentage. This suggests that DoctoratePercentage is a significant predictor, but other factors not included in the model also greatly add to the variability. The adjusted R-squared had a value of 0.155. It is slightly lower than the R-squared value and makes the model have low explanatory power. As a result, it can be said that DoctoratePercentage is a significant predictor of the GDP contribution rate variable.
 
 # 3.3.3. Time Series
 
 The relationship between people with postgraduate degrees and the number of crimes committed in Turkey between 2016 and 2020 will be examined.
+
 ```{r}
 educationTotal <- education %>%
   group_by(Year) %>%
@@ -672,18 +646,11 @@ grafik <- ggplot(merged_data, aes(x = Year)) +
   scale_color_manual(values = c("red", "blue", "green", "orange", "purple", "brown", "black","pink"))
 
 print(grafik)
-
-korelasyon_testi <- cor.test(merged_data$HigherEducationTotal.x, merged_data$HigherEducationTotal.y)
-
-print(korelasyon_testi)
 ```
-
-The correlation coefficient was estimated to be 0.915. This value indicates a strong positive relationship between the two variables. That is, these two variables tend to increase together.P value is a value that determines whether the correlation is statistically significant or not. Here, the p-value is 0.02917, which indicates that the correlation is statistically significant.
-
-As a result, it can be said that there is a strong positive correlation between the two variables and this correlation is statistically significant.
 
 A time series study was conducted based on the crime rates of people receiving postgraduate education according to years and education levels between 2016 and 2020.
 
+The course of crime processes committed by people with postgraduate education over the years was examined.
 
 ```{r}
 
@@ -746,10 +713,8 @@ autoplot(forecast_model) +
   ylab("Higher Education Rate") + 
   xlab("Year")
 ```
-The fact that sigma^2 = 6.651e-06 shows that the variance of the residuals is quite low. This indicates that the error terms of the model are small. The log likelihood value is 18.17. This value shows how well the model fits the data. If it is positive, it indicates that the model fits the data quite well. MASE (Mean Absolute Scaled Error) value was 0.8009155. Less than 1 indicates that the model performs well. Looking at the various statistical measures of this model:
-A low sigma^2 value indicates that model errors are low. Negative AIC, AICc and BIC values indicate that the model fits the data quite well. ME, RMSE, MAE, MPE, MAPE, MASE values are low and at an appropriate level. The ACF1 value shows that the residuals are independent and do not contain autocorrelation. As a result, we can say that the ARIMA(0,1,0) model is a suitable model for time series. Errors are low and the model has a good fit to the data.
 
-
+The fact that sigma\^2 = 6.651e-06 shows that the variance of the residuals is quite low. This indicates that the error terms of the model are small. The log likelihood value is 18.17. This value shows how well the model fits the data. If it is positive, it indicates that the model fits the data quite well. MASE (Mean Absolute Scaled Error) value was 0.8009155. Less than 1 indicates that the model performs well. Looking at the various statistical measures of this model: A low sigma\^2 value indicates that model errors are low. Negative AIC, AICc and BIC values indicate that the model fits the data quite well. ME, RMSE, MAE, MPE, MAPE, MASE values are low and at an appropriate level. The ACF1 value shows that the residuals are independent and do not contain autocorrelation. As a result, we can say that the ARIMA(0,1,0) model is a suitable model for time series. Errors are low and the model has a good fit to the data.
 
 ## 3.4 Results
 
@@ -759,6 +724,6 @@ As a result, data sets were examined using correlation, regression analysis and 
 
 In conclusion;
 
- 4.1. As predicted, it has been confirmed by both correlation and regression analyzes that the provinces contributing to Turkey's gross domestic product have a linear relationship with education levels.
+4.1. As predicted, it has been confirmed by both correlation and regression analyzes that the provinces contributing to Turkey's gross domestic product have a linear relationship with education levels.
 
- 4.2. According to the 5-year time series analysis conducted with the second data set, which includes the distribution of crime rates over years by education levels, it was observed that the relevant data was compatible with the model and that education levels were also related to crime rates. When we look at the 5-year analysis, it is concluded that the crime rate has stabilized.
+4.2. According to the 5-year time series analysis conducted with the second data set, which includes the distribution of crime rates by years in education levels, it is concluded that the relevant data are compatible with the model and the crime rates in undergraduate education levels are fixed at an average value in the 5-year period.
