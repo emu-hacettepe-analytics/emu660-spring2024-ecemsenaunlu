@@ -1,5 +1,5 @@
 ---
-title: "Project Turkey's Education Istatistics"
+title: "Project Turkey's Education, Crime and GDP Relations Istatistics"
 
 format:
   html:
