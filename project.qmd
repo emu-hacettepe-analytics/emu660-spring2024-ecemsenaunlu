@@ -658,7 +658,7 @@ library(readxl)
 library(forecast)
 library(tseries)
 library(ggplot2)
-
+library(tibble)
 suppressPackageStartupMessages(library(dplyr))
 library(readxl)
 library(dplyr)
@@ -686,35 +686,79 @@ merged_data <- merged_data %>%
 merged_data <- merged_data %>%
   mutate(UnknownRate = UnknownTotal.x / UnknownTotal.y)
 
-
+merged_data <- tibble(merged_data)
 timeSeriesData <- ts(merged_data$HigherEducationRate, start=min(merged_data$Year), end=max(merged_data$Year), frequency=1)
 
-plot(timeSeriesData, main="Crime Rate with Higher Education People Time Series", ylab="Higher Education Rate", xlab="Year")
 
-autoplot(timeSeriesData) + 
-  ggtitle("Crime Rate with Higher Education People Time Series") + 
-  ylab("Higher Education Rate") + 
-  xlab("Year")
+library(greyforecasting)
+fit_and_forecast <- function(model_func, data, forecast_steps = 5) {
+  model <- model_func(data)
+  fitted_values <- model$fitted
+  n <- length(data)
+  forecast_values <- numeric(forecast_steps)
+  
+  for (i in 1:forecast_steps) {
+    extended_data <- c(data, forecast_values[1:(i-1)])
+    forecast_model <- model_func(extended_data)
+    forecast_values[i] <- tail(forecast_model$fitted, 1)
+  }
+  
+  list(model = model, fitted = fitted_values, forecast = forecast_values)
+}
 
+models <- list(
+  gm = gm,
+  gm_1 = gm_1,
+  gm_2 = gm_2,
+  dgm = dgm,
+  verhulst = verhulst,
+  pgm = pgm
+)
+rmse <- function(actual, predicted) {
+  sqrt(mean((actual - predicted)^2))
+}
 
-  print(timeSeriesData)
-adf_test <- adf.test(timeSeriesData)
-print(adf_test)
+# Applying models and calculate accuracy
+results <- lapply(models, function(model_func) {
+  result <- fit_and_forecast(model_func, timeSeriesData, forecast_steps = 5)
+  accuracy <- rmse(timeSeriesData[(length(timeSeriesData)-4):length(timeSeriesData)], result$forecast)
+  list(model = result$model, fitted = result$fitted, forecast = result$forecast, accuracy = accuracy)
+})
 
-acf(timeSeriesData, main="ACF of Higher Education Rate")
-pacf(timeSeriesData, main="PACF of Higher Education Rate")
+best_model_index <- which.min(sapply(results, function(x) x$accuracy))
+best_model_name <- names(results)[best_model_index]
+best_model <- results[[best_model_index]]
 
-best_arima_model <- auto.arima(timeSeriesData)
-summary(best_arima_model)
+cat("The best model is:", best_model_name, "\n")
+cat("Best model RMSE:", best_model$accuracy, "\n")
+print(best_model$forecast)
 
-forecast_model <- forecast(best_arima_model, h=5)
-autoplot(forecast_model) + 
-  ggtitle("Forecast of Higher Education Rate") + 
-  ylab("Higher Education Rate") + 
-  xlab("Year")
+years <- as.numeric(c(2016, 2017, 2018, 2019, 2020))
+forecast_years <- (max(years) + 1):(max(years) + length(best_model$forecast))
+plot_data <- data.frame(
+  Year = c(years, forecast_years),
+  Value = c(timeSeriesData, best_model$forecast),
+  Type = c(rep("Actual", length(timeSeriesData)), rep("Forecast", length(best_model$forecast)))
+)
+
+fitted_data <- data.frame(
+  Year = years,
+  Value = best_model$fitted,
+  Type = "Fitted"
+)
+plot_data <- rbind(plot_data, fitted_data)
+
+ggplot(plot_data, aes(x = Year, y = Value, color = Type)) +
+  geom_line() +
+  geom_point() +
+  labs(title = "Grey Model Fitting and Forecast",
+       x = "Year",
+       y = "Higher Education Crime Rates ") +
+  scale_color_manual(values = c("Actual" = "pink", "Fitted" = "purple", "Forecast" = "blue")) +
+  theme_classic()
 ```
 
-The fact that sigma\^2 = 6.651e-06 shows that the variance of the residuals is quite low. This indicates that the error terms of the model are small. The log likelihood value is 18.17. This value shows how well the model fits the data. If it is positive, it indicates that the model fits the data quite well. MASE (Mean Absolute Scaled Error) value was 0.8009155. Less than 1 indicates that the model performs well. Looking at the various statistical measures of this model: A low sigma\^2 value indicates that model errors are low. Negative AIC, AICc and BIC values indicate that the model fits the data quite well. ME, RMSE, MAE, MPE, MAPE, MASE values are low and at an appropriate level. The ACF1 value shows that the residuals are independent and do not contain autocorrelation. As a result, we can say that the ARIMA(0,1,0) model is a suitable model for time series. Errors are low and the model has a good fit to the data.
+According to the analysis results, it was observed that the best method was DGM. The model created predictions of 46.76363, 53.77143, 39.18664, 45.27828, 33.59840 for the next 5-year period. Looking at the graph, it can be said that the data fits well and the predictions are suitable for the structure of the data. It is predicted that if the number of periods were higher, better predictions could be created with different models.
 
 ## 3.4 Results
 
@@ -727,3 +771,9 @@ In conclusion;
 4.1. As predicted, it has been confirmed by both correlation and regression analyzes that the provinces contributing to Turkey's gross domestic product have a linear relationship with education levels.
 
 4.2. According to the 5-year time series analysis conducted with the second data set, which includes the distribution of crime rates by years in education levels, it is concluded that the relevant data are compatible with the model and the crime rates in undergraduate education levels are fixed at an average value in the 5-year period.
+
+# 5. References
+
+Support was received from Dilara Akkuş's work for time series analysis. You can access the link below.
+
+https://emu-hacettepe-analytics.github.io/emu660-spring2024-Dilara-pro/project.html
